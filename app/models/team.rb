@@ -1,5 +1,7 @@
 class Team < ActiveRecord::Base
 
+  attr_accessible :name
+
   has_many :home_games, :foreign_key=>'home_id', :class_name=>'Game'
   has_many :away_games, :foreign_key=>'away_id', :class_name=>'Game'
   has_many :games, :class_name=>'Game', :finder_sql=>'games.home_id = #{id} OR games.away_id = #{id}'
