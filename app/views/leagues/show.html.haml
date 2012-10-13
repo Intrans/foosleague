@@ -22,11 +22,13 @@
   .player
     .player-card
       .player-card-image
-        %img{ :src => "https://si0.twimg.com/profile_images/2704359237/a482581c712a8024130d4b231a9d3448.png" }
+        = image_tag player_avatar
       .player-card-info
-        %h1 Player Name
-        %p Player Twitter Handle
+        - if current_player.name
+          %h1= current_player.name
 
+        - if current_player.twitter_name
+          %p= current_player.twitter_name
     .row
       .column.six
         %p.stat.stat-large
@@ -59,3 +61,4 @@
 /         %th Name
 /     %tbody
 /       = render resource.teams
+
