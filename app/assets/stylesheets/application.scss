@@ -99,7 +99,17 @@ a {
   }
 }
 
+.player {
+  > h2 {
+    margin: 10px 0 0;
+    font-size: 12px;
+    text-transform: uppercase;
+    color: #a3adbc;
+  }
+}
+
 .player-card {
+  margin: 0 0 10px;
   padding: 4px;
   background: #fff;
   border: 1px solid #95a8bf;
@@ -179,4 +189,62 @@ a {
 
 .game-team-home {
   text-align: right;
+}
+
+.game-team-playerimage {
+  width: 24px;
+  height: 24px;
+  display: inline-block;
+  vertical-align: middle;
+  border: 1px solid #505b67;
+  position: relative;
+  @include border-radius(2px);
+  @include box-shadow(0 1px 1px rgba(24,55,93,0.15));
+
+  &:after {
+    content: "";
+    position: absolute;
+    top: 0; right: 0; bottom: 0; left: 0;
+    @include box-shadow(inset 0 1px rgba(255,255,255,0.15));
+    @include border-radius(1px);
+  }
+
+  img {
+    width: 22px;
+    height: 22px;
+    display: block;
+    @include border-radius(1px);
+  }
+}
+
+.chart {
+  margin: 0 0 20px;
+  display: block;
+}
+
+.chart-small {
+  height: 100px;
+}
+
+.players {
+  input {
+    display: none;
+  }
+}
+
+.player {
+  margin: 0 0 5px;
+  display: block;
+  cursor: pointer;
+  @include transition(0.15s);
+
+  &.disabled {
+    @include opacity(0.2);
+  }
+
+  &.active {
+    border: 1px solid #24430d;
+    @include background-image(linear-gradient(#abcf57, #579f2b));
+    @include box-shadow(inset 0 1px #c6de73, 0 1px 1px rgba(24,55,93,0.15));
+  }
 }

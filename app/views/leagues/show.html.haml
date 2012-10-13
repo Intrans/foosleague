@@ -8,7 +8,7 @@
   %nav.nav.nav-main
     %h1 League Navigation
     %ul
-      %li= link_to "Dasboard", "#"
+      %li= link_to "Dashboard", "#"
       %li= link_to "Player Ladder", "#"
       %li= link_to "Team Ladder", "#"
       %li= link_to "Player Stats", "#"
@@ -22,9 +22,11 @@
       .player-card-image
         = image_tag player_avatar
       .player-card-info
-        %h1= current_player
-        %p= current_player.twitter_name
+        - if current_player.name
+          %h1= current_player.name
 
+        - if current_player.twitter_name
+          %p= current_player.twitter_name
     .row
       .column.six
         %p.stat.stat-large
@@ -35,11 +37,17 @@
           8888
           %strong Losses
 
+    %h2 Win Percent
+    #winpercent.chart.chart-small
+
+    %h2 Score Diff
+    #scorediff.chart.chart-small
+
+    %h2 Ladder Skill
+    #ladderskill.chart.chart-small
 
 
-
-
-= image_tag resource.logo.thumb('100x100').url if resource.logo_uid
+= image_tag resource.logo.thumb('100x100#').url if resource.logo_uid
 
 %h2 Games
 = render resource.games
