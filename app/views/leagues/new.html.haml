@@ -1,5 +1,8 @@
+- content_for :heading do
+  %h1 Create New League
+
 = simple_form_for resource do |form|
   = form.error_messages
   = render 'form', :form => form
-  = form.button :submit
+  = form.button :submit, :class => "btn btn-primary"
 

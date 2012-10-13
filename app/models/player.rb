@@ -19,6 +19,14 @@ class Player < ActiveRecord::Base
   validates :email, :presence => true, :uniqueness => true
   validates :twitter_name, :uniqueness => true
 
+  def avatar
+    Dragonfly[:images].fetch_url("https://api.twitter.com/1/users/profile_image/#{twitter_name}?size=bigger")
+  end
+
+  def avatar_url
+    twitter_name.present? ? "https://api.twitter.com/1/users/profile_image/#{twitter_name}?size=bigger" : '/assets/default-player-logo.png'
+  end
+
   def to_s
     return "#{name} (#{twitter_name})" if name != twitter_name
     return twitter_name

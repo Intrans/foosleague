@@ -1,4 +1,4 @@
-class GamesController < InheritedResources::Base
+class GamesController < ApplicationController
   actions :create, :index, :new, :show
   belongs_to :league
   respond_to :html, :json

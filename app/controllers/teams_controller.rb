@@ -1,4 +1,4 @@
-class TeamsController < InheritedResources::Base
+class TeamsController < ApplicationController
   actions :edit, :update
   belongs_to :league
   respond_to :html, :json

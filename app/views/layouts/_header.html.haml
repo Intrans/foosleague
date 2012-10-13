@@ -5,19 +5,21 @@
     - if player_signed_in?
       .btn.btn-header.btn-header-left.has-dropdown
         .btn-image
-          %img{ :src => "https://si0.twimg.com/profile_images/2704359237/a482581c712a8024130d4b231a9d3448.png" }
+          = image_tag league_logo
 
-        League Name
+        = league_menu_label
 
         %ul.dropdown.dropdown-left
           - current_player.leagues.each do |league|
             - next if league.new_record?
             %li= link_to league, league
+          %li.spacer
+          %li.new= link_to 'New League', new_league_url
 
       .btn.btn-header.btn-header-right.has-dropdown
         .btn-image
-          %img{ :src => "https://si0.twimg.com/profile_images/2704359237/a482581c712a8024130d4b231a9d3448.png" }
-        =current_player
+          = image_tag player_avatar(current_player)
+        = current_player
         %ul.dropdown.dropdown-right
           %li
             = link_to edit_player_registration_path do
