@@ -4,7 +4,7 @@ class CreateTeams < ActiveRecord::Migration
       table.timestamps
       table.integer :league_id,                   :null => false
       table.string  :name,        :limit => 128,  :null => false
-      table.integer :player_count, :default => 0, :null => false
+      table.integer :player_count, :default => 2, :null => false
     end
 
     add_index :teams, [ :league_id ]
