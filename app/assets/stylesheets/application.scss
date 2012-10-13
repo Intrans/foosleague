@@ -99,6 +99,15 @@ a {
   }
 }
 
+.player {
+  > h2 {
+    margin: 10px 0 0;
+    font-size: 12px;
+    text-transform: uppercase;
+    color: #8f9bad;
+  }
+}
+
 .player-card {
   padding: 4px;
   background: #fff;
@@ -179,4 +188,13 @@ a {
 
 .game-team-home {
   text-align: right;
+}
+
+.chart {
+  margin: 0 0 20px;
+  display: block;
+}
+
+.chart-small {
+  height: 100px;
 }
