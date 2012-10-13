@@ -1,6 +1,4 @@
 class LeagueMembership < ActiveRecord::Base
-  attr_accessible :player
-  
   belongs_to :league, :inverse_of => :league_memberships
   belongs_to :player, :inverse_of => :league_memberships
 
@@ -39,12 +37,4 @@ class LeagueMembership < ActiveRecord::Base
       self.admin = true
       self.save!
     end
-
-    def set_player
-      self.player = Player.find_by_twitter_name(twitter_name) unless player.present?
-      if player.present?
-
-      end
-    end
-
 end
