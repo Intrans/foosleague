@@ -8,6 +8,7 @@ Foosleague::Application.routes.draw do
       resources :players, :only => [ :create, :new ]
       resources :teams, :only => [ :edit, :update ]
     end
+    match "/leagues" => redirect("/")
     root :to => "leagues#index"
   end
 
