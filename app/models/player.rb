@@ -3,8 +3,8 @@ class Player < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable,
          :omniauthable, :token_authenticatable
 
-  attr_accessible :email, :password, :password_confirmation, :remember_me, :provider, :uid, :name, :twitter_handle
-
+  attr_accessible :email, :password, :password_confirmation, :remember_me, :provider, :uid, :name, :twitter_name
+  
   def self.from_omniauth(auth)
     where(auth.slice(:provider, :uid)).first_or_create do |player|
       player.provider = auth.provider
