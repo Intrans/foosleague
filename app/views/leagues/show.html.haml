@@ -1,9 +1,20 @@
 %h1= resource.name
 
 %h2 Players
+= link_to 'New Player', new_league_player_url(resource)
 %table
   %thead
     %tr
       %th Twitter Handle
   %tbody
     = render resource.players
+
+%h2 Games
+= link_to 'New Game', new_league_game_url(resource)
+%table
+  %thead
+    %tr
+      %th Home
+      %th Away
+  %tbody
+    = render resource.games

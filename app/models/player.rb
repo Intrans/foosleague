@@ -1,11 +1,12 @@
 class Player < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable,
+         :recoverable, :rememberable, :trackable, #:validatable,
          :omniauthable, :token_authenticatable
 
   attr_accessible :email, :password, :password_confirmation, :remember_me, :provider, :uid, :name, :twitter_name
 
-  has_many :leagues, :through => :league_memberships
+  has_many :league_memberships, :inverse_of => :player
+  has_many :leagues, :through => :league_memberships, :inverse_of => :players
 
   def to_s
     return "#{name} (#{twitter_name})" if name != twitter_name

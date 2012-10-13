@@ -16,6 +16,7 @@ ActiveRecord::Schema.define(:version => 20121013061738) do
   create_table "game_logs", :force => true do |t|
     t.integer  "game_id"
     t.integer  "team_id"
+    t.string   "type"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
@@ -96,12 +97,13 @@ ActiveRecord::Schema.define(:version => 20121013061738) do
   add_index "teams", ["league_id"], :name => "index_teams_on_league_id"
 
   create_table "true_skills", :force => true do |t|
-    t.integer  "player_id"
-    t.float    "skill",      :default => 750.0
-    t.float    "deviation",  :default => 250.0
-    t.float    "activity",   :default => 1.0
-    t.datetime "created_at",                    :null => false
-    t.datetime "updated_at",                    :null => false
+    t.integer  "subject_id"
+    t.string   "subject_type"
+    t.float    "skill",        :default => 750.0
+    t.float    "deviation",    :default => 250.0
+    t.float    "activity",     :default => 1.0
+    t.datetime "created_at",                      :null => false
+    t.datetime "updated_at",                      :null => false
   end
 
 end
