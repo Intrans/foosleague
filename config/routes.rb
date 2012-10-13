@@ -6,4 +6,7 @@ Foosleague::Application.routes.draw do
     get "logout" => "sessions#destroy", :as => 'destroy_player_session'
     get "signup" => "registrations#new", :as => 'new_player_registration'
   end
+  
+  root :to => Stationary::Engine
+  match '/:path(.:format)', :to => Stationary::Engine, :constraints => { :path => /.+?/ }
 end
