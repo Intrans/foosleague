@@ -18,6 +18,9 @@
 
       .row.container
         .col.col-main
+          - if content_for?(:heading)
+            .col-main-heading
+              = yield :heading
           = yield
 
 

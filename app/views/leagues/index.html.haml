@@ -1,8 +1,5 @@
-%h1 Leagues
+- content_for :heading do
+  %h1 Leagues
+
 = link_to 'New League', new_league_url
-%table
-  %thead
-    %tr
-      %th Name
-  %tbody
-    = render collection
+= render collection
