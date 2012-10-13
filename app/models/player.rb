@@ -4,7 +4,12 @@ class Player < ActiveRecord::Base
          :omniauthable, :token_authenticatable
 
   attr_accessible :email, :password, :password_confirmation, :remember_me, :provider, :uid, :name, :twitter_name
-  
+
+  def to_s
+    return "#{name} (#{twitter_name})" if name != twitter_name
+    return twitter_name
+  end
+
   def self.from_omniauth(auth)
     where(auth.slice(:provider, :uid)).first_or_create do |player|
       player.provider = auth.provider
