@@ -4,7 +4,7 @@ class League < ActiveRecord::Base
   has_many :league_memberships
   has_many :players, :through => :league_memberships
   has_many :games
-  
+
   has_many :teams do
     def find_or_create_by_players(players)
       # force into and array if needed
