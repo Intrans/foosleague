@@ -1,0 +1,6 @@
+%h1 FoosLeague
+
+- if player_signed_in?
+  Signed in as #{current_player.name}
+- else
+  = link_to "Sign in with Twitter", player_omniauth_authorize_path(:twitter)
