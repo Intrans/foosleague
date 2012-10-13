@@ -31,11 +31,11 @@
     .row
       .column.six
         %p.stat.stat-large
-          8888
+          = current_player.wins.count
           %strong Wins
       .column.six
         %p.stat.stat-large
-          8888
+          = current_player.losses.count
           %strong Losses
 
     %h2 Win Percent
@@ -50,8 +50,8 @@
 
 = image_tag resource.logo.thumb('100x100').url if resource.logo_uid
 
-%h2 Games
-= render resource.games
+%h2 Recent Games
+= render resource.games.limit(20)
 
 - if resource.doubles?
   %h2 Teams

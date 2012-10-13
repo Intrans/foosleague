@@ -1,4 +1,7 @@
 class Player < ActiveRecord::Base
+  extend FriendlyId
+  friendly_id :twitter_name, use: :slugged
+
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, #:validatable,
          :omniauthable, :token_authenticatable
@@ -21,13 +24,24 @@ class Player < ActiveRecord::Base
     return twitter_name
   end
 
+  def wins(my_team_ids = team_ids)
+    Game.having_teams(my_team_ids).wins(my_team_ids)
+  end
+
+  def losses(my_team_ids = team_ids)
+    Game.having_teams(my_team_ids).loses(my_team_ids)
+  end
+
+  def games(my_team_ids = team_ids)
+    Game.having_teams(team_ids)
+  end
+
   def self.from_omniauth(auth)
     where(auth.slice(:provider, :uid)).first_or_create do |player|
       player.provider = auth.provider
       player.uid = auth.uid
       player.twitter_name = auth.info.nickname
       player.name = auth.info.nickname
-      player.email = "twitter-#{auth.uid}@foosleague.com"
     end
   end
 

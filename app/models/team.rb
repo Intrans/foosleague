@@ -1,4 +1,6 @@
 class Team < ActiveRecord::Base
+  extend FriendlyId
+  friendly_id :display_name, use: :slugged
 
   attr_accessible :name, :logo, :remove_logo, :retained_logo
 
@@ -32,7 +34,7 @@ class Team < ActiveRecord::Base
   scope :by_skill, joins(:true_skill).order('skill desc')
 
   def display_name
-    player.pluck(:name).join(" & ")
+    players.pluck(:name).join(" & ")
   end
 
   def last_record(max=5)
@@ -65,7 +67,7 @@ class Team < ActiveRecord::Base
   end
 
   def to_s
-    name || players.map(&:name).join(" ")
+    display_name
   end
 
   def game_result?(game)
