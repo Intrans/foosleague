@@ -8,6 +8,10 @@ class Player < ActiveRecord::Base
   has_many :league_memberships, :inverse_of => :player
   has_many :leagues, :through => :league_memberships, :inverse_of => :players
 
+  before_validation :set_temporary_email, :if => Proc.new { |p| p.email.blank? }
+
+  validates :email, :presence => true
+
   def to_s
     return "#{name} (#{twitter_name})" if name != twitter_name
     return twitter_name
@@ -44,5 +48,9 @@ class Player < ActiveRecord::Base
     else
       super
     end
+  end
+
+  def set_temporary_email
+    self.email = "#{rand(9999999999999999)}@foosleague.com"
   end
 end
