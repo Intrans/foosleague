@@ -3,7 +3,7 @@ class PlayersController < ApplicationController
   belongs_to :league
 
   def create
-    create! { parent_url }
+    create! { edit_parent_url(:anchor => 'players') }
   end
 
   private
@@ -21,4 +21,9 @@ class PlayersController < ApplicationController
 
       membership.valid?
     end
+
+    def current_league
+      parent
+    end
+
 end
