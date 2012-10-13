@@ -42,7 +42,10 @@ ActiveRecord::Schema.define(:version => 20121013061738) do
     t.boolean  "doubles",                   :default => true, :null => false
     t.string   "logo_uid"
     t.string   "logo_name"
+    t.string   "slug",                                        :null => false
   end
+
+  add_index "leagues", ["slug"], :name => "index_leagues_on_slug", :unique => true
 
   create_table "players", :force => true do |t|
     t.string   "email",                  :default => "", :null => false
@@ -56,6 +59,7 @@ ActiveRecord::Schema.define(:version => 20121013061738) do
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
     t.string   "authentication_token"
+    t.string   "slug",                                   :null => false
     t.datetime "created_at",                             :null => false
     t.datetime "updated_at",                             :null => false
     t.string   "provider"
@@ -67,6 +71,7 @@ ActiveRecord::Schema.define(:version => 20121013061738) do
   add_index "players", ["authentication_token"], :name => "index_players_on_authentication_token", :unique => true
   add_index "players", ["email"], :name => "index_players_on_email", :unique => true
   add_index "players", ["reset_password_token"], :name => "index_players_on_reset_password_token", :unique => true
+  add_index "players", ["slug"], :name => "index_players_on_slug", :unique => true
   add_index "players", ["twitter_name"], :name => "index_players_on_twitter_name", :unique => true
 
   create_table "team_memberships", :force => true do |t|
@@ -87,9 +92,11 @@ ActiveRecord::Schema.define(:version => 20121013061738) do
     t.string   "name",       :limit => 128
     t.string   "logo_uid"
     t.string   "logo_name"
+    t.string   "slug",                      :null => false
   end
 
   add_index "teams", ["league_id"], :name => "index_teams_on_league_id"
+  add_index "teams", ["slug"], :name => "index_teams_on_slug", :unique => true
 
   create_table "true_skills", :force => true do |t|
     t.integer  "subject_id"

@@ -21,11 +21,11 @@
     .row
       .column.six
         %p.stat.stat-large
-          8888
+          = current_player.wins.count
           %strong Wins
       .column.six
         %p.stat.stat-large
-          8888
+          = current_player.losses.count
           %strong Losses
 
     %h2 Win Percent
@@ -45,14 +45,7 @@
       %p No Games Played
       = link_to 'New Game', new_league_game_url(resource), :class => "btn"
 
-/ - if resource.doubles?
-/   %h2 Teams
-/   %table
-/     %thead
-/       %tr
-/         %th Player #1
-/         %th Player #2
-/         %th Name
-/     %tbody
-/       = render resource.teams
+= image_tag resource.logo.thumb('100x100').url if resource.logo_uid
 
+%h2 Recent Games
+= render resource.games.limit(20)
