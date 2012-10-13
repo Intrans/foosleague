@@ -16,8 +16,14 @@
       .btn.btn-header.btn-header-right.has-dropdown
         =current_player
         %ul.dropdown.dropdown-right
-          %li= link_to "Edit", edit_player_registration_path
-          %li= link_to "Sign Out", destroy_player_session_path
+          %li
+            = link_to edit_player_registration_path do
+              %i.ss-icon.ss-settings
+              Edit
+          %li
+            = link_to destroy_player_session_path do
+              %i.ss-icon.ss-caution
+              Sign Out
 
     - else
       = link_to "Sign in with Twitter", player_omniauth_authorize_path(:twitter)

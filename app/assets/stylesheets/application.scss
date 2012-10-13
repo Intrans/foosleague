@@ -1,6 +1,19 @@
 @import "compass";
 @import "foundation";
+@import "ss-standard.css";
 
+@font-face {
+  font-family: 'SSStandard';
+  src: url(font-path('ss-standard.eot'));
+  src: url(font-path('ss-standard.eot') + '?#iefix') format('embedded-opentype'),
+       url(font-path('ss-standard.woff')) format('woff'),
+       url(font-path('ss-standard.ttf')) format('truetype'),
+       url(font-path('ss-standard.svg') + '#SSStandard') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+$font-ssstandard: "ss-standard";
 $font-proxima: "proxima-nova", "Helvetica Neue", Helvetica, Arial;
 
 html,
@@ -127,6 +140,12 @@ body {
       padding: 3px 0;
       text-shadow: none;
       display: block;
+
+      .ss-icon {
+        margin: 1px 0 0;
+        float: left;
+        width: 20px;
+      }
     }
   }
 }
