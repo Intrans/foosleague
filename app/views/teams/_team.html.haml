@@ -1,4 +1,6 @@
 %tr
   - team.players.each do |player|
     %td= player
-  %td= link_to team, edit_league_team_url(team.league, team)
+  %td
+    = link_to team, edit_league_team_url(team.league, team)
+    = image_tag team.logo.thumb('50x50').url if team.logo_uid

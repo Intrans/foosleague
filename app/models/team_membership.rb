@@ -1,7 +1,7 @@
 class TeamMembership < ActiveRecord::Base
 
-  belongs_to :team, :counter_cache => :player_count
-  belongs_to :player
+  belongs_to :team, :inverse_of => :memberships
+  belongs_to :player, :inverse_of => :team_memberships
 
   validates_presence_of :team, :player
 

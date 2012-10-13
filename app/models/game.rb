@@ -35,8 +35,8 @@ class Game < ActiveRecord::Base
   end
 
   def correct_players?
-    errors.add(:away, "requires #{pluralize(league.required_number_of_players, 'player')}") unless league.required_number_of_players == away.players.count
-    errors.add(:home, "requires #{pluralize(league.required_number_of_players, 'player')}") unless league.required_number_of_players == home.players.count
+    #errors.add(:away, "requires #{pluralize(league.required_number_of_players, 'player')}") unless league.required_number_of_players == away.players.count
+    #errors.add(:home, "requires #{pluralize(league.required_number_of_players, 'player')}") unless league.required_number_of_players == home.players.count
   end
 
   def revert_foos_skills

@@ -2,9 +2,10 @@ class CreateTeams < ActiveRecord::Migration
   def change
     create_table :teams do |table|
       table.timestamps
-      table.integer :league_id,                   :null => false
-      table.string  :name,        :limit => 128,  :null => true
-      table.integer :player_count, :default => 2, :null => false
+      table.integer   :league_id,                                     :null => false
+      table.string    :name,                          :limit => 128,  :null => true
+      table.string    :logo_uid,     :default => nil,                 :null => true
+      table.string    :logo_name,    :default => nil,                 :null => true
     end
 
     add_index :teams, [ :league_id ]

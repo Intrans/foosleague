@@ -1,6 +1,6 @@
 class Team < ActiveRecord::Base
 
-  attr_accessible :name
+  attr_accessible :name, :logo, :remove_logo, :retained_logo
 
   has_many :home_games, :foreign_key=>'home_id', :class_name=>'Game'
   has_many :away_games, :foreign_key=>'away_id', :class_name=>'Game'
@@ -14,6 +14,8 @@ class Team < ActiveRecord::Base
   validate :has_players, :on => :create
 
   belongs_to :league
+
+  image_accessor :logo
 
   scope :singles, lambda {
     where('player_count = 1')

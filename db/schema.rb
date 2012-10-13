@@ -14,14 +14,13 @@
 ActiveRecord::Schema.define(:version => 20121013061738) do
 
   create_table "games", :force => true do |t|
+    t.datetime "created_at",                :null => false
+    t.datetime "updated_at",                :null => false
     t.integer  "league_id"
     t.integer  "home_id"
     t.integer  "away_id"
-    t.integer  "home_score"
-    t.integer  "away_score"
-    t.datetime "completed_at"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
+    t.integer  "home_score", :default => 0, :null => false
+    t.integer  "away_score", :default => 0, :null => false
   end
 
   create_table "league_memberships", :force => true do |t|
@@ -82,11 +81,12 @@ ActiveRecord::Schema.define(:version => 20121013061738) do
   add_index "team_memberships", ["team_id"], :name => "index_team_memberships_on_team_id"
 
   create_table "teams", :force => true do |t|
-    t.datetime "created_at",                                 :null => false
-    t.datetime "updated_at",                                 :null => false
-    t.integer  "league_id",                                  :null => false
-    t.string   "name",         :limit => 128
-    t.integer  "player_count",                :default => 2, :null => false
+    t.datetime "created_at",                :null => false
+    t.datetime "updated_at",                :null => false
+    t.integer  "league_id",                 :null => false
+    t.string   "name",       :limit => 128
+    t.string   "logo_uid"
+    t.string   "logo_name"
   end
 
   add_index "teams", ["league_id"], :name => "index_teams_on_league_id"

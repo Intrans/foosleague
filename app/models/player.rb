@@ -8,6 +8,9 @@ class Player < ActiveRecord::Base
   has_many :league_memberships, :inverse_of => :player
   has_many :leagues, :through => :league_memberships, :inverse_of => :players
 
+  has_many :team_memberships, :inverse_of => :player
+  has_many :teams, :through => :team_memberships, :inverse_of => :players
+
   before_validation :set_temporary_email, :if => Proc.new { |p| p.email.blank? }
 
   validates :email, :presence => true
