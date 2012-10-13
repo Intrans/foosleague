@@ -8,9 +8,9 @@
   .game-scores.column.two
     .row
       .game-score.game-score-home.column.six
-        = game.home_score
+        = display_score game.home_score
       .game-score.game-score-away.column.six
-        = game.away_score
+        = display_score game.away_score
   .game-team.game-team-away.column.five
     - game.away.players.each do |player|
       .game-team-playerimage
