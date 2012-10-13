@@ -21,7 +21,7 @@ class Team < ActiveRecord::Base
   }
 
   scope :with_player, lambda { |player|
-    joins("join team_memberships as team_memberships_#{player.id} on team_memberships_#{player.id}.user_id = #{player.id} and team_memberships_#{player.id}.team_id = teams.id")
+    joins("join team_memberships as team_memberships_#{player.id} on team_memberships_#{player.id}.player_id = #{player.id} and team_memberships_#{player.id}.team_id = teams.id")
   }
 
   scope :by_skill, joins(:true_skill).order('skill desc')

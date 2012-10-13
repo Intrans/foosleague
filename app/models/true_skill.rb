@@ -1,3 +1,3 @@
 class TrueSkill < ActiveRecord::Base
-  attr_accessible :activity, :deviation, :skill, :user_id
+  attr_accessible :activity, :deviation, :skill, :player_id
 end

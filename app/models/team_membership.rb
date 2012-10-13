@@ -5,5 +5,5 @@ class TeamMembership < ActiveRecord::Base
 
   validates_presence_of :team, :user
 
-  validates_uniqueness_of :user_id, :scope => :team_id
+  validates_uniqueness_of :player_id, :scope => :team_id
 end
