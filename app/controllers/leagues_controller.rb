@@ -1,8 +1,12 @@
 class LeaguesController < InheritedResources::Base
-  actions :create, :index, :new
+  actions :create, :edit, :index, :new, :update
 
   def create
     create! { resource_url }
+  end
+
+  def update
+    update! { resource_url }
   end
 
   protected

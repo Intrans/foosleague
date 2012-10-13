@@ -3,7 +3,7 @@ class CreateTeams < ActiveRecord::Migration
     create_table :teams do |table|
       table.timestamps
       table.integer :league_id,                   :null => false
-      table.string  :name,        :limit => 128,  :null => false
+      table.string  :name,        :limit => 128,  :null => true
       table.integer :player_count, :default => 2, :null => false
     end
 

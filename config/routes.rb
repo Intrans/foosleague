@@ -3,9 +3,10 @@ Foosleague::Application.routes.draw do
                        :controllers => {:sessions => "sessions", :registrations => 'registrations', :passwords => 'passwords', :omniauth_callbacks => "omniauth_callbacks"}
 
   authenticated :player do
-    resources :leagues, :only => [ :create, :new, :show ] do
-      resources :players, :only => [ :create, :new ]
+    resources :leagues, :only => [ :create, :edit, :new, :show, :update ] do
       resources :games
+      resources :players, :only => [ :create, :new ]
+      resources :teams, :only => [ :edit, :update ]
     end
     root :to => "leagues#index"
   end

@@ -13,3 +13,15 @@
 //= require jquery
 //= require jquery_ujs
 //= require foundation
+
+
+
+function jqUpdateSize(){
+    // Get the dimensions of the viewport
+    var width = $(window).width();
+    var height = $(window).height();
+
+    $('.col-main').css('min-height', height-145);
+};
+$(document).ready(jqUpdateSize);
+$(window).resize(jqUpdateSize);

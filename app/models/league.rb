@@ -1,5 +1,6 @@
 class League < ActiveRecord::Base
-  attr_accessible :name
+
+  attr_accessible :doubles, :logo, :name, :remove_logo, :retained_logo
 
   has_many :league_memberships, :inverse_of => :league
   has_many :players, :through => :league_memberships, :inverse_of => :leagues
@@ -11,26 +12,32 @@ class League < ActiveRecord::Base
       players = [players] unless Array === players
 
       team = if players.size > 1
-        proxy_owner.teams.with_player(players.first).with_player(players.last).first
+        proxy_association.owner.teams.with_player(players.first).with_player(players.last).first
       else
-        proxy_owner.teams.singles.with_player(players.first).first
+        proxy_association.owner.teams.singles.with_player(players.first).first
       end
 
       return team if team.present? # return the team if it already exists
 
-      team = proxy_owner.teams.new do |team|
-        players.each { |player| team.memberships.build(:user => player)}
+      team = proxy_association.owner.teams.new do |team|
+        players.each do |player|
+          team.memberships.build do |membership|
+            membership.player = player
+          end
+        end
       end
-      logger.info team.valid?
-      logger.info team.inspect
-      logger.info team.errors.inspect
-      logger.info team.save
       team
     end
   end
-  
+
+  image_accessor :logo
+
   def to_s
     name
+  end
+
+  def required_number_of_players
+    doubles? ? 2 : 1
   end
 
 end

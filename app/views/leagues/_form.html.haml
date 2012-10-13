@@ -1,1 +1,8 @@
 = form.input :name
+= form.input :doubles
+= form.input :logo, :as => :file
+= form.hidden_field :retained_logo
+- if form.object.logo_uid
+  = image_tag form.object.logo.thumb('100x100').url
+  = form.input :remove_logo, :as => :boolean
+

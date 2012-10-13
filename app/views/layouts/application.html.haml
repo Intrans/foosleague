@@ -14,9 +14,18 @@
     = render 'layouts/header'
 
     .content
-      .row
-        = flash_messages
-        = yield
+      = flash_messages
+
+      .row.container
+        .col.col-main
+          - if content_for?(:heading)
+            .col-main-heading
+              = yield :heading
+          = yield
+
+
+        .col.col-side-left
+        .col.col-side-right
 
     = javascript_include_tag 'application'
     = render 'layouts/analytics'
