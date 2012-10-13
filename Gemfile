@@ -5,6 +5,7 @@ gem 'rails', '3.2.8.rc2'
 gem 'foreman'
 gem 'jquery-rails'
 gem 'mysql2'
+gem 'stationary'
 gem 'sqlite3'
 
 group :assets do
