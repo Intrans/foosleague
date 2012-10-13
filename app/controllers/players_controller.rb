@@ -1,4 +1,4 @@
-class PlayersController < ApplicationController
+class PlayersController < InheritedResources::Base
   actions :create, :new
   belongs_to :league
 
