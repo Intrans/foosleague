@@ -18,6 +18,7 @@ gem 'settingslogic'
 gem 'simple_form'
 gem 'sqlite3'
 gem 'stationary'
+gem 'trueskill', :require => 'saulabs/trueskill'
 
 group :assets do
   gem 'coffee-rails', '~> 3.2.1'
