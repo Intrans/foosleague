@@ -11,6 +11,7 @@ gem 'mysql2'
 gem 'oauth2'
 gem 'omniauth'
 gem 'omniauth-twitter'
+gem 'settingslogic'
 
 group :assets do
   gem 'coffee-rails', '~> 3.2.1'

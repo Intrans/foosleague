@@ -1,0 +1,14 @@
+defaults: &defaults
+  twitter_key: d8aHwWPsmGIBbZVQXsEQ
+  twitter_secret: 2SoykO9L8BkvMwKcEyqunQC0uerYZ5T5ZIGvfwVo
+
+development:
+  <<: *defaults
+  twitter_key: maxfV5oYNbbstUADQchwog
+  twitter_secret: uKJfiHtWiEFxe4wBENgT3Z6WnpjGrThbmUx6eSFSono
+
+test:
+  <<: *defaults
+
+production:
+  <<: *defaults
