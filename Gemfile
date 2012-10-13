@@ -2,6 +2,8 @@ source 'https://rubygems.org'
 
 gem 'rails', '3.2.8.rc2'
 
+gem 'foreman'
+gem 'jquery-rails'
 gem 'mysql2'
 
 # Gems used only for assets and not required
@@ -11,8 +13,6 @@ group :assets do
   gem 'coffee-rails', '~> 3.2.1'
   gem 'uglifier', '>= 1.0.3'
 end
-
-gem 'jquery-rails'
 
 # To use Jbuilder templates for JSON
 # gem 'jbuilder'
