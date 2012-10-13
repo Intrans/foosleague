@@ -43,17 +43,18 @@ ActiveRecord::Schema.define(:version => 20121013042054) do
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
     t.string   "authentication_token"
-    t.string   "name"
-    t.string   "twitter_name"
     t.datetime "created_at",                             :null => false
     t.datetime "updated_at",                             :null => false
     t.string   "provider"
     t.string   "uid"
+    t.string   "name"
+    t.string   "twitter_name"
   end
 
   add_index "players", ["authentication_token"], :name => "index_players_on_authentication_token", :unique => true
   add_index "players", ["email"], :name => "index_players_on_email", :unique => true
   add_index "players", ["reset_password_token"], :name => "index_players_on_reset_password_token", :unique => true
+  add_index "players", ["twitter_name"], :name => "index_players_on_twitter_name", :unique => true
 
   create_table "team_memberships", :force => true do |t|
     t.datetime "created_at", :null => false
