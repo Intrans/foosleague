@@ -3,20 +3,17 @@
 
   %head
     %title Foosleague Public
-    = stylesheet_link_tag 'application', :media => 'all'
+    = stylesheet_link_tag 'landing', :media => 'all'
     = csrf_meta_tags
     %script{:src => "//use.typekit.net/khs2rgn.js", :type => "text/javascript"}
     :javascript
       try{Typekit.load();}catch(e){}
 
   %body
-    = render 'layouts/header'
+    %header.header.hidden
+      %h1.branding Foosleague
+      = yield
 
-    .content
-      .row
-        = flash_messages
-        = yield
-
-    = javascript_include_tag 'application'
+    = javascript_include_tag 'landing'
     = render 'layouts/analytics'
 

@@ -5,6 +5,7 @@ Foosleague::Application.routes.draw do
   authenticated :player do
     resources :leagues, :only => [ :create, :new, :show ] do
       resources :players, :only => [ :create, :new ]
+      resources :games
     end
     root :to => "leagues#index"
   end

@@ -11,7 +11,25 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121013042054) do
+ActiveRecord::Schema.define(:version => 20121013061738) do
+
+  create_table "game_logs", :force => true do |t|
+    t.integer  "game_id"
+    t.integer  "team_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "games", :force => true do |t|
+    t.integer  "league_id"
+    t.integer  "home_id"
+    t.integer  "away_id"
+    t.integer  "home_score"
+    t.integer  "away_score"
+    t.datetime "completed_at"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+  end
 
   create_table "league_memberships", :force => true do |t|
     t.datetime "created_at",                    :null => false
@@ -76,5 +94,14 @@ ActiveRecord::Schema.define(:version => 20121013042054) do
   end
 
   add_index "teams", ["league_id"], :name => "index_teams_on_league_id"
+
+  create_table "true_skills", :force => true do |t|
+    t.integer  "user_id"
+    t.float    "skill",      :default => 750.0
+    t.float    "deviation",  :default => 250.0
+    t.float    "activity",   :default => 1.0
+    t.datetime "created_at",                    :null => false
+    t.datetime "updated_at",                    :null => false
+  end
 
 end

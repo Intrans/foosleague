@@ -13,3 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require foundation
+
+$(function() {
+ $('.header, .header h2').removeClass('hidden');
+});
