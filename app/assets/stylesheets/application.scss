@@ -95,6 +95,19 @@ a {
         color: #1a3d66;
         font-weight: 600;
       }
+
+      &.active {
+        margin: 0 -21px;
+        padding: 0 21px;
+        border: 1px solid #24430d;
+        @include background-image(linear-gradient(#abcf57, #579f2b));
+        @include box-shadow(inset 0 1px #c6de73, 0 1px 1px rgba(24,55,93,0.15));
+
+        > a {
+          color: #fff;
+          text-shadow: 0 1px 1px rgba(0,0,0,0.5);
+        }
+      }
     }
   }
 }
@@ -175,10 +188,19 @@ a {
   }
 }
 
+.games {
+  margin: -20px 0 0;
+}
+
 .game {
   margin: 0 -20px !important;
-  padding: 5px 20px;
+  padding: 7px 20px;
   background: #f9fbfe;
+  border-bottom: 1px solid #DAE2EC;
+
+  &:nth-child(2n) {
+    background: #fff;
+  }
 }
 
 .game-team {
@@ -246,5 +268,24 @@ a {
     border: 1px solid #24430d;
     @include background-image(linear-gradient(#abcf57, #579f2b));
     @include box-shadow(inset 0 1px #c6de73, 0 1px 1px rgba(24,55,93,0.15));
+  }
+}
+
+.league-image {
+  width: 150px;
+  height: 150px;
+  position: relative;
+  left: 50%;
+  margin: -50px 0 10px -76px;
+  display: inline-block;
+  background: #fff;
+  border: 1px solid #95a8bf;
+  padding: 4px;
+  @include border-radius(3px);
+  @include box-shadow(0 1px 1px rgba(24,55,93,0.15));
+
+  img {
+    display: block;
+    @include border-radius(2px);
   }
 }
