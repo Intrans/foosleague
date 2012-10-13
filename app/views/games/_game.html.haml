@@ -1,5 +1,11 @@
-%tr
-  %td.team=  game.home
-  %td.score= game.home_score
-  %td.score= game.away_score
-  %td.team=  game.away
+.game.row
+  .game-team.game-team-home.column.five
+    =  game.home
+  .game-scores.column.two
+    .row
+      .game-score.game-score-home.column.six
+        = game.home_score
+      .game-score.game-score-away.column.six
+        = game.away_score
+  .game-team.game-team-away.column.five
+    =  game.away

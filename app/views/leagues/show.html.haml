@@ -42,15 +42,7 @@
 = image_tag resource.logo.thumb('100x100').url if resource.logo_uid
 
 %h2 Games
-%table
-  %thead
-    %tr
-      %th Home
-      %th Home Score
-      %th Away Score
-      %th Away
-  %tbody
-    = render resource.games
+= render resource.games
 
 - if resource.doubles?
   %h2 Teams
