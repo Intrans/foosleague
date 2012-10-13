@@ -225,3 +225,26 @@ a {
 .chart-small {
   height: 100px;
 }
+
+.players {
+  input {
+    display: none;
+  }
+}
+
+.player {
+  margin: 0 0 5px;
+  display: block;
+  cursor: pointer;
+  @include transition(0.15s);
+
+  &.disabled {
+    @include opacity(0.2);
+  }
+
+  &.active {
+    border: 1px solid #24430d;
+    @include background-image(linear-gradient(#abcf57, #579f2b));
+    @include box-shadow(inset 0 1px #c6de73, 0 1px 1px rgba(24,55,93,0.15));
+  }
+}
