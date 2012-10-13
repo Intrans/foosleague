@@ -42,10 +42,20 @@ namespace :config do
 
 end
 
+namespace :deploy do
+
+  desc "Restart the rails application"
+  task :restart do
+    run "touch #{current_path}/tmp/restart.txt"
+  end
+
+end
+
 after  "deploy:setup",   "config:create_directory"
 
 after  "deploy:create_symlink", "assets:precompile"
 
 before "deploy:create_symlink", "config:symlink"
+after 'deploy:create_symlink',  'deploy:cleanup'
+after 'deploy:restart',         'deploy:cleanup'
 
-after 'deploy:create_symlink', 'deploy:cleanup'
