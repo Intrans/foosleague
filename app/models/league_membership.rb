@@ -1,9 +1,9 @@
 class LeagueMembership < ActiveRecord::Base
 
   belongs_to :league
-  belongs_to :user
+  belongs_to :player
 
-  validates_presence_of :league, :user
+  validates_presence_of :league, :player
 
   validates_uniqueness_of :player_id, :scope => :league_id
 
