@@ -26,6 +26,7 @@ $font-proxima: "proxima-nova", "Helvetica Neue", Helvetica, Arial;
 
 html,
 body {
+  color: #505b67;
   height: 100%;
   background: #F3F5F7;
   font-family: $font-proxima;
@@ -38,5 +39,58 @@ a {
 
   &:hover {
     color: #14429b;
+  }
+}
+
+.notice {
+  font-weight: 600;
+  margin: -20px -20px 20px;
+  padding: 10px 20px;
+  background: #ebf3fc;
+  border-bottom: 1px solid #95a8bf;
+  text-align: center;
+  @include box-shadow(0 1px #fff);
+}
+
+.nav {
+  > h1 {
+    margin: 0;
+    padding: 0;
+  }
+
+  > ul {
+    margin: 0;
+    padding: 0;
+
+    > li {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+
+      > a {
+        margin: 0;
+        padding: 0;
+        display: block;
+      }
+    }
+  }
+}
+
+.nav-main {
+  > h1 {
+    margin: 0 0 10px;
+    font-size: 12px;
+    text-transform: uppercase;
+    color: #8f9bad;
+  }
+
+  > ul {
+    > li {
+      > a {
+        padding: 5px 0;
+        color: #1a3d66;
+        font-weight: 600;
+      }
+    }
   }
 }

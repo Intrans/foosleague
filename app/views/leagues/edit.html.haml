@@ -1,4 +1,17 @@
+- content_for :heading do
+  %h1 #{resource.name} Settings
+
+%h2 Information
 = simple_form_for resource do |form|
   = form.error_messages
   = render 'form', :form => form
   = form.button :submit
+
+%h2 Players
+= link_to 'New Player', new_league_player_url(resource)
+%table
+  %thead
+    %tr
+      %th Twitter Handle
+  %tbody
+    = render resource.players

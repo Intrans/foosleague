@@ -1,20 +1,26 @@
-%h1= resource.name
+- content_for :heading do
+  %h1= resource.name
 
-= link_to 'Edit', edit_league_url(resource)
+  .col-main-heading-action
+    = link_to 'New Game', new_league_game_url(resource), :class => "btn btn-primary btn-ondark"
+
+- content_for :sideleft do
+  %nav.nav.nav-main
+    %h1 League Navigation
+    %ul
+      %li= link_to "Dasboard", "#"
+      %li= link_to "Player Ladder", "#"
+      %li= link_to "Team Ladder", "#"
+      %li= link_to "Player Stats", "#"
+      %li= link_to "Team Stats", "#"
+      %li= link_to "League Stats", "#"
+      %li= link_to 'League Settings', edit_league_url(resource)
+
+
 
 = image_tag resource.logo.thumb('100x100').url if resource.logo_uid
 
-%h2 Players
-= link_to 'New Player', new_league_player_url(resource)
-%table
-  %thead
-    %tr
-      %th Twitter Handle
-  %tbody
-    = render resource.players
-
 %h2 Games
-= link_to 'New Game', new_league_game_url(resource)
 %table
   %thead
     %tr

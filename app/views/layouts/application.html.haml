@@ -12,21 +12,20 @@
 
   %body
     = render 'layouts/header'
-
     .content
-      = flash_messages
-
       .row.container
         .col.col-main
           - if content_for?(:heading)
             .col-main-heading
               = yield :heading
+          = flash_messages
           = yield
 
         - if content_for?(:sideleft)
           .col.col-side-left
+            = yield :sideleft
         - if content_for?(:sideright)
           .col.col-side-right
-
+            = yield :sideright
     = javascript_include_tag 'application'
     = render 'layouts/analytics'
