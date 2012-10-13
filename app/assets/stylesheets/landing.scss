@@ -1,0 +1,64 @@
+@import "compass";
+@import "foundation";
+
+$font-proxima: "proxima-nova", "Helvetica Neue", Helvetica, Arial;
+
+html,
+body {
+  height: 100%;
+  font-family: $font-proxima;
+  -webkit-background-clip: padding-box;
+  -webkit-font-smoothing: antialiased;
+}
+
+html {
+  background: asset_url('landing/bg.png', image) no-repeat center center fixed;
+  @include background-size(cover);
+}
+
+body {
+  background: none;
+  text-align: center;
+}
+
+.header {
+  width: 350px;
+  height: 250px;
+  display: block;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin: -125px 0 0 -125px;
+  @include transition(all 1s);
+
+  h2 {
+    color: #fff;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+    text-transform: uppercase;
+    @include transition(all 1s ease 1s);
+
+    &.hidden {
+      @include translateY(-25px);
+      @include opacity(0);
+    }
+  }
+
+  &.hidden {
+    @include translateY(-50px);
+    @include opacity(0);
+  }
+}
+
+.branding {
+  margin: 0;
+  width: 210px;
+  height: 204px;
+  display: inline-block;
+  text-indent: -9999em;
+  background-image: asset_url('landing/logo-foosleague.png', image);
+  background-size: 210px 204px;
+
+  @media (-webkit-min-device-pixel-ratio: 1.5) {
+    background-image: asset_url('landing/logo-foosleague@2x.png', image);
+  }
+}
