@@ -5,6 +5,8 @@ class Player < ActiveRecord::Base
 
   attr_accessible :email, :password, :password_confirmation, :remember_me, :provider, :uid, :name, :twitter_name
 
+  has_many :leagues, :through => :league_memberships
+
   def to_s
     return "#{name} (#{twitter_name})" if name != twitter_name
     return twitter_name
