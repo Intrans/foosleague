@@ -13,7 +13,7 @@ class Player < ActiveRecord::Base
 
   before_validation :set_temporary_email, :if => Proc.new { |p| p.email.blank? }
 
-  validates :email, :presence => true
+  validates :email, :presence => true, :uniqueness => true
   validates :twitter_name, :uniqueness => true
 
   def to_s
