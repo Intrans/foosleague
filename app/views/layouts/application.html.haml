@@ -1,0 +1,18 @@
+!!! 5
+%html
+
+  %head
+    %title Foosleague
+    = stylesheet_link_tag 'application', :media => 'all'
+    = csrf_meta_tags
+
+  %body
+
+    .container
+
+      = flash_messages
+
+      = yield
+
+    = javascript_include_tag 'application'
+

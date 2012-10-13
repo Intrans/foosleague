@@ -4,6 +4,7 @@ gem 'rails', '3.2.8.rc2'
 
 gem 'devise'
 gem 'foreman'
+gem 'flash_messages_helper'
 gem 'haml'
 gem 'haml-rails'
 gem 'jquery-rails'
