@@ -5,18 +5,7 @@
     = link_to 'New Game', new_league_game_url(resource), :class => "btn btn-primary btn-ondark"
 
 - content_for :sideleft do
-  .league-image
-    = image_tag resource.logo.thumb('150x150').url if resource.logo_uid
-
-  %nav.nav.nav-main
-    %ul
-      %li.active= link_to "Recent Games", "#"
-      %li= link_to "Player Ladder", "#"
-      %li= link_to "Team Ladder", "#"
-      %li= link_to "Player Stats", "#"
-      %li= link_to "Team Stats", "#"
-      %li= link_to "League Stats", "#"
-      %li= link_to 'League Settings', edit_league_url(resource)
+  = render :partial => 'layouts/leaguenav'
 
 - content_for :sideright do
   .player
