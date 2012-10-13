@@ -4,6 +4,9 @@
 
     - if player_signed_in?
       .btn.btn-header.btn-header-left.has-dropdown
+        .btn-image
+          %img{ :src => "https://si0.twimg.com/profile_images/2704359237/a482581c712a8024130d4b231a9d3448.png" }
+
         League Name
 
         %ul.dropdown.dropdown-left
@@ -12,6 +15,8 @@
             %li= link_to league, league
 
       .btn.btn-header.btn-header-right.has-dropdown
+        .btn-image
+          %img{ :src => "https://si0.twimg.com/profile_images/2704359237/a482581c712a8024130d4b231a9d3448.png" }
         =current_player
         %ul.dropdown.dropdown-right
           %li
@@ -24,4 +29,4 @@
               Sign Out
 
     - else
-      = link_to "Sign in with Twitter", player_omniauth_authorize_path(:twitter)
+      = link_to "Sign in with Twitter", player_omniauth_authorize_path(:twitter), :class => "btn btn-header btn-header-right"
