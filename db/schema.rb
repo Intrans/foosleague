@@ -11,25 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121013042054) do
-
-  create_table "league_memberships", :force => true do |t|
-    t.datetime "created_at",                    :null => false
-    t.datetime "updated_at",                    :null => false
-    t.integer  "player_id",                     :null => false
-    t.integer  "league_id",                     :null => false
-    t.boolean  "admin",      :default => false, :null => false
-  end
-
-  add_index "league_memberships", ["league_id", "player_id"], :name => "index_league_memberships_on_league_id_and_player_id", :unique => true
-  add_index "league_memberships", ["league_id"], :name => "index_league_memberships_on_league_id"
-  add_index "league_memberships", ["player_id"], :name => "index_league_memberships_on_player_id"
-
-  create_table "leagues", :force => true do |t|
-    t.datetime "created_at",                :null => false
-    t.datetime "updated_at",                :null => false
-    t.string   "name",       :limit => 128, :null => false
-  end
+ActiveRecord::Schema.define(:version => 20121013010628) do
 
   create_table "players", :force => true do |t|
     t.string   "email",                  :default => "", :null => false
@@ -55,26 +37,5 @@ ActiveRecord::Schema.define(:version => 20121013042054) do
   add_index "players", ["email"], :name => "index_players_on_email", :unique => true
   add_index "players", ["reset_password_token"], :name => "index_players_on_reset_password_token", :unique => true
   add_index "players", ["twitter_name"], :name => "index_players_on_twitter_name", :unique => true
-
-  create_table "team_memberships", :force => true do |t|
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-    t.integer  "player_id",  :null => false
-    t.integer  "team_id",    :null => false
-  end
-
-  add_index "team_memberships", ["player_id"], :name => "index_team_memberships_on_player_id"
-  add_index "team_memberships", ["team_id", "player_id"], :name => "index_team_memberships_on_team_id_and_player_id", :unique => true
-  add_index "team_memberships", ["team_id"], :name => "index_team_memberships_on_team_id"
-
-  create_table "teams", :force => true do |t|
-    t.datetime "created_at",                                 :null => false
-    t.datetime "updated_at",                                 :null => false
-    t.integer  "league_id",                                  :null => false
-    t.string   "name",         :limit => 128,                :null => false
-    t.integer  "player_count",                :default => 0, :null => false
-  end
-
-  add_index "teams", ["league_id"], :name => "index_teams_on_league_id"
 
 end
