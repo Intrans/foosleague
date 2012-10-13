@@ -7,14 +7,11 @@
     = csrf_meta_tags
 
   %body
-    .topbar
-      .row
-        %h1.branding= link_to "Foosleague", "#"
+    = render 'layouts/header'
 
-    .content
-      .row
-        = flash_messages
-        = yield
+    .container
+      = flash_messages
+      = yield
 
     = javascript_include_tag 'application'
-
+    = render 'analytics'
