@@ -33,7 +33,7 @@ class ApplicationController < ActionController::Base
 
     def league_logo(league = current_league, geometry = '50x50#')
       return Dragonfly[:images].fetch_file("#{Rails.root}/app/assets/images/default-league-logo.png").process(:thumb, geometry).url if league.nil?
-      league.logo.process(:thumb, geometry).url
+      league.logo_uid.present? ? league.logo.process(:thumb, geometry).url : '/assets/default-league-logo.png'
     end
 
     def player_avatar(player = current_player, geometry = '50x50#')
