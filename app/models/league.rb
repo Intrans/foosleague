@@ -32,6 +32,10 @@ class League < ActiveRecord::Base
       team
     end
   end
+  
+  def to_s
+    name
+  end
 
   def required_number_of_players
     doubles? ? 2 : 1

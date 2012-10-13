@@ -1,10 +1,27 @@
 .topbar
   .row
-    %h1.branding= link_to "Foosleague", "#"
+    %h1.branding= link_to "Foosleague", root_path
 
     - if player_signed_in?
-      Signed in as
-      = link_to current_player, edit_player_registration_path
-      = link_to "Sign Out", destroy_player_session_path
+      .btn.btn-header.btn-header-left.has-dropdown
+        League Name
+
+        %ul.dropdown.dropdown-left
+          - current_player.leagues.each do |league|
+            - next if league.new_record?
+            %li= link_to league, league
+
+      .btn.btn-header.btn-header-right.has-dropdown
+        =current_player
+        %ul.dropdown.dropdown-right
+          %li
+            = link_to edit_player_registration_path do
+              %i.ss-icon.ss-settings
+              Edit
+          %li
+            = link_to destroy_player_session_path do
+              %i.ss-icon.ss-caution
+              Sign Out
+
     - else
       = link_to "Sign in with Twitter", player_omniauth_authorize_path(:twitter)

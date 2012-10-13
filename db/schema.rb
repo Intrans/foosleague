@@ -13,14 +13,6 @@
 
 ActiveRecord::Schema.define(:version => 20121013061738) do
 
-  create_table "game_logs", :force => true do |t|
-    t.integer  "game_id"
-    t.integer  "team_id"
-    t.string   "type"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
   create_table "games", :force => true do |t|
     t.integer  "league_id"
     t.integer  "home_id"
