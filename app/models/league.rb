@@ -28,5 +28,9 @@ class League < ActiveRecord::Base
       team
     end
   end
+  
+  def to_s
+    name
+  end
 
 end
