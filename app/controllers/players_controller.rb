@@ -1,4 +1,4 @@
-class PlayersController < InheritedResources::Base
+class PlayersController < ApplicationController
   actions :create, :new
   belongs_to :league
 
@@ -14,11 +14,11 @@ class PlayersController < InheritedResources::Base
       unless @player.present?
         @player = Player.create!(:twitter_name => resource_params[0][:twitter_name].downcase) if object.valid?
       end
-      
+
       membership = parent.league_memberships.create do |league_membership|
         league_membership.player = @player
       end if @player.valid?
-      
+
       membership.valid?
     end
 end
