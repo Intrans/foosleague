@@ -9,9 +9,10 @@
   %body
     = render 'layouts/header'
 
-    .container
-      = flash_messages
-      = yield
+    .content
+      .row
+        = flash_messages
+        = yield
 
     = javascript_include_tag 'application'
     = render 'layouts/analytics'
