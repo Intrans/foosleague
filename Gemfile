@@ -2,6 +2,7 @@ source 'https://rubygems.org'
 
 gem 'rails', '3.2.8.rc2'
 
+gem 'devise'
 gem 'foreman'
 gem 'jquery-rails'
 gem 'mysql2'
