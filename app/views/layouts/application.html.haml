@@ -23,9 +23,10 @@
               = yield :heading
           = yield
 
-
-        .col.col-side-left
-        .col.col-side-right
+        - if content_for?(:sideleft)
+          .col.col-side-left
+        - if content_for?(:sideright)
+          .col.col-side-right
 
     = javascript_include_tag 'application'
     = render 'layouts/analytics'

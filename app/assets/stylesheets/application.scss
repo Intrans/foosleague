@@ -16,217 +16,27 @@
 $font-ssstandard: "ss-standard";
 $font-proxima: "proxima-nova", "Helvetica Neue", Helvetica, Arial;
 
+
+@import "modules/layout";
+@import "modules/branding";
+@import "modules/btn";
+@import "modules/dropdown";
+@import "modules/topbar";
+
+
 html,
 body {
   height: 100%;
-  background: #f9fcff;
+  background: #F3F5F7;
   font-family: $font-proxima;
   -webkit-background-clip: padding-box;
   -webkit-font-smoothing: antialiased;
 }
 
-.row {
-  position: relative;
-}
-
-.topbar {
-  top: 0;
-  z-index: 10;
-  position: fixed;
-  width: 100%;
-  height: 64px;
-  text-align: center;
-  background: #01408c;
-  border-top: 10px solid #0a2039;
-  border-bottom: 1px solid #0d2847;
-  @include background-image(linear-gradient(#014ea9, #013471));
-  @include box-shadow(inset 0 1px #036dcc, 0 2px 3px rgba(24,55,93,0.4));
-}
-
-.branding {
-  margin: 0;
-  position: relative;
-  top: -8px;
-  display: inline-block;
-
-  a {
-    width: 80px;
-    height: 78px;
-    display: inline-block;
-    text-indent: -9999em;
-    background-image: asset_url('logo-foosleague.png', image);
-    background-size: 80px 78px;
-
-    @media (-webkit-min-device-pixel-ratio: 1.5) {
-      background-image: asset_url('logo-foosleague@2x.png', image);
-    }
-  }
-}
-
-.content {
-  padding: 105px 0 40px;
-  min-height: 100%;
-  position: relative;
-  z-index: 1;
-}
-
-.container {
-  position: relative;
-  height: 100%;
-}
-
-.col {
-  margin: 0;
-  padding: 0;
-}
-
-.col-main {
-  padding: 20px;
-  width: 54%;
-  background: #fff;
-  border: 1px solid #95a8bf;
-  margin-left: 23%;
-  min-height: 100%;
-  position: relative;
-  z-index: 3;
-  @include border-radius(3px);
-  @include box-shadow(0 1px 2px rgba(24,55,93,0.15));
-}
-
-.col-main-heading {
-  margin: -21px -21px 20px;
-  padding: 15px 20px;
-  position: relative;
-  text-shadow: 0 1px 2px rgba(0,0,0,0.5);
-  border: 1px solid #002757;
-  @include background-image(linear-gradient(#2782cd, #13419a));
-  @include box-shadow(inset 0 1px #2f9cd8, 0 1px 1px rgba(24,55,93,0.15));
-  @include border-radius(3px 3px 0 0);
-
-  > h1 {
-    margin: 0;
-    font-size: 18px;
-    color: #fff;
-    font-weight: 600;
-  }
-}
-
-.col-side-left {
-  padding: 20px;
-  width: 23%;
-  background: #f8fbff;
-  border: 1px solid #95a8bf;
-  border-right: none;
-  position: absolute;
-  top: 5px;
-  bottom: 5px;
-  z-index: 2;
-  @include border-radius(3px 0 0 3px);
-  @include box-shadow(0 1px 2px rgba(24,55,93,0.15));
-}
-
-.col-side-right {
-  padding: 20px;
-  width: 23%;
-  background: #f8fbff;
-  border: 1px solid #95a8bf;
-  border-left: none;
-  position: absolute;
-  top: 5px;
-  bottom: 5px;
-  right: 0;
-  z-index: 2;
-  @include border-radius(0 3px 3px 0);
-  @include box-shadow(0 1px 2px rgba(24,55,93,0.15));
-}
-
-
-.btn {
-  display: inline-block;
-  padding: 8px 15px;
-  border: 1px solid #eee;
-  background: #ccc;
-  @include box-shadow(inset 0 1px #fff, 0 1px rgba(255,255,255,0.2));
-  @include border-radius(3px);
-}
-
-.btn-header {
-  position: relative;
-  margin: 10px 0 0;
-  color: #fff;
-  font-weight: 600;
-  text-shadow: 0 1px 2px rgba(0,0,0,0.5);
-  border: 1px solid #002757;
-  @include background-image(linear-gradient(#2782cd, #13419a));
-  @include box-shadow(inset 0 1px #2f9cd8, 0 1px #014596);
+a {
+  color: #2781cc;
 
   &:hover {
-    color: #fff;
+    color: #14429b;
   }
-}
-
-.btn-header-left {
-  float: left;
-}
-
-.btn-header-right {
-  float: right;
-}
-
-.has-dropdown {
-  .dropdown {
-    pointer-events: none;
-    @include opacity(0);
-    @include translateY(-5px);
-    @include transition(0.15s);
-  }
-
-  &:hover {
-    .dropdown {
-      pointer-events: all;
-      @include translateY(0px);
-      @include opacity(1);
-    }
-  }
-}
-
-.dropdown {
-  margin: 0;
-  padding: 0;
-  min-width: 100%;
-  background: #fff;
-  position: absolute;
-  top: 100%;
-  text-align: left;
-  padding: 5px 10px;
-  border: 1px solid #95a8bf;
-  z-index: 20;
-  @include border-radius(3px);
-  @include box-shadow(0 2px 5px rgba(24,55,93,0.25));
-
-  li {
-    margin: 0;
-    padding: 0;
-    list-style: none;
-
-    a {
-      padding: 3px 0;
-      text-shadow: none;
-      display: block;
-
-      .ss-icon {
-        margin: 1px 0 0;
-        float: left;
-        width: 20px;
-      }
-    }
-  }
-}
-
-.dropdown-left {
-  left: 0;
-}
-
-.dropdown-right {
-  right: 0;
 }

@@ -1,5 +1,6 @@
 - content_for :heading do
   %h1 Leagues
 
-= link_to 'New League', new_league_url
+  .col-main-heading-action
+    = link_to 'New League', new_league_url, :class => "btn btn-primary btn-ondark"
 = render collection
