@@ -60,13 +60,13 @@ class Game < ActiveRecord::Base
       end
 
       # revert LeagueUser foos skills
-      league.memberships.where(['user_id in (?)', home.player_ids]).each do |membership|
+      league.memberships.where(['player_id in (?)', home.player_ids]).each do |membership|
         skill = membership.true_skill.previous_version
         skill.without_versioning :save
       end
 
       # revert LeagueUser foos skills
-      league.memberships.where(['user_id in (?)', away.player_ids]).each do |membership|
+      league.memberships.where(['player_id in (?)', away.player_ids]).each do |membership|
         skill = membership.true_skill.previous_version
         skill.without_versioning :save
       end
@@ -120,8 +120,8 @@ class Game < ActiveRecord::Base
     winner.update_rating(team_graph.teams.first.first)
     loser.update_rating(team_graph.teams.last.first)
 
-    league_winners = league.memberships.where(['user_id in (?)', winner.player_ids])
-    league_losers = league.memberships.where(['user_id in (?)', loser.player_ids])
+    league_winners = league.memberships.where(['player_id in (?)', winner.player_ids])
+    league_losers = league.memberships.where(['player_id in (?)', loser.player_ids])
 
     league_graph = TrueSkill::FactorGraph.new([league_winners.map{|m| m.rating}, league_losers.map{|m| m.rating}], [1,2])
     league_graph.update_skills

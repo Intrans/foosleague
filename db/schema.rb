@@ -96,7 +96,7 @@ ActiveRecord::Schema.define(:version => 20121013061738) do
   add_index "teams", ["league_id"], :name => "index_teams_on_league_id"
 
   create_table "true_skills", :force => true do |t|
-    t.integer  "user_id"
+    t.integer  "player_id"
     t.float    "skill",      :default => 750.0
     t.float    "deviation",  :default => 250.0
     t.float    "activity",   :default => 1.0

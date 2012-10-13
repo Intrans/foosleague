@@ -5,7 +5,7 @@ class LeagueMembership < ActiveRecord::Base
 
   validates_presence_of :league, :user
 
-  validates_uniqueness_of :user_id, :scope => :league_id
+  validates_uniqueness_of :player_id, :scope => :league_id
 
   after_create :first_player_dude_is_the_admin
 
