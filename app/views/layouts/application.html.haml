@@ -5,6 +5,9 @@
     %title Foosleague
     = stylesheet_link_tag 'application', :media => 'all'
     = csrf_meta_tags
+    %script{:src => "//use.typekit.net/khs2rgn.js", :type => "text/javascript"}
+    :javascript
+      try{Typekit.load();}catch(e){}
 
   %body
     = render 'layouts/header'
