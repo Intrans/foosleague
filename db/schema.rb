@@ -26,6 +26,7 @@ ActiveRecord::Schema.define(:version => 20121013010628) do
     t.string   "last_sign_in_ip"
     t.string   "authentication_token"
     t.string   "name"
+    t.string   "twitter_name"
     t.datetime "created_at",                             :null => false
     t.datetime "updated_at",                             :null => false
     t.string   "provider"

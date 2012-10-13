@@ -3,13 +3,15 @@ class Player < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable,
          :omniauthable, :token_authenticatable
 
-  attr_accessible :email, :password, :password_confirmation, :remember_me, :provider, :uid
+  attr_accessible :email, :password, :password_confirmation, :remember_me, :provider, :uid, :name, :twitter_handle
 
   def self.from_omniauth(auth)
     where(auth.slice(:provider, :uid)).first_or_create do |player|
       player.provider = auth.provider
       player.uid = auth.uid
+      player.twitter_name = auth.info.nickname
       player.name = auth.info.nickname
+      player.email = "twitter-#{auth.uid}@foosleague.com"
     end
   end
 
