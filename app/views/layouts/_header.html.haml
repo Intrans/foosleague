@@ -1,7 +1,10 @@
-%h1 FoosLeague
+.topbar
+  .row
+    %h1.branding= link_to "Foosleague", "#"
 
-- if player_signed_in?
-  Signed in as #{current_player.name}
-  = link_to "Sign Out", destroy_player_session_path
-- else
-  = link_to "Sign in with Twitter", player_omniauth_authorize_path(:twitter)
+    - if player_signed_in?
+      Signed in as
+      = link_to current_player, edit_player_registration_path
+      = link_to "Sign Out", destroy_player_session_path
+    - else
+      = link_to "Sign in with Twitter", player_omniauth_authorize_path(:twitter)
