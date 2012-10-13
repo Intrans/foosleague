@@ -1,17 +1,13 @@
 class Game < ActiveRecord::Base
+  include ActionView::Helpers::TextHelper
   include Saulabs
 
-  attr_accessible :away_id, :away_score, :completed_at, :home_id, :home_score, :league_id
+  attr_accessible :away_score, :away_team_players, :home_score, :home_team_players
   attr_accessor :home_team_players, :away_team_players
 
   belongs_to :home, :class_name => 'Team'
   belongs_to :away, :class_name => 'Team'
-  belongs_to :league
-
-  has_many :game_logs
-
-  scope :completed, where('completed_at is not null')
-  scope :incomplete, where('completed_at is null')
+  belongs_to :league, :inverse_of => :games
 
   scope :recent, proc { |record_limit|
     record_limit ||= 50
@@ -21,8 +17,6 @@ class Game < ActiveRecord::Base
 
   scope :having_teams, lambda {|team_ids| where(['home_id in (?) or away_id in (?)', team_ids, team_ids])}
 
-  after_create :create_game_start_log
-  after_create :complete_if_has_scores
   before_validation :create_teams, :on => :create
   before_destroy :lastest_league_game?
   after_destroy :revert_foos_skills
@@ -41,7 +35,8 @@ class Game < ActiveRecord::Base
   end
 
   def correct_players?
-    errors.add(:base, "2 player on each side") and return unless home.player_ids.count == 2 && away.player_ids.count == 2
+    errors.add(:away, "requires #{pluralize(league.required_number_of_players, 'player')}") unless league.required_number_of_players == away.players.count
+    errors.add(:home, "requires #{pluralize(league.required_number_of_players, 'player')}") unless league.required_number_of_players == home.players.count
   end
 
   def revert_foos_skills
@@ -54,8 +49,8 @@ class Game < ActiveRecord::Base
       away_skill.without_versioning :save
 
       # revert player foos skills
-      (away_team_players + home_team_players).each do |user|
-        skill = user.true_skill.previous_version
+      (away_team_players + home_team_players).each do |player|
+        skill = player.true_skill.previous_version
         skill.without_versioning :save
       end
 
@@ -80,15 +75,11 @@ class Game < ActiveRecord::Base
     end
   end
 
-  def completed?
-    completed_at
-  end
-
   def away_team_players
     return away.players if away.present?
     return [] unless @away_team_players.present?
     @away_team_players = if Array === @away_team_players
-      @away_team_players.map { |player| (User === player) ? player : league.players.find(player) }
+      @away_team_players.map { |player| (Player === player) ? player : league.players.find(player) }
     else
       []
     end
@@ -98,7 +89,7 @@ class Game < ActiveRecord::Base
     return home.players if home.present?
     return [] unless @home_team_players.present?
     @home_team_players = if Array === @home_team_players
-      @home_team_players.map { |player| (User === player) ? player : league.players.find(player) }
+      @home_team_players.map { |player| (Player === player) ? player : league.players.find(player) }
     else
       []
     end
@@ -106,7 +97,6 @@ class Game < ActiveRecord::Base
 
   def complete!
     throw "match already complete" unless self.completed_at.nil?
-    self.completed_at = Time.now
 
     graph = TrueSkill::FactorGraph.new([winner.ratings, loser.ratings], [1,2])
     graph.update_skills
@@ -169,13 +159,6 @@ class Game < ActiveRecord::Base
   end
 
   private
-    def complete_if_has_scores
-      self.complete! if home_score.to_i != 0 or away_score.to_i != 0
-    end
-
-    def create_game_start_log
-      GameLogStart.create(:game=>self, :team=>home)
-    end
 
     def create_teams
       errors.add(:teams, 'You think your going to need any players on those teams?') and return if home_team_players.empty? || away_team_players.empty?

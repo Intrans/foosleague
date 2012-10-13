@@ -45,9 +45,10 @@ ActiveRecord::Schema.define(:version => 20121013061738) do
   add_index "league_memberships", ["player_id"], :name => "index_league_memberships_on_player_id"
 
   create_table "leagues", :force => true do |t|
-    t.datetime "created_at",                :null => false
-    t.datetime "updated_at",                :null => false
-    t.string   "name",       :limit => 128, :null => false
+    t.datetime "created_at",                                  :null => false
+    t.datetime "updated_at",                                  :null => false
+    t.string   "name",       :limit => 128,                   :null => false
+    t.boolean  "doubles",                   :default => true, :null => false
   end
 
   create_table "players", :force => true do |t|
@@ -90,7 +91,7 @@ ActiveRecord::Schema.define(:version => 20121013061738) do
     t.datetime "created_at",                                 :null => false
     t.datetime "updated_at",                                 :null => false
     t.integer  "league_id",                                  :null => false
-    t.string   "name",         :limit => 128,                :null => false
+    t.string   "name",         :limit => 128
     t.integer  "player_count",                :default => 2, :null => false
   end
 
