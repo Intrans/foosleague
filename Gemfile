@@ -4,10 +4,12 @@ gem 'rails', '3.2.8.rc2'
 
 gem 'devise'
 gem 'foreman'
+gem 'haml'
+gem 'haml-rails'
 gem 'jquery-rails'
 gem 'mysql2'
-gem 'omniauth'
 gem 'oauth2'
+gem 'omniauth'
 gem 'omniauth-twitter'
 gem 'stationary'
 
