@@ -2,5 +2,6 @@
 
 - if player_signed_in?
   Signed in as #{current_player.name}
+  = link_to "Sign Out", destroy_player_session_path
 - else
   = link_to "Sign in with Twitter", player_omniauth_authorize_path(:twitter)
