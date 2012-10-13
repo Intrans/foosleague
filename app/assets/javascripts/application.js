@@ -31,7 +31,19 @@ var winpercent;
 var scorediff;
 var ladderskill;
 $(document).ready(function() {
-  jqUpdateSize
+  $('.players a.player:not(.disabled)').live('click', function(){
+      var inital = $(this).next('input').is(':checked');
+
+      $(this).next('input').click();
+      $(this)[inital ? 'removeClass' : 'addClass']('active');
+
+      var checked = $(this).parents('.players').children('a.active').length;
+      if( checked >= 2 ){
+        $(this).parents('.players').children('a:not(.active)').addClass('disabled');
+      }else{
+        $(this).parents('.players').children('a:not(.active)').removeClass('disabled');
+      }
+    });
 
   Highcharts.setOptions({
     title: {
