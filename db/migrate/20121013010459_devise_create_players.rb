@@ -31,7 +31,7 @@ class DeviseCreatePlayers < ActiveRecord::Migration
       # t.datetime :locked_at
 
       ## Token authenticatable
-      # t.string :authentication_token
+      t.string :authentication_token
 
 
       t.timestamps
@@ -41,6 +41,6 @@ class DeviseCreatePlayers < ActiveRecord::Migration
     add_index :players, :reset_password_token, :unique => true
     # add_index :players, :confirmation_token,   :unique => true
     # add_index :players, :unlock_token,         :unique => true
-    # add_index :players, :authentication_token, :unique => true
+    add_index :players, :authentication_token, :unique => true
   end
 end

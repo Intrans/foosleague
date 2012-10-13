@@ -6,6 +6,9 @@ gem 'devise'
 gem 'foreman'
 gem 'jquery-rails'
 gem 'mysql2'
+gem 'omniauth'
+gem 'oauth2'
+gem 'omniauth-twitter'
 
 # Gems used only for assets and not required
 # in production environments by default.
