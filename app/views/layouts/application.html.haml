@@ -7,13 +7,10 @@
     = csrf_meta_tags
 
   %body
-
     = render 'layouts/header'
 
     .container
-
       = flash_messages
-
       = yield
 
     = javascript_include_tag 'application'
