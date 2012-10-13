@@ -5,7 +5,7 @@ Foosleague::Application.routes.draw do
   authenticated :player do
     resources :leagues, :only => [ :create, :edit, :new, :show, :update ] do
       resources :games
-      resources :players, :only => [ :create, :new ]
+      resources :players, :only => [ :create, :new, :show, :index ]
       resources :teams, :only => [ :edit, :update ]
     end
     match "/leagues" => redirect("/")
