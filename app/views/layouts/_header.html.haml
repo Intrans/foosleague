@@ -2,13 +2,13 @@
   .row
     %h1.branding= link_to "Foosleague", root_path
 
-    - if player_signed_in?
+    - if player_signed_in? && ((defined?(resource) && resource.is_a?(League)) || (defined?(parent) && parent.is_a?(League)))
       .btn.btn-header.btn-header-left.has-dropdown
-        - if resource && resource.is_a?(League)
+        - if defined?(resource) && resource.is_a?(League)
           = resource
-        - elsif parent && parent.is_a?(League)
+        - elsif defined?(parent) && parent.is_a?(League)
           = parent
-          
+
         %ul.dropdown.dropdown-left
           - current_player.leagues.each do |league|
             %li= link_to league, league
