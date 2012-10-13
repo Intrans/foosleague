@@ -1,10 +1,15 @@
 @import "compass";
 @import "foundation";
 
+$font-proxima: "proxima-nova", "Helvetica Neue", Helvetica, Arial;
+
 html,
 body {
   height: 100%;
   background: #f9fcff;
+  font-family: $font-proxima;
+  -webkit-background-clip: padding-box;
+  -webkit-font-smoothing: antialiased;
 }
 
 .topbar {

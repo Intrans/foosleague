@@ -1,3 +1,8 @@
 class LeaguesController < ApplicationController
-  actions :index
+  actions :create, :index, :new
+
+  def create
+    create! { root_url }
+  end
+
 end

@@ -2,8 +2,7 @@
 %html
 
   %head
-    %title Foosleague
-    %link{:href => "#{asset_path 'favicon@2x.ico'}", :rel => "icon", :sizes => "64x64"}
+    %title Foosleague Public
     = stylesheet_link_tag 'application', :media => 'all'
     = csrf_meta_tags
     %script{:src => "//use.typekit.net/khs2rgn.js", :type => "text/javascript"}
@@ -20,3 +19,4 @@
 
     = javascript_include_tag 'application'
     = render 'layouts/analytics'
+
