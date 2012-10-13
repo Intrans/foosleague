@@ -6,6 +6,9 @@ class CreateLeagues < ActiveRecord::Migration
       table.boolean   :doubles,                :default => true, :null => false
       table.string    :logo_uid,               :default => nil,  :null => true
       table.string    :logo_name,              :default => nil,  :null => true
+      table.string    :slug,                   :default => nil,  :null => false
     end
+
+    add_index :leagues, :slug, :unique => true
   end
 end
