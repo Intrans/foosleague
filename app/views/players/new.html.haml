@@ -1,0 +1,4 @@
+= simple_form_for resource, :url => collection_url do |form|
+  = form.error_messages
+  = render 'form', :form => form
+  = form.button :submit

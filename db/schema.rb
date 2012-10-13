@@ -72,7 +72,7 @@ ActiveRecord::Schema.define(:version => 20121013042054) do
     t.datetime "updated_at",                                 :null => false
     t.integer  "league_id",                                  :null => false
     t.string   "name",         :limit => 128,                :null => false
-    t.integer  "player_count",                :default => 0, :null => false
+    t.integer  "player_count",                :default => 2, :null => false
   end
 
   add_index "teams", ["league_id"], :name => "index_teams_on_league_id"
