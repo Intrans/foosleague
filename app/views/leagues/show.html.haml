@@ -8,3 +8,13 @@
       %th Twitter Handle
   %tbody
     = render resource.players
+
+%h2 Games
+= link_to 'New Game', new_league_game_url(resource)
+%table
+  %thead
+    %tr
+      %th Home
+      %th Away
+  %tbody
+    = render resource.games

@@ -3,9 +3,6 @@ class LeagueMembership < ActiveRecord::Base
   belongs_to :league, :inverse_of => :league_memberships
   belongs_to :player, :inverse_of => :league_memberships
 
-  belongs_to :league
-  belongs_to :player
-
   validates_presence_of :league, :player
 
   validates_uniqueness_of :player_id, :scope => :league_id
