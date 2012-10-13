@@ -1,5 +1,6 @@
 class League < ActiveRecord::Base
-  attr_accessible :doubles, :name
+
+  attr_accessible :doubles, :logo, :name, :remove_logo, :retained_logo
 
   has_many :league_memberships, :inverse_of => :league
   has_many :players, :through => :league_memberships, :inverse_of => :leagues
@@ -25,14 +26,12 @@ class League < ActiveRecord::Base
           end
         end
       end
-      logger.info team.valid?
-      logger.info team.inspect
-      logger.info team.errors.inspect
-      logger.info team.save
       team
     end
   end
-  
+
+  image_accessor :logo
+
   def to_s
     name
   end

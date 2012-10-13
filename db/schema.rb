@@ -41,6 +41,8 @@ ActiveRecord::Schema.define(:version => 20121013061738) do
     t.datetime "updated_at",                                  :null => false
     t.string   "name",       :limit => 128,                   :null => false
     t.boolean  "doubles",                   :default => true, :null => false
+    t.string   "logo_uid"
+    t.string   "logo_name"
   end
 
   create_table "players", :force => true do |t|

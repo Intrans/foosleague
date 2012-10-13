@@ -1,5 +1,9 @@
 %h1= resource.name
 
+= link_to 'Edit', edit_league_url(resource)
+
+= image_tag resource.logo.thumb('100x100').url if resource.logo_uid
+
 %h2 Players
 = link_to 'New Player', new_league_player_url(resource)
 %table
