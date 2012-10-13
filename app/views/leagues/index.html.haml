@@ -1,2 +1,8 @@
 %h1 Leagues
-= render collection
+= link_to 'New League', new_league_url
+%table
+  %thead
+    %tr
+      %th Name
+  %tbody
+    = render collection
