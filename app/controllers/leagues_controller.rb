@@ -1,4 +1,4 @@
-class LeaguesController < ApplicationController
+class LeaguesController < InheritedResources::Base
   actions :create, :index, :new
 
   def create
