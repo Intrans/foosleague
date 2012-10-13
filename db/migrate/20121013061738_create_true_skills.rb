@@ -5,7 +5,7 @@ class CreateTrueSkills < ActiveRecord::Migration
       t.integer :subject_id
       t.string :subject_type
       t.float :skill, :default => 750.0
-      t.float :deviation, :default => 250
+      t.float :deviation, :default => 50
       t.float :activity, :default => 1.0
 
       t.timestamps
