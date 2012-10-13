@@ -1,5 +1,5 @@
-class GamesController < InheritedResources::Base
-  actions :create, :index, :new, :show
+class TeamsController < InheritedResources::Base
+  actions :edit, :update
   belongs_to :league
   respond_to :html, :json
 
@@ -14,3 +14,4 @@ class GamesController < InheritedResources::Base
     end
 
 end
+
