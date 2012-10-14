@@ -81,8 +81,8 @@ class Player < ActiveRecord::Base
     existing_player.provider = auth.provider
     existing_player.uid = auth.uid
     existing_player.twitter_name = auth.info.nickname
-    existing_player.name = auth.info.nickname
-    
+    existing_player.name = auth.info.nickname unless existing_player.name.present?
+
     existing_player.save
 
     return existing_player
