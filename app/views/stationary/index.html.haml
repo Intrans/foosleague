@@ -11,7 +11,7 @@
       .recentgames-slider
         - Game.limit(10).each do |game|
           .recentgame
-            = game
+            = game.to_s.html_safe
 
 .landing-companies
   %h1 Who’s Using Foosleague?

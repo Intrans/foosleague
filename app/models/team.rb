@@ -70,6 +70,10 @@ class Team < ActiveRecord::Base
     display_name
   end
 
+  def team_avatars
+    players.map { |player| "<img src='#{player.avatar_url}' height='32' width='32' />" }.join(' ')
+  end
+
   def game_result?(game)
     return "W" if self == game.winner
     return "L" if self == game.loser

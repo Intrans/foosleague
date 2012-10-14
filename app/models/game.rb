@@ -103,7 +103,7 @@ class Game < ActiveRecord::Base
   end
 
   def to_s
-    "#{home} #{home_score} - #{away} #{away_score}"
+    "#{home.team_avatars} #{home} #{home_score} - #{away} #{away_score} #{away.team_avatars}"
   end
 
   private
