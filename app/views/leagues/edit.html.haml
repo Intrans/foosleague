@@ -17,6 +17,8 @@
   %tbody
     = render resource.players.select { |player| !player.new_record? }
 
+%hr
+
 %h2 Add New Player
 = simple_form_for resource.players.build, :url => league_players_url(resource) do |form|
   .row.newplayer
@@ -26,6 +28,8 @@
       = form.input :twitter_name
     .column.three
       = form.button :submit, :class => 'btn btn-full'
+
+%hr
 
 %h2 Information
 = simple_form_for resource do |form|

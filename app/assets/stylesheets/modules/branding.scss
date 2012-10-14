@@ -2,16 +2,16 @@
   margin: 0 0 0 -40px;
   position: absolute;
   left: 50%;
-  top: -8px;
+  top: 3px;
   display: inline-block;
 
   a {
-    width: 80px;
-    height: 78px;
+    width: 82px;
+    height: 81px;
     display: inline-block;
     text-indent: -9999em;
     background-image: asset_url('logo-foosleague.png', image);
-    background-size: 80px 78px;
+    background-size: 82px 81px;
 
     @media (-webkit-min-device-pixel-ratio: 1.5) {
       background-image: asset_url('logo-foosleague@2x.png', image);

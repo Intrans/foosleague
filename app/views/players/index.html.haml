@@ -1,6 +1,9 @@
 - content_for :heading do
   %h1 Player Ladder
 
+- content_for :sideright do
+  = render :partial => 'layouts/playerstat'
+
 %table
   %thead
     %th Rank
