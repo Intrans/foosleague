@@ -71,7 +71,7 @@ class Team < ActiveRecord::Base
   end
 
   def team_avatars
-    players.map { |player| "<img src='#{player.avatar_url}' height='32' width='32' />" }.join(' ')
+    players.map { |player| "<div class='recentgame-image'><img src='#{player.avatar_url}' height='32' width='32' /></div>" }.join(' ')
   end
 
   def game_result?(game)
