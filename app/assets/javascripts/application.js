@@ -12,9 +12,11 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require jquery.cookie
 //= require foundation
 //= require highcharts
 //= require ss-standard
+//= require jquery.joyride-2.0.1
 
 
 
@@ -97,36 +99,36 @@ $(document).ready(function() {
   });
 
 
-  winpercent = new Highcharts.Chart({
-      chart: {
-          renderTo: 'winpercent',
-          type: 'line',
-      },
-      series: [{
-          name: 'Win Percent',
-          data: [7.0, 6.9, 9.5, 14.5, 18.2, 21.5, 25.2, 26.5, 23.3, 18.3, 13.9, 9.6]
-      }]
-  });
-
-  scorediff = new Highcharts.Chart({
-      chart: {
-          renderTo: 'scorediff',
-          type: 'line',
-      },
-      series: [{
-          name: 'Score Diff',
-          data: [7.0, 6.9, 9.5, 14.5, 18.2, 21.5, 25.2, 26.5, 23.3, 18.3, 13.9, 9.6]
-      }]
-  });
-
-  ladderskill = new Highcharts.Chart({
-      chart: {
-          renderTo: 'ladderskill',
-          type: 'line',
-      },
-      series: [{
-          name: 'Ladder Skill',
-          data: [7.0, 6.9, 9.5, 14.5, 18.2, 21.5, 25.2, 26.5, 23.3, 18.3, 13.9, 9.6]
-      }]
-  });
+  // winpercent = new Highcharts.Chart({
+  //     chart: {
+  //         renderTo: 'winpercent',
+  //         type: 'line',
+  //     },
+  //     series: [{
+  //         name: 'Win Percent',
+  //         data: [7.0, 6.9, 9.5, 14.5, 18.2, 21.5, 25.2, 26.5, 23.3, 18.3, 13.9, 9.6]
+  //     }]
+  // });
+  //
+  // scorediff = new Highcharts.Chart({
+  //     chart: {
+  //         renderTo: 'scorediff',
+  //         type: 'line',
+  //     },
+  //     series: [{
+  //         name: 'Score Diff',
+  //         data: [7.0, 6.9, 9.5, 14.5, 18.2, 21.5, 25.2, 26.5, 23.3, 18.3, 13.9, 9.6]
+  //     }]
+  // });
+  //
+  // ladderskill = new Highcharts.Chart({
+  //     chart: {
+  //         renderTo: 'ladderskill',
+  //         type: 'line',
+  //     },
+  //     series: [{
+  //         name: 'Ladder Skill',
+  //         data: [7.0, 6.9, 9.5, 14.5, 18.2, 21.5, 25.2, 26.5, 23.3, 18.3, 13.9, 9.6]
+  //     }]
+  // });
 });
