@@ -16,4 +16,11 @@
       .game-team-playerimage
         league_player{ :src => "https://api.twitter.com/1/users/profile_image/#{player.twitter_name}?size=normal"}
 
-    =  game.away
+  .game-team.game-team-away.column.six
+    = display_score game.away_score
+    .game-team-playerimages
+      - game.away.players.each do |player|
+        .game-team-playerimage
+          %img{ :src => "https://api.twitter.com/1/users/profile_image/#{player.twitter_name}?size=normal"}
+    .game-team-name
+      =  game.away
