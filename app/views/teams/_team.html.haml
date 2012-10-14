@@ -11,4 +11,4 @@
       = number_to_percentage((Game.wins([team.id]).count.to_f / Game.having_teams([team.id]).count.to_f) * 100.0, :precision => 0)
   %td= team.streak
   %td
-    #{number_with_precision(team.skill, :precision => 0) } (#{team.deviation})
+    #{number_with_precision(team.skill, :precision => 1) } (#{team.deviation})
