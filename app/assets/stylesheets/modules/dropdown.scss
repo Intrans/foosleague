@@ -18,7 +18,8 @@
 .dropdown {
   margin: 0;
   padding: 0;
-  min-width: 100%;
+  width: 100%;
+  min-width: 200px;
   background: #fff;
   position: absolute;
   top: 100%;
@@ -65,6 +66,8 @@
 
 .dropdown-right {
   right: 0;
+  width: 150px;
+  min-width: 150px;
 }
 
 .dropdown-image {

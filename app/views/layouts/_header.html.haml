@@ -3,27 +3,31 @@
     %h1.branding= link_to "Foosleague", root_path
 
     - if player_signed_in?
-      .btn.btn-header.btn-header-left.has-dropdown
-        .btn-image
-          = image_tag league_logo
+      - if current_player.leagues.empty?
+        = link_to 'Add New League', new_league_url, :class => "btn btn-header btn-header-left"
+      - else
+        .btn.btn-header.btn-header-left.has-dropdown
+          .btn-image
+            = image_tag league_logo
+          = league_menu_label
 
-        = league_menu_label
+          %ul.dropdown.dropdown-left
+            - current_player.leagues.each do |league|
+              - next if league.new_record?
+              %li
+                = link_to league do
+                  .dropdown-image
+                    = image_tag league_logo league
+                  = league
+            %li.spacer
+            %li.new= link_to 'New League', new_league_url, :class => "btn"
 
-        %ul.dropdown.dropdown-left
-          - current_player.leagues.each do |league|
-            - next if league.new_record?
-            %li
-              = link_to league do
-                .dropdown-image
-                  = image_tag league_logo
-                = league
-          %li.spacer
-          %li.new= link_to 'New League', new_league_url, :class => "btn"
 
       .btn.btn-header.btn-header-right.has-dropdown
         .btn-image
           = image_tag player_avatar(current_player)
         = current_player
+
         %ul.dropdown.dropdown-right
           %li
             = link_to edit_player_registration_path do
