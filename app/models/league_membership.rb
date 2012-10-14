@@ -8,11 +8,13 @@ class LeagueMembership < ActiveRecord::Base
 
   after_create :first_player_dude_is_the_admin
 
-  # has_one :true_skill, :as=>:subject
-  #after_create :create_true_skill
+  has_one :true_skill, :as => :subject
+  after_create :setup_true_skill
 
   scope :by_skill, joins(:true_skill).order('skill desc')
   scope :by_league, lambda{|league_id| where(['league_id = ?', league_id])}
+
+  validates_presence_of :true_skill
 
   def skill
     true_skill.skill
@@ -36,5 +38,11 @@ class LeagueMembership < ActiveRecord::Base
       return if league.players.count > 1
       self.admin = true
       self.save!
+    end
+
+    def create_true_skill
+      create_true_skill
+      true_skill.skill = starting_skill_score
+      true_skill.save
     end
 end

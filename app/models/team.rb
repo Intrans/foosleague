@@ -71,16 +71,24 @@ class Team < ActiveRecord::Base
   end
 
   def game_result?(game)
-    return "w" if self == game.winner
-    return "l" if self == game.loser
+    return "W" if self == game.winner
+    return "L" if self == game.loser
   end
 
   def ratings
-    players.map{|u| u.true_skill.rating }
+    players.map{|u| u.rating }
   end
 
   def rating
     true_skill.rating
+  end
+
+  def skill
+    true_skill.skill
+  end
+
+  def deviation
+    true_skill.deviation
   end
 
   def update_ratings(updated_ratings)
@@ -92,14 +100,6 @@ class Team < ActiveRecord::Base
 
   def update_rating(updated_rating)
     true_skill.update_attributes({:skill=>rating.mean, :deviation=>rating.deviation, :activity=>rating.activity})
-  end
-
-  def skill
-    true_skill.skill
-  end
-
-  def deviation
-    true_skill.deviation
   end
 
   private

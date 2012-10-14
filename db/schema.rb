@@ -24,11 +24,12 @@ ActiveRecord::Schema.define(:version => 20121013061738) do
   end
 
   create_table "league_memberships", :force => true do |t|
-    t.datetime "created_at",                    :null => false
-    t.datetime "updated_at",                    :null => false
-    t.integer  "player_id",                     :null => false
-    t.integer  "league_id",                     :null => false
-    t.boolean  "admin",      :default => false, :null => false
+    t.datetime "created_at",                        :null => false
+    t.datetime "updated_at",                        :null => false
+    t.integer  "player_id",                         :null => false
+    t.integer  "league_id",                         :null => false
+    t.boolean  "admin",          :default => false, :null => false
+    t.integer  "starting_skill", :default => 250,   :null => false
   end
 
   add_index "league_memberships", ["league_id", "player_id"], :name => "index_league_memberships_on_league_id_and_player_id", :unique => true
@@ -101,7 +102,7 @@ ActiveRecord::Schema.define(:version => 20121013061738) do
   create_table "true_skills", :force => true do |t|
     t.integer  "subject_id"
     t.string   "subject_type"
-    t.float    "skill",        :default => 750.0
+    t.float    "skill",        :default => 250.0
     t.float    "deviation",    :default => 50.0
     t.float    "activity",     :default => 1.0
     t.datetime "created_at",                      :null => false
