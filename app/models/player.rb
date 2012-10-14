@@ -1,6 +1,5 @@
 class Player < ActiveRecord::Base
   extend FriendlyId
-  #friendly_id :twitter_name, use: :slugged
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, #:validatable,
@@ -73,12 +72,20 @@ class Player < ActiveRecord::Base
   end
 
   def self.from_omniauth(auth)
-    where(auth.slice(:provider, :uid)).first_or_create do |player|
-      player.provider = auth.provider
-      player.uid = auth.uid
-      player.twitter_name = auth.info.nickname
-      player.name = auth.info.nickname
-    end
+    existing_player = where(auth.slice(:provider, :uid)).first
+    return existing_player if existing_player
+
+    existing_player = find_by_twitter_name(auth[:info][:nickname])
+    existing_player = self.new unless existing_player
+
+    existing_player.provider = auth.provider
+    existing_player.uid = auth.uid
+    existing_player.twitter_name = auth.info.nickname
+    existing_player.name = auth.info.nickname
+    
+    existing_player.save
+
+    return existing_player
   end
 
   def self.new_with_session(params, session)
