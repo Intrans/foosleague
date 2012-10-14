@@ -3,34 +3,34 @@
 end
 
 USERS = []
-skill_1250 = []
-skill_750 = []
-skill_250 = []
-skill_750 << USERS[1] = Player.create!(:twitter_name => "sea", :name => "S. McCann")
-skill_1250 << USERS[7] = Player.create!(:twitter_name => "elidupuis", :name => "E. Dupuis")
-skill_750 << USERS[2] = Player.create!(:twitter_name => "agyuricska", :name => "A. Gyuricska")
-skill_750 << USERS[4] = Player.create!(:twitter_name => "timfletcher", :name => "T. Fletcher")
-skill_750 << USERS[9] = Player.create!(:twitter_name => "brandonwebber", :name => "B. Webber")
-skill_750 << USERS[8] = Player.create!(:twitter_name => "thorrenkoopmans", :name => "T. Koopmans")
-skill_750 << USERS[5] = Player.create!(:twitter_name => "micajobe", :name => "M. Slavens")
-skill_750 << USERS[6] = Player.create!(:twitter_name => "therealhallwood", :name => "S. Hardie")
-skill_250 << USERS[31] = Player.create!(:twitter_name => "mdeering", :name => "M. Deering")
-skill_250 << USERS[10] = Player.create!(:twitter_name => "samudyer", :name => "S. Dyer")
-skill_250 << USERS[38] = Player.create!(:twitter_name => "sftsang", :name => "S. Tsang")
-skill_250 << USERS[37] = Player.create!(:twitter_name => "gcrossfield", :name => "G. Crossfield")
-skill_250 << USERS[23] = Player.create!(:twitter_name => "timsloan", :name => "T. Sloan")
-skill_250 << USERS[3] = Player.create!(:twitter_name => "girasquid", :name => "L. Hutscal")
+skill_125 = []
+skill_75 = []
+skill_25 = []
+skill_75 << USERS[1] = Player.create!(:twitter_name => "sea", :name => "S. McCann")
+skill_125 << USERS[7] = Player.create!(:twitter_name => "elidupuis", :name => "E. Dupuis")
+skill_75 << USERS[2] = Player.create!(:twitter_name => "agyuricska", :name => "A. Gyuricska")
+skill_75 << USERS[4] = Player.create!(:twitter_name => "timfletcher", :name => "T. Fletcher")
+skill_75 << USERS[9] = Player.create!(:twitter_name => "brandonwebber", :name => "B. Webber")
+skill_75 << USERS[8] = Player.create!(:twitter_name => "thorrenkoopmans", :name => "T. Koopmans")
+skill_75 << USERS[5] = Player.create!(:twitter_name => "micajobe", :name => "M. Slavens")
+skill_75 << USERS[6] = Player.create!(:twitter_name => "therealhallwood", :name => "S. Hardie")
+skill_25 << USERS[31] = Player.create!(:twitter_name => "mdeering", :name => "M. Deering")
+skill_25 << USERS[10] = Player.create!(:twitter_name => "samudyer", :name => "S. Dyer")
+skill_25 << USERS[38] = Player.create!(:twitter_name => "sftsang", :name => "S. Tsang")
+skill_25 << USERS[37] = Player.create!(:twitter_name => "gcrossfield", :name => "G. Crossfield")
+skill_25 << USERS[23] = Player.create!(:twitter_name => "timsloan", :name => "T. Sloan")
+skill_25 << USERS[3] = Player.create!(:twitter_name => "girasquid", :name => "L. Hutscal")
 
 League.all.each do |league|
   Player.all.each do |player|
     league.league_memberships.create do |league_membership|
       league_membership.player = player
-      if skill_1250.include?(league_membership.player)
-        league_membership.starting_skill = 1250
-      elsif skill_750.include?(league_membership.player)
-        league_membership.starting_skill = 750
+      if skill_125.include?(league_membership.player)
+        league_membership.starting_skill = 125
+      elsif skill_75.include?(league_membership.player)
+        league_membership.starting_skill = 75
       else
-        league_membership.starting_skill = 250
+        league_membership.starting_skill = 25
       end
     end
   end
@@ -480,17 +480,13 @@ def create_game(league,home_id, away_id, home_score, away_score, completed_at)
     away_team_players = TEAMS[away_id.to_i].map {|n| USERS[n]}
 
     game = league.games.create! :home_team_players => home_team_players,
-                                :away_team_players => away_team_players,
-                                :home_score => home_score,
-                                :away_score => away_score
+                               :away_team_players => away_team_players,
+                               :home_score => home_score,
+                               :away_score => away_score
 
     game.created_at = DateTime.parse completed_at
     game.save
   rescue Exception => e
-    if home_team_players.compact.count != 2 || away_team_players.compact.count != 2
-      puts e.backtrace
-      puts "=" * 20
-    end
   end
 end
 
@@ -592,7 +588,6 @@ create_game(lift_league,"59","24","8","10","2010-12-09 23:11:14.803502+0000")
 create_game(lift_league,"40","24","10","7","2010-12-10 19:13:57.457894+0000")
 create_game(lift_league,"53","45","10","6","2010-12-13 19:14:53.679666+0000")
 create_game(lift_league,"6","60","10","6","2010-12-13 19:58:37.265184+0000")
-create_game(lift_league,"18","59","15","14","2010-12-13 22:29:14.332763+0000")
 create_game(lift_league,"39","7","8","10","2010-12-14 00:24:19.888611+0000")
 create_game(lift_league,"31","25","10","3","2010-12-14 19:03:08.033315+0000")
 create_game(lift_league,"6","60","6","10","2010-12-14 19:52:59.718799+0000")

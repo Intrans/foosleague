@@ -10,4 +10,5 @@
       = number_to_percentage((league_player.wins.count.to_f / league_player.games.count.to_f) * 100.0, :precision => 0)
   %td= streak(league_player, parent)
   %td
-    #{league_player.league_membership(parent).skill} (#{league_player.league_membership(parent).deviation})
+    #{number_with_precision(league_player.league_membership(parent).skill, :precision => 0) } 
+    / (#{league_player.league_membership(parent).deviation})

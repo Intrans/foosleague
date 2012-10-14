@@ -42,7 +42,6 @@ class LeagueMembership < ActiveRecord::Base
     end
 
     def setup_true_skill
-      logger.info "Starting at: #{starting_skill}"
       self.build_true_skill(:skill => starting_skill)
       self.true_skill.save
     end
