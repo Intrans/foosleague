@@ -11,10 +11,11 @@
       = link_to league_players_url(current_league) do
         %i.ss-icon.ss-rows
         Player Ladder
-    %li{ :class => "#{'active' if action_name == 'index' && controller_name == 'teams'}" }
-      = link_to league_teams_url(current_league) do
-        %i.ss-icon.ss-rows
-        Team Ladder
+    - if current_league.doubles?
+      %li{ :class => "#{'active' if action_name == 'index' && controller_name == 'teams'}" }
+        = link_to league_teams_url(current_league) do
+          %i.ss-icon.ss-rows
+          Team Ladder
     / %li
     /   = link_to "#" do
     /     %i.ss-icon.ss-user
