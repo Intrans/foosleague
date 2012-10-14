@@ -19,6 +19,7 @@ class Game < ActiveRecord::Base
 
   before_validation :create_teams, :on => :create
   before_destroy :lastest_league_game?
+  before_destroy :lastest_league_game?
   after_destroy :revert_foos_skills
   after_create :set_skills!
   validate :correct_players?
@@ -118,19 +119,13 @@ class Game < ActiveRecord::Base
         away_skill = away.true_skill.previous_version
         away_skill.without_versioning :save
 
-        # revert player foos skills
-        (away_team_players + home_team_players).each do |user|
-          skill = user.true_skill.previous_version
-          skill.without_versioning :save
-        end
-
-        # revert LeagueUser foos skills
+        # revert home LeagueUser foos skills
         league.league_memberships.where(['player_id in (?)', home.player_ids]).each do |membership|
           skill = membership.true_skill.previous_version
           skill.without_versioning :save
         end
 
-        # revert LeagueUser foos skills
+        # revert away LeagueUser foos skills
         league.league_memberships.where(['player_id in (?)', away.player_ids]).each do |membership|
           skill = membership.true_skill.previous_version
           skill.without_versioning :save
@@ -152,12 +147,6 @@ class Game < ActiveRecord::Base
       winner.update_rating(team_graph.teams.first.first)
       loser.update_rating(team_graph.teams.last.first)
 
-      logger.info winner.memberships.to_yaml
-      logger.info winner.players
-      logger.info loser.players
-      logger.info winner.player_ids
-      logger.info loser.player_ids
-
       winning_player_ids = winner.memberships.map { |membership| membership.player_id }
       losing_player_ids = loser.memberships.map { |membership| membership.player_id }
 
@@ -166,9 +155,6 @@ class Game < ActiveRecord::Base
 
       league_graph = TrueSkill::FactorGraph.new([league_winners.map{|m| m.rating}, league_losers.map{|m| m.rating}], [1,2])
       league_graph.update_skills
-
-      logger.info league_winners.inspect
-      logger.info league_losers.inspect
 
       league_winners.first.update_rating(league_graph.teams.first.first)
       league_winners.last.update_rating(league_graph.teams.first.last)
