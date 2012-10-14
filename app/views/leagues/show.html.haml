@@ -2,49 +2,18 @@
   %h1= resource.name
 
   .col-main-heading-action
-    = link_to 'New Game', new_league_game_url(resource), :class => "btn btn-primary btn-ondark"
+    = link_to 'New Game', '#', :class => "btn btn-primary btn-ondark btn-newgame"
 
 - content_for :sideleft do
   = render :partial => 'layouts/leaguenav'
 
 - content_for :sideright do
-  .player
-    .player-card
-      .player-card-image
-        = image_tag player_avatar
-      .player-card-info
-        - if current_player.name
-          %h1= current_player.name
-
-        - if current_player.twitter_name
-          %p= current_player.twitter_name
-    .row
-      .column.six
-        %p.stat.stat-large
-          = current_player.wins.count
-          %strong Wins
-      .column.six
-        %p.stat.stat-large
-          = current_player.losses.count
-          %strong Losses
-
-    %h2 Win Percent
-    #winpercent.chart.chart-small
-
-    %h2 Score Diff
-    #scorediff.chart.chart-small
-
-    %h2 Ladder Skill
-    #ladderskill.chart.chart-small
+  = render :partial => 'layouts/playerstat'
 
 .games
-  = simple_form_for resource.games.build, :url => league_games_url(resource) do |form|
-    = render '/games/form', :form => form
-    .action
-      = form.submit 'Enter', { :class => 'btn btn-primary'}
   - unless resource.games.empty?
     = render resource.games.limit(20)
   - else
     .nogames
       %p No Games Played
-      = link_to 'New Game', new_league_game_url(resource), :class => "btn"
+      = link_to 'New Game', new_league_game_url(resource), :class => "btn btn-newgame"

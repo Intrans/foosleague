@@ -3,24 +3,36 @@
 
 = simple_form_for resource do |form|
   = form.error_messages
+  .newleague
+    .row
+      .column.six
+        = render 'form', :form => form
 
-  .row
-    .column.six
-      = render 'form', :form => form
+    %hr
 
-  .row
-    .column.five
-      = image_tag player_avatar(current_player)
-      = current_player
-  - (6 - form.object.league_memberships.count).times do
-    - form.object.league_memberships.build
-  = form.simple_fields_for :league_memberships do |player|
-    %div{ :class => cycle('', 'row') }
-      .column.five
-        %h4 New Player
-        = player.input :name
-        = player.input :twitter_name
+    %h2 Add Players
+    .row.newplayer-you
+      .column.one
+        .newplayer-image
+          = image_tag player_avatar(current_player)
+      .column.four
+        %p.newplayer-you-name= current_player.name
+      .column.four.end
+        %p.newplayer-you-name= current_player.twitter_name
 
-  .field-actions
-    = form.button :submit, :class => "btn btn-primary"
+    - (6 - form.object.league_memberships.count).times do
+      - form.object.league_memberships.build
+    = form.simple_fields_for :league_memberships do |player|
+      .row.newplayer
+        .column.one
+          .newplayer-image
+            = image_tag "default-player-logo.png"
+        .column.four
+          = player.input :name
+        .column.four
+          = player.input :twitter_name
+        .column.three
+
+    .field-actions
+      = form.button :submit, :class => "btn btn-primary"
 

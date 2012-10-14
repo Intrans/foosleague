@@ -1,0 +1,28 @@
+.player
+  .player-card
+    .player-card-image
+      = image_tag player_avatar
+    .player-card-info
+      - if current_player.name
+        %h1= current_player.name
+
+      - if current_player.twitter_name
+        %p= current_player.twitter_name
+  .row
+    .column.six
+      %p.stat.stat-large
+        = current_player.wins.count
+        %strong Wins
+    .column.six
+      %p.stat.stat-large
+        = current_player.losses.count
+        %strong Losses
+
+  %h2 Win Percent
+  #winpercent.chart.chart-small
+
+  %h2 Score Diff
+  #scorediff.chart.chart-small
+
+  %h2 Ladder Skill
+  #ladderskill.chart.chart-small
