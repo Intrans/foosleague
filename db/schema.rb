@@ -85,13 +85,14 @@ ActiveRecord::Schema.define(:version => 20121014184210) do
   add_index "team_memberships", ["team_id"], :name => "index_team_memberships_on_team_id"
 
   create_table "teams", :force => true do |t|
-    t.datetime "created_at",                :null => false
-    t.datetime "updated_at",                :null => false
-    t.integer  "league_id",                 :null => false
+    t.datetime "created_at",                               :null => false
+    t.datetime "updated_at",                               :null => false
+    t.integer  "league_id",                                :null => false
     t.string   "name",       :limit => 128
     t.string   "logo_uid"
     t.string   "logo_name"
-    t.string   "slug",                      :null => false
+    t.integer  "team_size",                 :default => 0, :null => false
+    t.string   "slug",                                     :null => false
   end
 
   add_index "teams", ["league_id"], :name => "index_teams_on_league_id"

@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
 
-  helper_method :league_menu_label, :league_logo, :player_avatar
+  helper_method :current_league, :league_menu_label, :league_logo, :player_avatar
 
   inherit_resources
 
@@ -15,7 +15,8 @@ class ApplicationController < ActionController::Base
       when 1
         league_url(resource.leagues.first)
       else
-        root_url
+        last_game = resource.games.last
+        last_game.present? ? league_url(last_game.league) : league_url(resource.leagues.last)
       end
     end
 
@@ -32,8 +33,6 @@ class ApplicationController < ActionController::Base
     end
 
     def league_logo(league = current_league, geometry = '50x50#')
-      logger.info league.to_yaml
-      logger.info geometry
       return Dragonfly[:images].fetch_file("#{Rails.root}/app/assets/images/default-league-logo.png").process(:thumb, geometry).url if league.nil? || league.logo_uid.blank?
       league.logo.process(:thumb, geometry).url
     end
