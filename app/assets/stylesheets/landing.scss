@@ -118,6 +118,8 @@ h1, h2, h3, h4, h5, h6 {
     color: #fff;
     text-shadow: 0 1px 1px rgba(0,0,0,0.5);
     display: inline-block;
+    position: relative;
+    z-index: 2;
   }
 }
 
@@ -147,16 +149,10 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 
-.landing-recentgames {
-
-}
-
 .landing-games {
-  position: absolute;
+  float: right;
   top: 0;
   right: 0;
-  padding-left: 90px;
-  background: asset_url('landing/bg-games.png', image) top left no-repeat;
   overflow: hidden;
 
   h1 {
@@ -230,4 +226,54 @@ h1, h2, h3, h4, h5, h6 {
   float: left;
   width: 130px;
   margin-top: -10px;
+}
+
+.recentgames {
+  position: absolute;
+  float: left;
+  display: block;
+  width: 65%;
+  overflow: hidden;
+  height: 50px;
+  top: 0;
+  left: 110px;
+  z-index: 0;
+
+  &:before {
+    content: asset_url('landing/bg-games-left.png', image);
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 5;
+  }
+
+  &:after {
+    content: asset_url('landing/bg-games.png', image);
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 5;
+  }
+}
+
+.recentgames-slider {
+  width: 5000px;
+  position: absolute;
+  top: 0;
+  left: 200px;
+  @include transition(all 150s linear);
+
+  &.scroll {
+    left: -5000px;
+  }
+}
+
+.recentgame {
+  padding: 22px 0;
+  font-size: 15px;
+  color: #fff;
+  font-weight: 600;
+  float: left;
+  margin-right: 40px;
+  text-shadow: 0 1px 1px rgba(0,0,0,0.5);
 }

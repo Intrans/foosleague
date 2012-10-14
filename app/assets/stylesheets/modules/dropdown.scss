@@ -25,7 +25,7 @@
     pointer-events: none;
     @include opacity(0);
     @include translateY(-5px);
-    @include transition(0.25s);
+    @include transition(0.15s);
   }
 
   &:hover {

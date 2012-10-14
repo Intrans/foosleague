@@ -26,7 +26,7 @@ function setMin(){
   }
 
   if($('.newgame-inner').length){
-    $('.newgame-inner').css('height', height-150);
+    $('.newgame-inner').css('max-height', height-150);
   }
 };
 
