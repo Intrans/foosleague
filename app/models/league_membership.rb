@@ -1,8 +1,4 @@
 class LeagueMembership < ActiveRecord::Base
-
-  attr_accessor :name, :twitter_name
-  attr_accessible :name, :twitter_name
-
   belongs_to :league, :inverse_of => :league_memberships
   belongs_to :player, :inverse_of => :league_memberships
 
@@ -12,10 +8,8 @@ class LeagueMembership < ActiveRecord::Base
 
   after_create :first_player_dude_is_the_admin
 
-  before_validation :look_up_by_twitter_or_name
-
-  # has_one :true_skill, :as=>:subject
-  #after_create :create_true_skill
+  has_one :true_skill, :as => :subject
+  after_create :setup_true_skill
 
   scope :by_skill, joins(:true_skill).order('skill desc')
   scope :by_league, lambda{|league_id| where(['league_id = ?', league_id])}
@@ -44,15 +38,9 @@ class LeagueMembership < ActiveRecord::Base
       self.save!
     end
 
-    def look_up_by_twitter_or_name
-      return if player.present?
-      # If the twitter hanle is there find them or create them
-      if twitter_name.present?
-        self.player = Player.find_by_twitter_name(twitter_name)
-        self.player ||= Player.new(:name => name, :twitter_name => twitter_name)
-        return
-      end
-      return unless name.present?
-      self.player = Player.new(:name => name)
+    def setup_true_skill
+      logger.info "Starting at: #{starting_skill}"
+      self.build_true_skill(:skill => starting_skill)
+      self.true_skill.save
     end
 end

@@ -4,7 +4,8 @@ class CreateLeagueMemberships < ActiveRecord::Migration
       table.timestamps
       table.integer     :player_id,                    :null => false
       table.integer     :league_id,                    :null => false
-      table.boolean    :admin,     :default => false, :null => false
+      table.boolean     :admin,     :default => false, :null => false
+      table.integer     :starting_skill, :default => 250, :null => false
     end
 
     add_index :league_memberships, [ :league_id ]
