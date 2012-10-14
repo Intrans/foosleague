@@ -19,6 +19,7 @@ class Game < ActiveRecord::Base
 
   before_validation :create_teams, :on => :create
   before_destroy :lastest_league_game?
+  before_destroy :lastest_league_game?
   after_destroy :revert_foos_skills
   after_create :set_skills!
   validate :correct_players?
@@ -127,13 +128,13 @@ class Game < ActiveRecord::Base
           skill.without_versioning :save
         end
 
-        # revert LeagueUser foos skills
+        # revert home LeagueUser foos skills
         league.league_memberships.where(['player_id in (?)', home.player_ids]).each do |membership|
           skill = membership.true_skill.previous_version
           skill.without_versioning :save
         end
 
-        # revert LeagueUser foos skills
+        # revert away LeagueUser foos skills
         league.league_memberships.where(['player_id in (?)', away.player_ids]).each do |membership|
           skill = membership.true_skill.previous_version
           skill.without_versioning :save
