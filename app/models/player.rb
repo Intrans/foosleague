@@ -5,6 +5,8 @@ class Player < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, #:validatable,
          :omniauthable, :token_authenticatable
 
+  normalize_attribute  :twitter_name, :with => :twitter
+
   attr_accessible :email, :password, :password_confirmation, :remember_me, :provider, :uid, :name, :twitter_name
 
   has_many :league_memberships, :inverse_of => :player
