@@ -31,7 +31,14 @@ $(document).ready(setMin);
 var winpercent;
 var scorediff;
 var ladderskill;
+
 $(document).ready(function() {
+  $('.btn-newgame').live('click', function(){
+    $('.newgame').toggleClass('hidden');
+    $('body').toggleClass('open');
+    return false;
+  });
+
   $('.players a.player:not(.disabled)').live('click', function(){
       var inital = $(this).next('input').is(':checked');
 

@@ -12,6 +12,15 @@
 
   %body
     = render 'layouts/header'
+
+    .newgame.hidden
+      .row
+        = simple_form_for resource.games.build, :url => league_games_url(resource) do |form|
+          = render '/games/form', :form => form
+          .action
+            = form.submit 'Enter', { :class => 'btn btn-primary'}
+
+
     .content
       .row.container
         .col.col-main

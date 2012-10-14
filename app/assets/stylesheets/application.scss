@@ -34,6 +34,10 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
+body.open {
+  overflow: hidden;
+}
+
 h1, h2, h3, h4, h5, h6 {
   font-family: $font-proxima;
 }
@@ -452,4 +456,30 @@ label {
 .newplayer-you-name {
   padding-top: 4px;
   font-weight: 600;
+}
+
+
+.newgame {
+  margin-bottom: -40px;
+  overflow: hidden;
+  height: 500px;
+  background: asset_url('bg-linen.png', image) #333;
+  background-size: 640px 640px;
+  overflow-y: scroll;
+  @include transition(0.25s);
+
+  @media (-webkit-min-device-pixel-ratio: 1.5) {
+    background-image: asset_url('bg-linen@2x.png', image);
+  }
+
+
+  .row {
+    padding: 40px 20px;
+  }
+
+  &.hidden {
+    height: 0;
+    margin-bottom: 0px;
+    padding: 0;
+  }
 }
