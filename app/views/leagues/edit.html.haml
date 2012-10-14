@@ -34,7 +34,7 @@
   - unless resource.teams.empty?
     %table
       %tbody
-        = render resource.teams
+        = render :partial => '/teams/teamsetting', :collection => resource.teams
   - else
     %p No teams yet.
 
