@@ -39,8 +39,9 @@ h1, h2, h3, h4, h5, h6 {
 
   h2 {
     color: #fff;
+    font-size: 42px;
+    padding: 0 20px;
     text-shadow: 0 2px 4px rgba(0,0,0,0.5);
-    text-transform: uppercase;
     @include transition(all 1s ease 1s);
 
     &.hidden {
@@ -57,12 +58,12 @@ h1, h2, h3, h4, h5, h6 {
 
 .branding {
   margin: 0;
-  width: 210px;
-  height: 204px;
+  width: 276px;
+  height: 266px;
   display: inline-block;
   text-indent: -9999em;
   background-image: asset_url('landing/logo-foosleague.png', image);
-  background-size: 210px 204px;
+  background-size: 276px 266px;
 
   @media (-webkit-min-device-pixel-ratio: 1.5) {
     background-image: asset_url('landing/logo-foosleague@2x.png', image);
@@ -75,9 +76,15 @@ h1, h2, h3, h4, h5, h6 {
   height: 240px;
   width: 100%;
   background: asset_url('landing/bg-content.png', image) top left repeat-x;
+  @include transition(all 1s ease 1.5s);
 
   .row {
     position: relative;
+  }
+
+  &.hidden {
+    @include translateY(240px);
+    @include opacity(0);
   }
 }
 
