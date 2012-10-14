@@ -13,7 +13,7 @@
     = league_player.losses(parent.teams.with_player(league_player).map{|l| l.id}).count
   %td.center
     - unless league_player.games.empty?
-      = number_to_percentage((league_player.wins.count.to_f / league_player.games.count.to_f) * 100.0, :precision => 0)
+      = number_to_percentage((league_player.wins(parent.teams.with_player(league_player).map{|l| l.id}).count.to_f / league_player.games.count.to_f) * 100.0, :precision => 0)
   %td.center= streak(league_player, parent)
   %td.center
     %strong
