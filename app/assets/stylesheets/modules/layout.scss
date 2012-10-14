@@ -1,6 +1,12 @@
 .row {
   position: relative;
   width: 1200px;
+  min-width: 768px;
+
+  @media only screen and (max-width: $screenSmall - 1) {
+    width: 1200px;
+    min-width: 768px;
+  }
 }
 
 .content {

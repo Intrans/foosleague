@@ -24,7 +24,12 @@ function setMin(){
   if($('.col-side').length){
     $('.col-main').css('min-height', height-145);
   }
+
+  if($('.newgame-inner').length){
+    $('.newgame-inner').css('height', height-150);
+  }
 };
+
 $(window).resize(setMin);
 $(document).ready(setMin);
 
@@ -39,17 +44,17 @@ $(document).ready(function() {
     return false;
   });
 
-  $('.players a.player:not(.disabled)').live('click', function(){
+  $('.players a.player-btn:not(.disabled)').live('click', function(){
       var inital = $(this).next('input').is(':checked');
 
       $(this).next('input').click();
       $(this)[inital ? 'removeClass' : 'addClass']('active');
 
-      var checked = $(this).parents('.players').children('a.active').length;
+      var checked = $(this).parents('.players').find('a.player-btn.active').length;
       if( checked >= 2 ){
-        $(this).parents('.players').children('a:not(.active)').addClass('disabled');
+        $(this).parents('.players').find('a.player-btn:not(.active)').addClass('disabled');
       }else{
-        $(this).parents('.players').children('a:not(.active)').removeClass('disabled');
+        $(this).parents('.players').find('a.player-btn:not(.active)').removeClass('disabled');
       }
     });
 
