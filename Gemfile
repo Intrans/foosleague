@@ -2,6 +2,7 @@ source 'https://rubygems.org'
 
 gem 'rails', '3.2.8.rc2'
 
+gem 'attribute_normalizer'
 gem 'devise'
 gem 'dragonfly'
 gem 'dynamic_form'

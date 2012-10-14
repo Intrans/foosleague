@@ -1,26 +1,19 @@
 .game.row
-  .game-team.game-team-home.column.five
-    =  game.home
-    - game.home.players.each do |player|
-      .game-team-playerimage
-        league_player{ :src => "https://api.twitter.com/1/users/profile_image/#{player.twitter_name}?size=normal"}
+  .game-team.game-team-home.column.six.winner
+    = display_score game.home_score
+    .game-team-playerimages
+      - game.home.players.each do |player|
+        .game-team-playerimage
+          = image_tag player_avatar(player)
+    .game-team-name
+      =  game.home
 
-  .game-scores.column.two
-    .row
-      .game-score.game-score-home.column.six
-        = display_score game.home_score
-      .game-score.game-score-away.column.six
-        = display_score game.away_score
-  .game-team.game-team-away.column.five
-    - game.away.players.each do |player|
-      .game-team-playerimage
-        league_player{ :src => "https://api.twitter.com/1/users/profile_image/#{player.twitter_name}?size=normal"}
 
   .game-team.game-team-away.column.six
     = display_score game.away_score
     .game-team-playerimages
       - game.away.players.each do |player|
         .game-team-playerimage
-          %img{ :src => "https://api.twitter.com/1/users/profile_image/#{player.twitter_name}?size=normal"}
+          = image_tag player_avatar(player)
     .game-team-name
       =  game.away

@@ -2,10 +2,11 @@ class League < ActiveRecord::Base
   extend FriendlyId
   friendly_id :name, use: :slugged
 
-  attr_accessible :doubles, :logo, :name, :remove_logo, :retained_logo
+  attr_accessible :doubles, :logo, :name, :league_memberships_attributes, :remove_logo, :retained_logo
 
   has_many :league_memberships, :inverse_of => :league
   has_many :players, :through => :league_memberships, :inverse_of => :leagues
+  accepts_nested_attributes_for :league_memberships, :reject_if => proc { |attributes| attributes[:name].blank? && attributes[:twitter_name].blank? }
   has_many :games
 
   has_many :teams do
@@ -33,6 +34,11 @@ class League < ActiveRecord::Base
   end
 
   image_accessor :logo
+
+  normalize_attributes :name
+
+  validates :name,
+    :presence => true
 
   def to_s
     name

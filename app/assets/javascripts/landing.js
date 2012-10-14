@@ -15,5 +15,5 @@
 //= require foundation
 
 $(function() {
- $('.header, .header h2').removeClass('hidden');
+ $('.header, .header h2, .content').removeClass('hidden');
 });

@@ -2,3 +2,5 @@
   %td
     = image_tag player_avatar(player)
     = player
+  %td.actions
+    = link_to 'Delete', league_player_url(resource, player), :method => :delete, :confirm => "Are you sure you wish to delete the player #{player}?"

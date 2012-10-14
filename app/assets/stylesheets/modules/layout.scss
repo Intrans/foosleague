@@ -69,32 +69,26 @@
   right: 7px;
 }
 
-.col-side-left {
+.col-side {
   padding: 20px;
   width: 23%;
   background: #f8fbff;
   border: 1px solid #95a8bf;
-  border-right: none;
   position: absolute;
   top: 5px;
   bottom: 5px;
   z-index: 2;
-  @include border-radius(3px 0 0 3px);
   @include box-shadow(0 1px 2px rgba(24,55,93,0.15));
 }
 
+.col-side-left {
+  border-right: none;
+  @include border-radius(3px 0 0 3px);
+}
+
 .col-side-right {
-  padding: 20px;
-  width: 23%;
-  background: #f8fbff;
-  border: 1px solid #95a8bf;
   border-left: none;
-  position: absolute;
-  top: 5px;
-  bottom: 5px;
   right: 0;
-  z-index: 2;
   overflow-y: scroll;
   @include border-radius(0 3px 3px 0);
-  @include box-shadow(0 1px 2px rgba(24,55,93,0.15));
 }

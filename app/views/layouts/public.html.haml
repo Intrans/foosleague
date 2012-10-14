@@ -12,8 +12,15 @@
 
   %body
     %header.header.hidden
-      %h1.branding Foosleague
-      = yield
+      .row
+        .column.six
+          %h1.branding Foosleague
+        .column.six
+          %h2.hidden Foosball Stats and Ladder Tracking for Your League
+
+    .content.hidden
+      .row
+        = yield
 
     = javascript_include_tag 'landing'
     = render 'layouts/analytics'

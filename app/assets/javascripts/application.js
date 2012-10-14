@@ -17,15 +17,15 @@
 
 
 
-function jqUpdateSize(){
-    // Get the dimensions of the viewport
-    var width = $(window).width();
-    var height = $(window).height();
+function setMin(){
+  var height = $(window).height();
 
+  if($('.col-side').length){
     $('.col-main').css('min-height', height-145);
+  }
 };
-$(window).resize(jqUpdateSize);
-$(document).ready(jqUpdateSize);
+$(window).resize(setMin);
+$(document).ready(setMin);
 
 var winpercent;
 var scorediff;

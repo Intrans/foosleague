@@ -32,8 +32,10 @@ class ApplicationController < ActionController::Base
     end
 
     def league_logo(league = current_league, geometry = '50x50#')
-      return Dragonfly[:images].fetch_file("#{Rails.root}/app/assets/images/default-league-logo.png").process(:thumb, geometry).url if league.nil?
-      league.logo_uid.present? ? league.logo.process(:thumb, geometry).url : Dragonfly[:images].fetch_file("#{Rails.root}/app/assets/images/default-league-logo.png").process(:thumb, geometry).url
+      logger.info league.to_yaml
+      logger.info geometry
+      return Dragonfly[:images].fetch_file("#{Rails.root}/app/assets/images/default-league-logo.png").process(:thumb, geometry).url if league.nil? || league.logo_uid.blank?
+      league.logo.process(:thumb, geometry).url
     end
 
     def player_avatar(player = current_player, geometry = '50x50#')
@@ -46,6 +48,5 @@ class ApplicationController < ActionController::Base
       return Dragonfly[:images].fetch_file("#{Rails.root}/app/assets/images/default-team-logo.png").process(:thumb, geometry).url if team.nil?
       team.logo.process(:thumb, geometry).url
     end
-
 
 end
