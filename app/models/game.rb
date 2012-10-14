@@ -19,7 +19,7 @@ class Game < ActiveRecord::Base
 
   before_validation :create_teams, :on => :create
   before_destroy :lastest_league_game?
-  # after_destroy :revert_foos_skills
+  after_destroy :revert_foos_skills
   after_create :set_skills!
   validate :correct_players?
   validate :score_is_legit?
@@ -72,36 +72,6 @@ class Game < ActiveRecord::Base
     end
   end
 
-  def set_skills!
-    graph = TrueSkill::FactorGraph.new([winner.ratings, loser.ratings], [1,2])
-    graph.update_skills
-
-    winner.update_ratings(graph.teams.first)
-    loser.update_ratings(graph.teams.last)
-
-    team_graph = TrueSkill::FactorGraph.new([[winner.rating],[loser.rating]], [1,2])
-    team_graph.update_skills
-
-    winner.update_rating(team_graph.teams.first.first)
-    loser.update_rating(team_graph.teams.last.first)
-
-    league_winners = league.league_memberships.where(['player_id in (?)', winner.player_ids])
-    league_losers = league.league_memberships.where(['player_id in (?)', loser.player_ids])
-
-    league_graph = TrueSkill::FactorGraph.new([league_winners.map{|m| m.rating}, league_losers.map{|m| m.rating}], [1,2])
-    league_graph.update_skills
-
-    logger.info league_winners.inspect
-    logger.info league_losers.inspect
-
-    league_winners.first.update_rating(league_graph.teams.first.first)
-    league_winners.last.update_rating(league_graph.teams.first.last)
-    league_losers.first.update_rating(league_graph.teams.last.first)
-    league_losers.last.update_rating(league_graph.teams.last.last)
-
-    save
-  end
-
   def loser
     if away_win?
       home
@@ -142,4 +112,63 @@ class Game < ActiveRecord::Base
       self.away = league.teams.find_or_create_by_players(away_team_players)
     end
 
+    def revert_foos_skills
+      transaction do
+        # revert team foos skills
+        home_skill = home.true_skill.previous_version
+        home_skill.without_versioning :save
+
+        away_skill = away.true_skill.previous_version
+        away_skill.without_versioning :save
+
+        # revert player foos skills
+        (away_team_players + home_team_players).each do |user|
+          skill = user.true_skill.previous_version
+          skill.without_versioning :save
+        end
+
+        # revert LeagueUser foos skills
+        league.league_memberships.where(['player_id in (?)', home.player_ids]).each do |membership|
+          skill = membership.true_skill.previous_version
+          skill.without_versioning :save
+        end
+
+        # revert LeagueUser foos skills
+        league.league_memberships.where(['player_id in (?)', away.player_ids]).each do |membership|
+          skill = membership.true_skill.previous_version
+          skill.without_versioning :save
+        end
+      end
+    end
+
+
+    def set_skills!
+      graph = TrueSkill::FactorGraph.new([winner.ratings, loser.ratings], [1,2])
+      graph.update_skills
+
+      winner.update_ratings(graph.teams.first)
+      loser.update_ratings(graph.teams.last)
+
+      team_graph = TrueSkill::FactorGraph.new([[winner.rating],[loser.rating]], [1,2])
+      team_graph.update_skills
+
+      winner.update_rating(team_graph.teams.first.first)
+      loser.update_rating(team_graph.teams.last.first)
+
+      league_winners = league.league_memberships.where(['player_id in (?)', winner.player_ids])
+      league_losers = league.league_memberships.where(['player_id in (?)', loser.player_ids])
+
+      league_graph = TrueSkill::FactorGraph.new([league_winners.map{|m| m.rating}, league_losers.map{|m| m.rating}], [1,2])
+      league_graph.update_skills
+
+      logger.info league_winners.inspect
+      logger.info league_losers.inspect
+
+      league_winners.first.update_rating(league_graph.teams.first.first)
+      league_winners.last.update_rating(league_graph.teams.first.last)
+      league_losers.first.update_rating(league_graph.teams.last.first)
+      league_losers.last.update_rating(league_graph.teams.last.last)
+
+      save
+    end
 end

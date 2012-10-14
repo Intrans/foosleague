@@ -1,9 +1,9 @@
-%tr
-  %td
-    .leagueplayer-image
-      = image_tag player_avatar(team.players.first)
-    .leagueplayer-image
-      = image_tag player_avatar(team.players.last)
-    .leagueplayer-name
-      = team
-  %td= link_to team, edit_league_team_url(team.league, team)
+- unless teamsetting.nil?
+  %tr
+    %td
+      - teamsetting.players.each do |player|
+        .leagueplayer-image
+          = image_tag player_avatar(player)
+      .leagueplayer-name
+        = teamsetting
+    %td= link_to teamsetting, edit_league_team_url(teamsetting.league, teamsetting)

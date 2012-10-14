@@ -9,3 +9,4 @@
 
 = simple_form_for resource, :url => league_games_url(current_league) do |form|
   = render 'form', :form => form
+  = form.button :submit, :class => "btn btn-primary"

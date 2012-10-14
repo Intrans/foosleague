@@ -1,5 +1,5 @@
 = form.input :name
-= form.input :doubles
+= form.input :doubles, :as => :radio, :label => false, :collection => [ ['Singles', false], ['Doubles', true] ]
 = form.input :logo, :as => :file
 = form.hidden_field :retained_logo
 - if form.object.logo_uid
