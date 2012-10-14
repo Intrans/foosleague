@@ -143,7 +143,7 @@ h1, h2, h3, h4, h5, h6 {
   p {
     font-size: 13px;
     color: #b9c0c6;
-    text-align: right;
+    float: right;
   }
 }
 
@@ -224,4 +224,10 @@ h1, h2, h3, h4, h5, h6 {
       background-image: asset_url('bg-score@2x.png', image);
     }
   }
+}
+
+.railsrumble {
+  float: left;
+  width: 130px;
+  margin-top: -10px;
 }
