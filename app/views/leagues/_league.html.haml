@@ -1,1 +1,6 @@
-%li= link_to league.name, league_url(league)
+%li.leaguelist-item
+  = link_to league_url(league) do
+    .leaguelist-item-image
+      = image_tag league_logo league
+    .leaguelist-item-name
+      =league.name

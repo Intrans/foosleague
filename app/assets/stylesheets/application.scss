@@ -225,11 +225,16 @@ a {
 .game {
   margin: 0 -20px !important;
   padding: 10px 0;
-  background: #f9fbfe;
+  background: asset_url('bg-gamedash.png', image) center center no-repeat #f9fbfe;
   border-bottom: 1px solid #DAE2EC;
+  background-size: 8px 4px;
 
   &:nth-child(2n) {
-    background: #fff;
+    background-color: #fff;
+  }
+
+  @media (-webkit-min-device-pixel-ratio: 1.5) {
+    background-image: asset_url('bg-gamedash@2x.png', image);
   }
 }
 
@@ -622,4 +627,50 @@ label {
     font-weight: normal;
     font-size: 13px;
   }
+}
+
+.leaguelisting {
+  margin: 0 0 -10px;
+  padding: 0;
+  list-style: none;
+
+  li {
+    margin: 0 0 10px;
+    padding: 0;
+    overflow: hidden;
+  }
+}
+
+.leaguelist-item-image {
+  float: left;
+  width: 48px;
+  height: 48px;
+  margin-right: 10px;
+  display: inline-block;
+  vertical-align: middle;
+  border: 1px solid #505b67;
+  position: relative;
+  @include border-radius(4px);
+  @include box-shadow(0 1px 1px rgba(24,55,93,0.15));
+
+  &:after {
+    content: "";
+    position: absolute;
+    top: 0; right: 0; bottom: 0; left: 0;
+    @include box-shadow(inset 0 0 0 1px rgba(255,255,255,0.35));
+    @include border-radius(3px);
+  }
+
+  img {
+    width: 46px;
+    height: 46px;
+    display: block;
+    @include border-radius(3px);
+  }
+}
+
+.leaguelist-item-name {
+  padding: 12px 0;
+  color: #505b67;
+  font-weight: 700;
 }
