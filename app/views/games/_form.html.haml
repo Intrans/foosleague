@@ -8,10 +8,7 @@
         %a.player.btn
           .btn-image
             = image_tag player_avatar(player)
-          - if player.name
-            = player.name
-          - else
-            = player.twitter_name
+          = player
         = check_box_tag 'game[home_team_players][]', player.id, form.object.home_team_players.include?(player)
 
     %h2 Home Team Score
@@ -24,10 +21,7 @@
         %a.player.btn
           .btn-image
             = image_tag player_avatar(player)
-          - if player.name
-            = player.name
-          - else
-            = player.twitter_name
+          = player
         = check_box_tag 'game[away_team_players][]', player.id, form.object.away_team_players.include?(player)
     %h2 Away Team Score
     = form.text_field :away_score

@@ -28,6 +28,8 @@ class Player < ActiveRecord::Base
   end
 
   def to_s
+    return name unless twitter_name.present?
+    return twitter_name unless name.present?
     return "#{name} (#{twitter_name})" if name != twitter_name
     return twitter_name
   end
