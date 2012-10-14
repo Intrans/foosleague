@@ -15,4 +15,5 @@
       = number_to_percentage((Game.wins([team.id]).count.to_f / Game.having_teams([team.id]).count.to_f) * 100.0, :precision => 0)
   %td.center= team.streak
   %td.center
-    #{number_with_precision(team.skill, :precision => 1) }
+    %strong
+      #{number_with_precision(team.skill, :precision => 1) }

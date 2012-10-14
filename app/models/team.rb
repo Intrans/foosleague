@@ -34,7 +34,7 @@ class Team < ActiveRecord::Base
   scope :by_skill, joins(:true_skill).order('skill desc')
 
   def display_name
-    players.map{|p| p }.join(" & ")
+    name || players.map{|p| p }.join(" & ")
   end
 
   def last_record(max=5)
