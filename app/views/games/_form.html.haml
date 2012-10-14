@@ -9,7 +9,7 @@
         - f.object.league.players.each do |player|
           %a.player.btn
             .btn-image
-              %img{ :src => "https://api.twitter.com/1/users/profile_image/#{player.twitter_name}?size=normal"}
+              league_player{ :src => "https://api.twitter.com/1/users/profile_image/#{player.twitter_name}?size=normal"}
             - if player.name
               = player.name
             - else
@@ -25,7 +25,7 @@
         - f.object.league.players.each do |player|
           %a.player.btn
             .btn-image
-              %img{ :src => "https://api.twitter.com/1/users/profile_image/#{player.twitter_name}?size=normal"}
+              league_player{ :src => "https://api.twitter.com/1/users/profile_image/#{player.twitter_name}?size=normal"}
             - if player.name
               = player.name
             - else

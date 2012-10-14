@@ -1,0 +1,11 @@
+%table
+  %thead
+    %th Rank
+    %th Name
+    %th Wins
+    %th Losses
+    %th Win %
+    %th Streak
+    %th FoosSkill
+  %tbody
+    = render :partial => 'league_player', :collection => collection

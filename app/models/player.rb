@@ -44,6 +44,11 @@ class Player < ActiveRecord::Base
     Game.having_teams(team_ids)
   end
 
+  def game_result?(game)
+    return "W" if teams.include? game.winner
+    return "L" if teams.include? game.loser
+  end
+
   def self.from_omniauth(auth)
     where(auth.slice(:provider, :uid)).first_or_create do |player|
       player.provider = auth.provider

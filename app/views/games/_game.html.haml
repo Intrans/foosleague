@@ -3,7 +3,7 @@
     =  game.home
     - game.home.players.each do |player|
       .game-team-playerimage
-        %img{ :src => "https://api.twitter.com/1/users/profile_image/#{player.twitter_name}?size=normal"}
+        league_player{ :src => "https://api.twitter.com/1/users/profile_image/#{player.twitter_name}?size=normal"}
 
   .game-scores.column.two
     .row
@@ -14,6 +14,6 @@
   .game-team.game-team-away.column.five
     - game.away.players.each do |player|
       .game-team-playerimage
-        %img{ :src => "https://api.twitter.com/1/users/profile_image/#{player.twitter_name}?size=normal"}
+        league_player{ :src => "https://api.twitter.com/1/users/profile_image/#{player.twitter_name}?size=normal"}
 
     =  game.away
