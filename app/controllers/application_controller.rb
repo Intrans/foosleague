@@ -29,7 +29,7 @@ class ApplicationController < ActionController::Base
     end
 
     def league_menu_label
-      current_league.present? ? current_league.name : 'You Should Not See This Text'
+      current_league.present? ? current_league.name : 'League Menu'
     end
 
     def league_logo(league = current_league, geometry = '50x50#')
