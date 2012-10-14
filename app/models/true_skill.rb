@@ -1,6 +1,8 @@
 class TrueSkill < ActiveRecord::Base
   include Saulabs
   
+  has_paper_trail
+  
   # has_paper_trail :on => [:create, :update]
   belongs_to :subject, :polymorphic => true
   
