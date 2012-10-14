@@ -5,7 +5,7 @@
     .newgame-home
       %h2 Home Team Players
       %ul.block-grid.two-up.players
-        - form.object.league.players.each do |player|
+        - form.object.league.players.sort.each do |player|
           %li
             %a.player-btn.btn{ :class => "#{'active' if form.object.home_team_players.include?(player)}" }
               .btn-image
@@ -19,7 +19,7 @@
     .newgame-away
       %h2 Away Team Players
       %ul.block-grid.two-up.players
-        - form.object.league.players.each do |player|
+        - form.object.league.players.sort.each do |player|
           %li
             %a.player-btn.btn{ :class => "#{'active' if form.object.away_team_players.include?(player)}" }
               .btn-image
