@@ -1,5 +1,8 @@
 - content_for :heading do
   %h1 #{resource.name} Settings
+  .col-main-heading-action
+    = link_to 'New Game', '#', :class => "btn btn-primary btn-ondark btn-newgame"
+
 
 - content_for :sideleft do
   = render :partial => 'layouts/leaguenav'
