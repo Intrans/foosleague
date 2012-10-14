@@ -7,12 +7,11 @@
       %ul.block-grid.two-up.players
         - form.object.league.players.each do |player|
           %li
-            %a.player-btn.btn
+            %a.player-btn.btn{ :class => "#{'active' if form.object.home_team_players.include?(player)}" }
               .btn-image
                 = image_tag player_avatar(player)
               = player
             = check_box_tag 'game[home_team_players][]', player.id, form.object.home_team_players.include?(player)
-
       %h2 Home Team Score
       = form.text_field :home_score, :maxlength => "2"
 
@@ -22,7 +21,7 @@
       %ul.block-grid.two-up.players
         - form.object.league.players.each do |player|
           %li
-            %a.player-btn.btn
+            %a.player-btn.btn{ :class => "#{'active' if form.object.away_team_players.include?(player)}" }
               .btn-image
                 = image_tag player_avatar(player)
               = player

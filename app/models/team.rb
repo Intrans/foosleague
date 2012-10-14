@@ -20,11 +20,11 @@ class Team < ActiveRecord::Base
   image_accessor :logo
 
   scope :singles, lambda {
-    where('player_count = 1')
+    where('team_size = 1')
   }
 
   scope :doubles, lambda {
-    where('player_count = 2')
+    where('team_size = 2')
   }
 
   scope :with_player, lambda { |player|

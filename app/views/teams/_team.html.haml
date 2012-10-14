@@ -2,10 +2,9 @@
   %td.center
     .leagueplayer-rank= team_counter+1
   %td.left
-    .leagueplayer-image
-      = image_tag player_avatar(team.players.first)
-    .leagueplayer-image
-      = image_tag player_avatar(team.players.last)
+    - team.players.each do |player|
+      .leagueplayer-image
+        = image_tag player_avatar(player)
     .leagueplayer-name
       = team
 

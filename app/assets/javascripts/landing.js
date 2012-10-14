@@ -16,4 +16,6 @@
 
 $(function() {
  $('.header, .header h2, .content, .login').removeClass('hidden');
+
+ $('.recentgames-slider').addClass('scroll');
 });

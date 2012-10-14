@@ -1,4 +1,12 @@
 - content_for :heading do
   %h1 Game Entry
 
-= render 'form'
+- content_for :sideleft do
+  = render :partial => 'layouts/leaguenav'
+
+- content_for :sideright do
+  = render :partial => 'layouts/playerstat'
+
+= simple_form_for resource, :url => league_games_url(current_league) do |form|
+  = render 'form', :form => form
+  = form.button :submit, :class => "btn btn-primary"
