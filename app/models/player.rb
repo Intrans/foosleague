@@ -14,8 +14,11 @@ class Player < ActiveRecord::Base
 
   has_many :team_memberships, :inverse_of => :player
   has_many :teams, :through => :team_memberships, :inverse_of => :players
+  
+  has_one :true_skill, :as => :subject
 
   before_validation :set_temporary_email, :if => Proc.new { |p| p.email.blank? }
+  after_create :create_true_skill
 
   validates :email, :presence => true, :uniqueness => true
   validates :twitter_name, :uniqueness => true
