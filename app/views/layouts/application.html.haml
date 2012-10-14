@@ -13,10 +13,10 @@
   %body
     = render 'layouts/header'
 
-    - if player_signed_in? && resource.is_a?(League) && !resource.new_record?
+    - if player_signed_in? && current_league.present? && !current_league.new_record?
       .newgame.hidden
         .newgame-inner
-          = simple_form_for resource.games.build, :url => league_games_url(resource) do |form|
+          = simple_form_for current_league.games.build, :url => league_games_url(current_league) do |form|
             = render '/games/form', :form => form
             .newgame-action
               = form.submit 'Enter Game', { :class => 'btn btn-ondark btn-extralarge btn-primary'}

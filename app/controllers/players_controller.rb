@@ -2,6 +2,8 @@ class PlayersController < ApplicationController
   actions :create, :destroy, :new, :show, :index
   belongs_to :league
 
+  helper_method :current_league
+
   def create
     create! { edit_parent_url(:anchor => 'players') }
   end
