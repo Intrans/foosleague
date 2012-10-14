@@ -8,14 +8,10 @@
   = form.button :submit
 
 %h2 Players
-= simple_form_for resource.players.build, :url => league_players_url(resource) do |form|
-  = form.input :name
-  = form.input :twitter_name
-  = form.button :submit
 
 %table#players
   %thead
     %tr
       %th Twitter Handle
   %tbody
-    = render resource.players
+    = render resource.players.select { |player| !player.new_record? }

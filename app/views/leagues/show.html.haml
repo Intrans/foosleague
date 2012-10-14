@@ -6,7 +6,7 @@
 
 - content_for :sideleft do
   .league-image
-    = image_tag league_logo(resource, '150x150#')
+    = image_tag league_logo(resource, '180x180#')
 
   %nav.nav.nav-main
     %ul
@@ -50,8 +50,6 @@
 
 .games
   = render resource.games
-
-= image_tag resource.logo.thumb('100x100').url if resource.logo_uid
 
 %h2 Recent Games
 = render resource.games.limit(20)

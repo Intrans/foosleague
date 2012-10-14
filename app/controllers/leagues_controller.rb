@@ -21,7 +21,7 @@ class LeaguesController < ApplicationController
     end
 
     def league_menu_label
-      return 'New League' if action_name == 'new'
+      return 'New League' if [ 'create', 'new' ].include?(action_name)
       [ 'index' ].include?(action_name) ? 'League Menu' : resource.name
     end
 

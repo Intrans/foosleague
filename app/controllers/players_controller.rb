@@ -1,9 +1,13 @@
 class PlayersController < ApplicationController
-  actions :create, :new
+  actions :create, :destroy, :new
   belongs_to :league
 
   def create
     create! { edit_parent_url(:anchor => 'players') }
+  end
+
+  def destory
+    destroy! { edit_parent_url(:anchor => 'players') }
   end
 
   private
