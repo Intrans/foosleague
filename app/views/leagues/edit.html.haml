@@ -1,6 +1,9 @@
 - content_for :heading do
   %h1 #{resource.name} Settings
 
+- content_for :sideleft do
+  = render :partial => 'layouts/leaguenav'
+
 %h2 Information
 = simple_form_for resource do |form|
   = form.error_messages
@@ -8,6 +11,10 @@
   = form.button :submit
 
 %h2 Players
+= simple_form_for resource.players.build, :url => league_players_url(resource) do |form|
+  = form.input :name
+  = form.input :twitter_name
+  = form.button :submit
 
 %table#players
   %thead

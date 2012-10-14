@@ -1,0 +1,12 @@
+.league-image
+  = image_tag league_logo(resource, '150x150#')
+
+%nav.nav.nav-main
+  %ul
+    %li{ :class => "#{'active' if action_name == 'show'}"}= link_to "Recent Games", league_url(resource)
+    %li= link_to "Player Ladder", "#"
+    %li= link_to "Team Ladder", "#"
+    %li= link_to "Player Stats", "#"
+    %li= link_to "Team Stats", "#"
+    %li= link_to "League Stats", "#"
+    %li{ :class => "#{'active' if action_name == 'edit'}" }= link_to 'League Settings', edit_league_url(resource)

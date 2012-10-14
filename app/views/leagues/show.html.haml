@@ -5,18 +5,7 @@
     = link_to 'New Game', new_league_game_url(resource), :class => "btn btn-primary btn-ondark"
 
 - content_for :sideleft do
-  .league-image
-    = image_tag league_logo(resource, '180x180#')
-
-  %nav.nav.nav-main
-    %ul
-      %li.active= link_to "Dashboard", "#"
-      %li= link_to "Player Ladder", "#"
-      %li= link_to "Team Ladder", "#"
-      %li= link_to "Player Stats", "#"
-      %li= link_to "Team Stats", "#"
-      %li= link_to "League Stats", "#"
-      %li= link_to 'League Settings', edit_league_url(resource)
+  = render :partial => 'layouts/leaguenav'
 
 - content_for :sideright do
   .player
@@ -49,7 +38,12 @@
     #ladderskill.chart.chart-small
 
 .games
-  = render resource.games
-
-%h2 Recent Games
-= render resource.games.limit(20)
+  = simple_form_for resource.games.build, :url => league_games_url(resource) do |form|
+    = render '/games/form', :form => form
+    = form.button :submit
+  - unless resource.games.empty?
+    = render resource.games.limit(20)
+  - else
+    .nogames
+      %p No Games Played
+      = link_to 'New Game', new_league_game_url(resource), :class => "btn"
