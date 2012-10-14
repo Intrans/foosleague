@@ -17,6 +17,20 @@
   %tbody
     = render resource.players.select { |player| !player.new_record? }
 
+
+
+- if resource.doubles?
+  %hr
+  %h2 Teams
+  %table
+    %thead
+      %tr
+        %th Player #1
+        %th Player #2
+        %th Name
+    %tbody
+      = render resource.teams
+
 %hr
 
 %h2 Add New Player
