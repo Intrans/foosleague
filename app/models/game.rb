@@ -62,9 +62,6 @@ class Game < ActiveRecord::Base
     return [] unless @home_team_players.present?
     @home_team_players = if Array === @home_team_players
       @home_team_players.map do |player|
-        logger.info player.to_yaml
-        logger.info league.to_yaml
-        logger.info league.players.count
         (Player === player) ? player : league.players.find_by_id(player)
       end
     else
@@ -155,8 +152,17 @@ class Game < ActiveRecord::Base
       winner.update_rating(team_graph.teams.first.first)
       loser.update_rating(team_graph.teams.last.first)
 
-      league_winners = league.league_memberships.where(['player_id in (?)', winner.player_ids])
-      league_losers = league.league_memberships.where(['player_id in (?)', loser.player_ids])
+      logger.info winner.memberships.to_yaml
+      logger.info winner.players
+      logger.info loser.players
+      logger.info winner.player_ids
+      logger.info loser.player_ids
+
+      winning_player_ids = winner.memberships.map { |membership| membership.player_id }
+      losing_player_ids = loser.memberships.map { |membership| membership.player_id }
+
+      league_winners = league.league_memberships.where(['player_id in (?)', winning_player_ids])
+      league_losers = league.league_memberships.where(['player_id in (?)', losing_player_ids])
 
       league_graph = TrueSkill::FactorGraph.new([league_winners.map{|m| m.rating}, league_losers.map{|m| m.rating}], [1,2])
       league_graph.update_skills
