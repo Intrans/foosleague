@@ -22,12 +22,11 @@ skill_250 << USERS[23] = Player.create!(:twitter_name => "timsloan", :name => "T
 
 League.all.each do |league|
   Player.all.each do |player|
-    # league.players << player
     league.league_memberships.create do |league_membership|
       league_membership.player = player
       if skill_1250.include?(league_membership.player)
         league_membership.starting_skill = 1250
-      elsif skill_1250.include?(league_membership.player)
+      elsif skill_750.include?(league_membership.player)
         league_membership.starting_skill = 750
       else
         league_membership.starting_skill = 250
