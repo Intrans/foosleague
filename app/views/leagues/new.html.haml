@@ -3,7 +3,11 @@
 
 = simple_form_for resource do |form|
   = form.error_messages
-  = render 'form', :form => form
+
+  .row
+    .column.six
+      = render 'form', :form => form
+
   .row
     .column.five
       = image_tag player_avatar(current_player)
@@ -16,5 +20,7 @@
         %h4 New Player
         = player.input :name
         = player.input :twitter_name
-  = form.button :submit, :class => "btn btn-primary"
+
+  .field-actions
+    = form.button :submit, :class => "btn btn-primary"
 

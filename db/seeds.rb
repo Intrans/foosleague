@@ -14,7 +14,7 @@ skill_750 << USERS[8] = Player.create!(:twitter_name => "thorrenkoopmans", :name
 skill_750 << USERS[5] = Player.create!(:twitter_name => "micajobe", :name => "M. Slavens")
 skill_750 << USERS[6] = Player.create!(:twitter_name => "therealhallwood", :name => "S. Hardie")
 skill_750 << USERS[1] = Player.create!(:twitter_name => "sea", :name => "S. McCann")
-skill_750 << USERS[31] = Player.create!(:twitter_name => "mdeering", :name => "M. Deering")
+skill_250 << USERS[31] = Player.create!(:twitter_name => "mdeering", :name => "M. Deering")
 skill_250 << USERS[10] = Player.create!(:twitter_name => "samudyer", :name => "S. Dyer")
 skill_250 << USERS[38] = Player.create!(:twitter_name => "sftsang", :name => "S. Tsang")
 skill_250 << USERS[37] = Player.create!(:twitter_name => "gcrossfield", :name => "G. Crossfield")
@@ -22,12 +22,11 @@ skill_250 << USERS[23] = Player.create!(:twitter_name => "timsloan", :name => "T
 
 League.all.each do |league|
   Player.all.each do |player|
-    # league.players << player
     league.league_memberships.create do |league_membership|
       league_membership.player = player
       if skill_1250.include?(league_membership.player)
         league_membership.starting_skill = 1250
-      elsif skill_1250.include?(league_membership.player)
+      elsif skill_750.include?(league_membership.player)
         league_membership.starting_skill = 750
       else
         league_membership.starting_skill = 250
