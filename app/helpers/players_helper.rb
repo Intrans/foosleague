@@ -3,8 +3,7 @@ module PlayersHelper
     return "" if player.games.empty?
     last_games = player.games.order('created_at desc')
     last_game = last_games.shift
-    # last_result = game_result?(last_game)
-    last_result = "W"
+    last_result = player.game_result?(last_game)
     streak = 1
 
     last_games.each do |game|
