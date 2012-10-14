@@ -1,4 +1,7 @@
 class LeagueMembership < ActiveRecord::Base
+  attr_accessor :name, :twitter_name
+  attr_accessible :name, :twitter_name
+
   belongs_to :league, :inverse_of => :league_memberships
   belongs_to :player, :inverse_of => :league_memberships
 

@@ -4,8 +4,8 @@
 %nav.nav.nav-main
   %ul
     %li{ :class => "#{'active' if action_name == 'show'}"}= link_to "Recent Games", league_url(resource)
-    %li= link_to "Player Ladder", "#"
-    %li= link_to "Team Ladder", "#"
+    %li= link_to "Player Ladder", league_players_url(resource)
+    %li= link_to "Team Ladder", league_teams_url(resource)
     %li= link_to "Player Stats", "#"
     %li= link_to "Team Stats", "#"
     %li= link_to "League Stats", "#"
