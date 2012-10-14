@@ -11,6 +11,8 @@ class LeagueMembership < ActiveRecord::Base
 
   after_create :first_player_dude_is_the_admin
 
+  before_validation :assign_player_from_twitter_name_or_name
+
   has_one :true_skill, :as => :subject
   after_create :setup_true_skill
 
@@ -34,6 +36,16 @@ class LeagueMembership < ActiveRecord::Base
   end
 
   private
+
+    def assign_player_from_twitter_name_or_name
+      return if player.present?
+      if twitter_name.present?
+        self.player = Player.find_or_initialize_by_twitter_name(twitter_name)
+        player.name = name if player.new_record?
+        return
+      end
+      self.player = Player.new(:name => name) if name.present?
+    end
 
     def first_player_dude_is_the_admin
       return if league.players.count > 1
