@@ -1,6 +1,6 @@
 class Player < ActiveRecord::Base
   extend FriendlyId
-  friendly_id :twitter_name, use: :slugged
+  #friendly_id :twitter_name, use: :slugged
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, #:validatable,

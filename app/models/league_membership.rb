@@ -1,4 +1,8 @@
 class LeagueMembership < ActiveRecord::Base
+
+  attr_accessor :name, :twitter_name
+  attr_accessible :name, :twitter_name
+
   belongs_to :league, :inverse_of => :league_memberships
   belongs_to :player, :inverse_of => :league_memberships
 
@@ -7,6 +11,8 @@ class LeagueMembership < ActiveRecord::Base
   validates_uniqueness_of :player_id, :scope => :league_id
 
   after_create :first_player_dude_is_the_admin
+
+  before_validation :look_up_by_twitter_or_name
 
   # has_one :true_skill, :as=>:subject
   #after_create :create_true_skill
@@ -36,5 +42,17 @@ class LeagueMembership < ActiveRecord::Base
       return if league.players.count > 1
       self.admin = true
       self.save!
+    end
+
+    def look_up_by_twitter_or_name
+      return if player.present?
+      # If the twitter hanle is there find them or create them
+      if twitter_name.present?
+        self.player = Player.find_by_twitter_name(twitter_name)
+        self.player ||= Player.new(:name => name, :twitter_name => twitter_name)
+        return
+      end
+      return unless name.present?
+      self.player = Player.new(:name => name)
     end
 end
