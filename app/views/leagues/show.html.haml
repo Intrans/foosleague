@@ -40,7 +40,8 @@
 .games
   = simple_form_for resource.games.build, :url => league_games_url(resource) do |form|
     = render '/games/form', :form => form
-    = form.button :submit
+    .action
+      = form.submit 'Enter', { :class => 'btn btn-primary'}
   - unless resource.games.empty?
     = render resource.games.limit(20)
   - else

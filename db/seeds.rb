@@ -29,6 +29,14 @@ foosleague_league = League.first
   foosleague_league.games.create!(:home_score => winner_score-2, :away_score => winner_score, :home_team_players => all_players.pop(2), :away_team_players => all_players.pop(2))
 end
 
+mitre_league = League.first
+200.times do
+  all_players = mitre_league.players.dup.shuffle
+  winner_score = rand(3) + 10
+  mitre_league.games.create!(:home_score => winner_score, :away_score => winner_score-2, :home_team_players => all_players.pop(2), :away_team_players => all_players.pop(2))
+  mitre_league.games.create!(:home_score => winner_score-2, :away_score => winner_score, :home_team_players => all_players.pop(2), :away_team_players => all_players.pop(2))
+end
+
 Game.all.each do |game|
   set_day = rand(250).days.ago
   game.created_at = set_day

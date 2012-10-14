@@ -1,5 +1,5 @@
 class PlayersController < ApplicationController
-  actions :create, :destroy, :new
+  actions :create, :destroy, :new, :show, :index
   belongs_to :league
 
   def create

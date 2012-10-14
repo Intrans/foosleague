@@ -7,7 +7,7 @@
       - form.object.league.players.each do |player|
         %a.player.btn
           .btn-image
-            %img{ :src => "https://api.twitter.com/1/users/profile_image/#{player.twitter_name}?size=normal"}
+            = image_tag player_avatar(player)
           - if player.name
             = player.name
           - else
@@ -23,7 +23,7 @@
       - form.object.league.players.each do |player|
         %a.player.btn
           .btn-image
-            %img{ :src => "https://api.twitter.com/1/users/profile_image/#{player.twitter_name}?size=normal"}
+            = image_tag player_avatar(player)
           - if player.name
             = player.name
           - else
@@ -33,5 +33,4 @@
     = form.text_field :away_score
 
 
-  .action
-    = form.submit 'Enter', { :class => 'btn btn-primary'}
+
