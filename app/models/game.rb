@@ -18,8 +18,10 @@ class Game < ActiveRecord::Base
   scope :having_teams, lambda {|team_ids| where(['home_id in (?) or away_id in (?)', team_ids, team_ids])}
 
   before_validation :create_teams, :on => :create
+  before_destroy :lastest_league_game?
+  after_destroy :revert_foos_skills
+  validate :correct_players?
   validate :score_is_legit?
-  after_create :complete!
 
   validates_presence_of :away, :home, :league
 
@@ -32,11 +34,52 @@ class Game < ActiveRecord::Base
     errors.add(:base, "you can't win by more than 10") and return unless (home_score-away_score).abs <= 10
   end
 
+  def correct_players?
+    #errors.add(:away, "requires #{pluralize(league.required_number_of_players, 'player')}") unless league.required_number_of_players == away.players.count
+    #errors.add(:home, "requires #{pluralize(league.required_number_of_players, 'player')}") unless league.required_number_of_players == home.players.count
+  end
+
+  def revert_foos_skills
+    transaction do
+      # revert team foos skills
+      home_skill = home.true_skill.previous_version
+      home_skill.without_versioning :save
+
+      away_skill = away.true_skill.previous_version
+      away_skill.without_versioning :save
+
+      # revert player foos skills
+      (away_team_players + home_team_players).each do |player|
+        skill = player.true_skill.previous_version
+        skill.without_versioning :save
+      end
+
+      # revert LeagueUser foos skills
+      league.memberships.where(['player_id in (?)', home.player_ids]).each do |membership|
+        skill = membership.true_skill.previous_version
+        skill.without_versioning :save
+      end
+
+      # revert LeagueUser foos skills
+      league.memberships.where(['player_id in (?)', away.player_ids]).each do |membership|
+        skill = membership.true_skill.previous_version
+        skill.without_versioning :save
+      end
+    end
+  end
+
+  def lastest_league_game?
+    if self != league.games.last
+      errors.add :base, "Can only delete latest league game"
+      return false
+    end
+  end
+
   def away_team_players
     return away.players if away.present?
     return [] unless @away_team_players.present?
     @away_team_players = if Array === @away_team_players
-      @away_team_players.map { |player| (Player === player) ? player : league.players.find(player) }
+      @away_team_players.map { |player| (Player === player) ? player : league.players.find_by_id(player) }
     else
       []
     end
@@ -46,13 +89,20 @@ class Game < ActiveRecord::Base
     return home.players if home.present?
     return [] unless @home_team_players.present?
     @home_team_players = if Array === @home_team_players
-      @home_team_players.map { |player| (Player === player) ? player : league.players.find(player) }
+      @home_team_players.map do |player|
+        logger.info player.to_yaml
+        logger.info league.to_yaml
+        logger.info league.players.count
+        (Player === player) ? player : league.players.find_by_id(player)
+      end
     else
       []
     end
   end
 
   def complete!
+    throw "match already complete" unless self.completed_at.nil?
+
     graph = TrueSkill::FactorGraph.new([winner.ratings, loser.ratings], [1,2])
     graph.update_skills
 
@@ -65,19 +115,18 @@ class Game < ActiveRecord::Base
     winner.update_rating(team_graph.teams.first.first)
     loser.update_rating(team_graph.teams.last.first)
 
-    league_winners = league.league_memberships.where(['player_id in (?)', winner.player_ids])
-    league_losers = league.league_memberships.where(['player_id in (?)', loser.player_ids])
+    league_winners = league.memberships.where(['player_id in (?)', winner.player_ids])
+    league_losers = league.memberships.where(['player_id in (?)', loser.player_ids])
 
     league_graph = TrueSkill::FactorGraph.new([league_winners.map{|m| m.rating}, league_losers.map{|m| m.rating}], [1,2])
     league_graph.update_skills
-
-    logger.info league_winners.inspect
-    logger.info league_losers.inspect
 
     league_winners.first.update_rating(league_graph.teams.first.first)
     league_winners.last.update_rating(league_graph.teams.first.last)
     league_losers.first.update_rating(league_graph.teams.last.first)
     league_losers.last.update_rating(league_graph.teams.last.last)
+
+    GameLogEnd.create(:game=>self, :team=>winner)
 
     save
   end
