@@ -1,0 +1,9 @@
+%tr
+  %td
+    .leagueplayer-image
+      = image_tag player_avatar(team.players.first)
+    .leagueplayer-image
+      = image_tag player_avatar(team.players.last)
+    .leagueplayer-name
+      = team
+  %td= link_to team, edit_league_team_url(team.league, team)
