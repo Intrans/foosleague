@@ -26,6 +26,10 @@ class Player < ActiveRecord::Base
   # scope :by_skill, joins(:true_skill).order('skill desc')
   scope :by_skill, order('created_at')
 
+  def <=>(other_player)
+    to_s <=> other_player.to_s
+  end
+
   def avatar
     Dragonfly[:images].fetch_url("https://api.twitter.com/1/users/profile_image/#{twitter_name}?size=bigger")
   end

@@ -26,7 +26,7 @@
 
 %table#players
   %tbody
-    = render resource.players.select { |player| !player.new_record? }
+    = render resource.players.select { |player| !player.new_record? }.sort
 
 - if resource.doubles?
   %hr
