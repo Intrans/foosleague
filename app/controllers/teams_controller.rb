@@ -1,5 +1,5 @@
 class TeamsController < ApplicationController
-  actions :edit, :update
+  actions :edit, :index, :update
   belongs_to :league
   respond_to :html, :json
 
