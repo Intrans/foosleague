@@ -11,7 +11,7 @@ class Team < ActiveRecord::Base
   has_many :players, :through => :memberships
 
   has_one :true_skill, :as=>:subject
-  after_create :create_true_skill
+  after_create :setup_true_skill
 
   validate :has_players, :on => :create
 
@@ -110,6 +110,13 @@ class Team < ActiveRecord::Base
 
     def set_up_team(membership)
       membership.team = self
+    end
+
+    def setup_true_skill
+      skills = players.map {|p| p.skill}
+      average = skills.inject{ |sum, el| sum + el }.to_f / skills.size
+      self.build_true_skill(:skill => average)
+      self.true_skill.save
     end
 
 end

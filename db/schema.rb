@@ -100,11 +100,11 @@ ActiveRecord::Schema.define(:version => 20121013061738) do
   create_table "true_skills", :force => true do |t|
     t.integer  "subject_id"
     t.string   "subject_type"
-    t.float    "skill",        :default => 250.0
-    t.float    "deviation",    :default => 50.0
+    t.float    "skill",        :default => 25.0
+    t.float    "deviation",    :default => 5.0
     t.float    "activity",     :default => 1.0
-    t.datetime "created_at",                      :null => false
-    t.datetime "updated_at",                      :null => false
+    t.datetime "created_at",                     :null => false
+    t.datetime "updated_at",                     :null => false
   end
 
 end
