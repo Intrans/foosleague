@@ -115,7 +115,8 @@ class Team < ActiveRecord::Base
     def setup_true_skill
       skills = players.map {|p| p.skill}
       average = skills.inject{ |sum, el| sum + el }.to_f / skills.size
-      self.build_true_skill(:skill => average)
+      self.build_true_skill
+      self.true_skill.skill = average
       self.true_skill.save
     end
 
