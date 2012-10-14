@@ -40,13 +40,17 @@ class Player < ActiveRecord::Base
   def skill
     true_skill.skill
   end
-  
+
   def rating
     true_skill.rating
   end
 
   def deviation
     true_skill.deviation
+  end
+
+  def league_membership(league)
+    league_memberships.find_by_league_id(league.id)
   end
 
   def wins(my_team_ids = team_ids)

@@ -14,8 +14,6 @@ class LeagueMembership < ActiveRecord::Base
   scope :by_skill, joins(:true_skill).order('skill desc')
   scope :by_league, lambda{|league_id| where(['league_id = ?', league_id])}
 
-  validates_presence_of :true_skill
-
   def skill
     true_skill.skill
   end
@@ -40,9 +38,9 @@ class LeagueMembership < ActiveRecord::Base
       self.save!
     end
 
-    def create_true_skill
-      create_true_skill
-      true_skill.skill = starting_skill_score
-      true_skill.save
+    def setup_true_skill
+      logger.info "Starting at: #{starting_skill}"
+      self.build_true_skill(:skill => starting_skill)
+      self.true_skill.save
     end
 end
