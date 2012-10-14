@@ -6,19 +6,20 @@ USERS = []
 skill_1250 = []
 skill_750 = []
 skill_250 = []
-skill_1250 << USERS[2] = Player.create!(:twitter_name => "agyuricska", :name => "A. Gyuricska")
+skill_750 << USERS[1] = Player.create!(:twitter_name => "sea", :name => "S. McCann")
 skill_1250 << USERS[7] = Player.create!(:twitter_name => "elidupuis", :name => "E. Dupuis")
+skill_750 << USERS[2] = Player.create!(:twitter_name => "agyuricska", :name => "A. Gyuricska")
 skill_750 << USERS[4] = Player.create!(:twitter_name => "timfletcher", :name => "T. Fletcher")
 skill_750 << USERS[9] = Player.create!(:twitter_name => "brandonwebber", :name => "B. Webber")
 skill_750 << USERS[8] = Player.create!(:twitter_name => "thorrenkoopmans", :name => "T. Koopmans")
 skill_750 << USERS[5] = Player.create!(:twitter_name => "micajobe", :name => "M. Slavens")
 skill_750 << USERS[6] = Player.create!(:twitter_name => "therealhallwood", :name => "S. Hardie")
-skill_750 << USERS[1] = Player.create!(:twitter_name => "sea", :name => "S. McCann")
 skill_250 << USERS[31] = Player.create!(:twitter_name => "mdeering", :name => "M. Deering")
 skill_250 << USERS[10] = Player.create!(:twitter_name => "samudyer", :name => "S. Dyer")
 skill_250 << USERS[38] = Player.create!(:twitter_name => "sftsang", :name => "S. Tsang")
 skill_250 << USERS[37] = Player.create!(:twitter_name => "gcrossfield", :name => "G. Crossfield")
 skill_250 << USERS[23] = Player.create!(:twitter_name => "timsloan", :name => "T. Sloan")
+skill_250 << USERS[3] = Player.create!(:twitter_name => "girasquid", :name => "L. Hutscal")
 
 League.all.each do |league|
   Player.all.each do |player|
@@ -486,6 +487,10 @@ def create_game(league,home_id, away_id, home_score, away_score, completed_at)
     game.created_at = DateTime.parse completed_at
     game.save
   rescue Exception => e
+    if home_team_players.compact.count != 2 || away_team_players.compact.count != 2
+      puts e.backtrace
+      puts "=" * 20
+    end
   end
 end
 
