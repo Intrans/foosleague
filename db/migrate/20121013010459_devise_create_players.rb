@@ -32,8 +32,8 @@ class DeviseCreatePlayers < ActiveRecord::Migration
 
       ## Token authenticatable
       t.string :authentication_token
-      
-      t.string :slug, :default => nil,  :null => false
+
+      #t.string :slug, :default => nil,  :null => false
 
       t.timestamps
     end
@@ -43,6 +43,6 @@ class DeviseCreatePlayers < ActiveRecord::Migration
     # add_index :players, :confirmation_token,   :unique => true
     # add_index :players, :unlock_token,         :unique => true
     add_index :players, :authentication_token, :unique => true
-    add_index :players, :slug, :unique => true
+    #add_index :players, :slug, :unique => true
   end
 end

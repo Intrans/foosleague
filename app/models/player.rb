@@ -1,6 +1,6 @@
 class Player < ActiveRecord::Base
   extend FriendlyId
-  friendly_id :twitter_name, use: :slugged
+  #friendly_id :twitter_name, use: :slugged
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, #:validatable,
@@ -14,10 +14,15 @@ class Player < ActiveRecord::Base
   has_many :team_memberships, :inverse_of => :player
   has_many :teams, :through => :team_memberships, :inverse_of => :players
 
+  has_one :true_skill, :as => :subject
+
   before_validation :set_temporary_email, :if => Proc.new { |p| p.email.blank? }
+  after_create :create_true_skill
 
   validates :email, :presence => true, :uniqueness => true
   validates :twitter_name, :uniqueness => true
+
+  scope :by_skill, joins(:true_skill).order('skill desc')
 
   def avatar
     Dragonfly[:images].fetch_url("https://api.twitter.com/1/users/profile_image/#{twitter_name}?size=bigger")
@@ -30,6 +35,22 @@ class Player < ActiveRecord::Base
   def to_s
     return "#{name} (#{twitter_name})" if name != twitter_name
     return twitter_name
+  end
+
+  def skill
+    true_skill.skill
+  end
+
+  def rating
+    true_skill.rating
+  end
+
+  def deviation
+    true_skill.deviation
+  end
+
+  def league_membership(league)
+    league_memberships.find_by_league_id(league.id)
   end
 
   def wins(my_team_ids = team_ids)

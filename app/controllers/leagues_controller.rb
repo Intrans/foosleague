@@ -12,12 +12,17 @@ class LeaguesController < ApplicationController
 
   protected
 
-    def current_league
-      [ 'index' ].include?(action_name) ? super : resource
-    end
-
     def begin_of_association_chain
       current_player
+    end
+
+    def build_resouce
+      super
+      3.times { resource.league_memberships.build } if action_name == 'new'
+    end
+
+    def current_league
+      [ 'index' ].include?(action_name) ? super : resource
     end
 
     def league_menu_label

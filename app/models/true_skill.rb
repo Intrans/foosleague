@@ -1,3 +1,12 @@
 class TrueSkill < ActiveRecord::Base
-  attr_accessible :activity, :deviation, :skill, :player_id
+  include Saulabs
+  
+  # has_paper_trail :on => [:create, :update]
+  belongs_to :subject, :polymorphic => true
+  
+  attr_accessible :skill, :deviation, :activity
+
+  def rating
+    @rating ||= TrueSkill::Rating.new(skill, deviation, activity)
+  end
 end

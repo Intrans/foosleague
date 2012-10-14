@@ -3,9 +3,24 @@
 
 = simple_form_for resource do |form|
   = form.error_messages
+
   .row
     .column.six
       = render 'form', :form => form
+
+  .row
+    .column.five
+      = image_tag player_avatar(current_player)
+      = current_player
+  - (6 - form.object.league_memberships.count).times do
+    - form.object.league_memberships.build
+  = form.simple_fields_for :league_memberships do |player|
+    %div{ :class => cycle('', 'row') }
+      .column.five
+        %h4 New Player
+        = player.input :name
+        = player.input :twitter_name
+
   .field-actions
     = form.button :submit, :class => "btn btn-primary"
 

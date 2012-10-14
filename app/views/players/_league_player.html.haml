@@ -9,3 +9,5 @@
     - unless league_player.games.empty?
       = number_to_percentage((league_player.wins.count.to_f / league_player.games.count.to_f) * 100.0, :precision => 0)
   %td= streak(league_player, League.first)
+  %td
+    #{league_player.league_membership(parent).skill} (#{league_player.league_membership(parent).deviation})
