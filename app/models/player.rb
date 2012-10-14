@@ -24,7 +24,7 @@ class Player < ActiveRecord::Base
   scope :by_skill, order('created_at')
 
   def <=>(other_player)
-    name <=> other_player.name
+    to_s <=> other_player.to_s
   end
 
   def avatar
