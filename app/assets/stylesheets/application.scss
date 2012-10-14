@@ -375,3 +375,11 @@ label {
   border-top: 1px solid #b3cae6;
   @include border-radius(0 0 3px 3px);
 }
+
+.newplayer {
+  .btn {
+    padding-top: 7px;
+    padding-bottom: 7px;
+    margin-top: 16px;
+  }
+}
