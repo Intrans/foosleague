@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
 
-  helper_method :current_league, :league_menu_label, :league_logo, :player_avatar
+  helper_method :current_league, :league_menu_label, :league_logo, :player_avatar, :team_logo
 
   inherit_resources
 

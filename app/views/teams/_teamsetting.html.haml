@@ -6,4 +6,5 @@
           = image_tag player_avatar(player)
       .leagueplayer-name
         = teamsetting
-    %td= link_to teamsetting, edit_league_team_url(teamsetting.league, teamsetting)
+    %td= teamsetting
+    %td= link_to "Edit", edit_league_team_url(teamsetting.league, teamsetting), :class => "btn btn-small"

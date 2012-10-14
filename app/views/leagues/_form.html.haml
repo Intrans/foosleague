@@ -1,8 +1,10 @@
 = form.input :name
-= form.input :doubles
+%label League Type
+= form.input :doubles, :as => :radio, :label => false, :collection => [ ['Singles', false], ['Doubles', true] ]
 = form.input :logo, :as => :file
 = form.hidden_field :retained_logo
 - if form.object.logo_uid
-  = image_tag form.object.logo.thumb('100x100#').url
-  = form.input :remove_logo, :as => :boolean
+  .league-logo-preview
+    = image_tag form.object.logo.thumb('100x100#').url
+    = form.input :remove_logo, :as => :boolean
 
