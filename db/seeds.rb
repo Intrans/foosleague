@@ -487,6 +487,7 @@ def create_game(league,home_id, away_id, home_score, away_score, completed_at)
     game.created_at = DateTime.parse completed_at
     game.save
   rescue Exception => e
+    puts e.message
   end
 end
 
