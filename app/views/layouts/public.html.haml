@@ -11,9 +11,16 @@
       try{Typekit.load();}catch(e){}
 
   %body
-    %header.header.hidden
-      %h1.branding Foosleague
-      = yield
+    %header.header
+      .row
+        .column.six
+          %h1.branding Foosleague
+        .column.six
+          %h2 Foosball Stats and Ladder Tracking for Your League
+
+    .content
+      .row
+        = yield
 
     = javascript_include_tag 'landing'
     = render 'layouts/analytics'

@@ -1,1 +1,22 @@
-%h2.hidden It's Coming Back
+.landing-stat
+  .landing-recentgames
+    %h1 Global Results:
+
+
+  .landing-games
+    %h1 Matches Played:
+    %p.count
+      %span 0
+      %span 0
+      %span 1
+
+
+.landing-companies
+  %h1 Who’s Using Foosleague?
+  =link_to(image_tag('landing/logo-freedomfreight.png'), '#', :class => 'logo logo-freedom')
+  =link_to(image_tag('landing/logo-mitremedia.png'), '#', :class => 'logo logo-mitremedia')
+  =link_to(image_tag('landing/logo-rocketfuelgames.png'), '#', :class => 'logo logo-rocketfuelgames')
+  =link_to(image_tag('landing/logo-lift.png'), '#', :class => 'logo logo-lift')
+
+.landing-footer
+  %p &copy; #{Time.zone.now.year} Foosleague
