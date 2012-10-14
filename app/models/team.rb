@@ -113,18 +113,19 @@ class Team < ActiveRecord::Base
     end
 
     def setup_true_skill
-      logger.info 'setup_true_skill'
-      players.each do |player|
-        logger.info player.id
-        logger.info player.skill
-      end
-      #skills = players.map {|p| p.skill}
-      #average = skills.inject{ |sum, el| sum + el }.to_f / skills.size
-      average = players.map { |p| p.skill }.sum.to_f / players.count
+      # logger.info 'setup_true_skill'
+      # logger.info "Player count: #{players.count}"
+      # players.each do |player|
+      #   logger.info "Player:"
+      #   logger.info "id: #{player.id}"
+      #   logger.info "skill: #{player.skill}"
+      # end
+      # #skills = players.map {|p| p.skill}
+      # #average = skills.inject{ |sum, el| sum + el }.to_f / skills.size
+      # average = players.map { |p| p.skill }.sum.to_f / players.count
       self.build_true_skill
-      logger.info average
-      self.true_skill.skill = average
-      logger.info self.true_skill.skill.to_yaml
+      # logger.info average
+      self.true_skill.skill = 25
       self.true_skill.save
     end
 

@@ -17,8 +17,7 @@
           %h1.branding Foosleague
         .column.six
           %h2.hidden Foosball Stats and Ladder Tracking for Your League
-          - if Rails.env.development?
-            = link_to "Signup or login with twitter", player_omniauth_authorize_path(:twitter), :class => 'login hidden'
+          = link_to "Signup or login with twitter", player_omniauth_authorize_path(:twitter), :class => 'login hidden'
 
     .content.hidden
       .row

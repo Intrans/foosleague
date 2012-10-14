@@ -29,7 +29,7 @@ ActiveRecord::Schema.define(:version => 20121014184210) do
     t.integer  "player_id",                         :null => false
     t.integer  "league_id",                         :null => false
     t.boolean  "admin",          :default => false, :null => false
-    t.integer  "starting_skill", :default => 250,   :null => false
+    t.integer  "starting_skill", :default => 25,    :null => false
   end
 
   add_index "league_memberships", ["league_id", "player_id"], :name => "index_league_memberships_on_league_id_and_player_id", :unique => true
