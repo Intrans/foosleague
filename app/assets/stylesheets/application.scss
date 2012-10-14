@@ -202,7 +202,7 @@ a {
 
 .game {
   margin: 0 -20px !important;
-  padding: 7px 20px;
+  padding: 10px 0;
   background: #f9fbfe;
   border-bottom: 1px solid #DAE2EC;
 
@@ -215,10 +215,43 @@ a {
   color: #505b67;
   font-size: 15px;
   font-weight: 700;
+  @include opacity(0.5);
+
+  &.winner {
+    @include opacity(1);
+  }
+}
+
+.game-team-playerimages {
+  margin: 2px 0 0;
 }
 
 .game-team-home {
   text-align: right;
+
+  .game-team-playerimages,
+  .score {
+    float: right;
+    margin-left: 10px;
+  }
+}
+
+.game-team-away {
+  text-align: left;
+
+  .game-team-playerimages,
+  .score {
+    float: left;
+    margin-right: 10px;
+  }
+}
+
+.game-team-name {
+  padding: 8px 0 0;
+  text-align: left;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .game-team-playerimage {
@@ -301,4 +334,28 @@ a {
 .nogames {
   text-align: center;
   padding: 30px 10%;
+}
+
+.score {
+  margin: -5px 0 -6px;
+  width: 52px;
+  height: 37px;
+  display: inline-block;
+
+  span {
+    width: 24px;
+    height: 37px;
+    display: inline-block;
+    margin: 0 1px;
+    background-image: asset_url('bg-score.png', image);
+    background-size: 24px 37px;
+    text-align: center;
+    font-size: 24px;
+    line-height: 39px;
+    color: #555;
+
+    @media (-webkit-min-device-pixel-ratio: 1.5) {
+      background-image: asset_url('bg-score@2x.png', image);
+    }
+  }
 }
