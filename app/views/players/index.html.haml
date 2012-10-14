@@ -20,4 +20,4 @@
       %th Streak
       %th FoosSkill
     %tbody
-      = render :partial => 'league_player', :collection => collection.by_skill
+      = render :partial => 'league_player', :collection => collection.sort { |player_a, player_b| current_league.league_memberships.find_by_player_id(player_b.id).skill <=> current_league.league_memberships.find_by_player_id(player_a.id).skill }
