@@ -15,18 +15,18 @@
       = link_to league_teams_url(resource) do
         %i.ss-icon.ss-rows
         Team Ladder
-    %li
-      = link_to "#" do
-        %i.ss-icon.ss-user
-        Player Stats
-    %li
-      = link_to "#" do
-        %i.ss-icon.ss-users
-        Team Stats
-    %li
-      = link_to "#" do
-        %i.ss-icon.ss-notebook
-        League Stats
+    / %li
+    /   = link_to "#" do
+    /     %i.ss-icon.ss-user
+    /     Player Stats
+    / %li
+    /   = link_to "#" do
+    /     %i.ss-icon.ss-users
+    /     Team Stats
+    / %li
+    /   = link_to "#" do
+    /     %i.ss-icon.ss-notebook
+    /     League Stats
     %li{ :class => "#{'active' if action_name == 'edit'}" }
       = link_to edit_league_url(resource) do
         %i.ss-icon.ss-settings
