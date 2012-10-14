@@ -3,6 +3,9 @@
 
 = simple_form_for resource do |form|
   = form.error_messages
-  = render 'form', :form => form
-  = form.button :submit, :class => "btn btn-primary"
+  .row
+    .column.six
+      = render 'form', :form => form
+  .field-actions
+    = form.button :submit, :class => "btn btn-primary"
 
