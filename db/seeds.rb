@@ -14,7 +14,7 @@ skill_750 << USERS[8] = Player.create!(:twitter_name => "thorrenkoopmans", :name
 skill_750 << USERS[5] = Player.create!(:twitter_name => "micajobe", :name => "M. Slavens")
 skill_750 << USERS[6] = Player.create!(:twitter_name => "therealhallwood", :name => "S. Hardie")
 skill_750 << USERS[1] = Player.create!(:twitter_name => "sea", :name => "S. McCann")
-skill_750 << USERS[31] = Player.create!(:twitter_name => "mdeering", :name => "M. Deering")
+skill_250 << USERS[31] = Player.create!(:twitter_name => "mdeering", :name => "M. Deering")
 skill_250 << USERS[10] = Player.create!(:twitter_name => "samudyer", :name => "S. Dyer")
 skill_250 << USERS[38] = Player.create!(:twitter_name => "sftsang", :name => "S. Tsang")
 skill_250 << USERS[37] = Player.create!(:twitter_name => "gcrossfield", :name => "G. Crossfield")
