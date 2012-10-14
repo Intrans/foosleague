@@ -46,11 +46,15 @@ $(document).ready(function() {
 
   $('.players a.player-btn:not(.disabled)').live('click', function(){
       var inital = $(this).next('input').is(':checked');
+      var position = $(this).parents('li').index();
+
+      console.log($(this).parents('li'), position);
 
       $(this).next('input').click();
       $(this)[inital ? 'removeClass' : 'addClass']('active');
 
       var checked = $(this).parents('.players').find('a.player-btn.active').length;
+
       if( checked >= 2 ){
         $(this).parents('.players').find('a.player-btn:not(.active)').addClass('disabled');
       }else{
