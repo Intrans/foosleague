@@ -12,7 +12,7 @@
 
 .games
   - unless resource.games.empty?
-    = render resource.games.limit(20)
+    = render resource.games.limit(100)
   - else
     .nogames
       %p No Games Played
