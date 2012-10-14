@@ -9,15 +9,16 @@
 - content_for :sideright do
   = render :partial => 'layouts/playerstat'
 
-%table
-  %thead
-    %th Rank
-    %th Name
-    %th Wins
-    %th Losses
-    %th Win %
-    %th Streak
-    %th FoosSkill
-  %tbody
-    = render collection.by_skill
+.removemargin.scrollable
+  %table.table-responsive
+    %thead
+      %th Rank
+      %th Name
+      %th Wins
+      %th Losses
+      %th Win %
+      %th Streak
+      %th FoosSkill
+    %tbody
+      = render collection.by_skill
 
