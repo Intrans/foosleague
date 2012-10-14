@@ -16,12 +16,16 @@
 $font-ssstandard: "ss-standard";
 $font-proxima: "proxima-nova", "Helvetica Neue", Helvetica, Arial;
 
+$font-base-color: #505b67;
+$blue: #4e80bb;
 
 @import "modules/layout";
 @import "modules/branding";
 @import "modules/btn";
 @import "modules/dropdown";
 @import "modules/topbar";
+@import "modules/tables";
+@import "modules/scrollable";
 
 
 html,
@@ -482,4 +486,49 @@ label {
     margin-bottom: 0px;
     padding: 0;
   }
+}
+
+
+.leagueplayer-rank {
+  font-weight: 700;
+  font-size: 24px !important;
+  @include opacity(0.3);
+}
+
+.leagueplayer-image {
+  float: left;
+  width: 48px;
+  height: 48px;
+  margin-right: 10px;
+  display: inline-block;
+  vertical-align: middle;
+  border: 1px solid #505b67;
+  position: relative;
+  @include border-radius(4px);
+  @include box-shadow(0 1px 1px rgba(24,55,93,0.15));
+
+  &:after {
+    content: "";
+    position: absolute;
+    top: 0; right: 0; bottom: 0; left: 0;
+    @include box-shadow(inset 0 0 0 1px rgba(255,255,255,0.35));
+    @include border-radius(3px);
+  }
+
+  img {
+    width: 46px;
+    height: 46px;
+    display: block;
+    @include border-radius(3px);
+  }
+}
+
+.leagueplayer-name {
+  font-weight: 700;
+  font-size: 14px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  vertical-align: middle;
+  padding: 15px 0;
 }

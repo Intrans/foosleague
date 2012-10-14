@@ -1,0 +1,218 @@
+.removemargin {
+  margin: -20px;
+}
+
+table {
+  margin: 0;
+  border-color: #c2d1db;
+  border-spacing: 0;
+  border: 0;
+  width: 100%;
+  @include box-sizing(border-box);
+
+  thead {
+    background: #F7F8FA;
+    border-bottom: 1px solid #c2d1db;
+
+    tr {
+      th {
+        font-size: 13px;
+        color: #92A1B3;
+        padding: 8px 10px;
+        border-bottom: 1px solid #C7D5E6;
+      }
+    }
+  }
+
+  tbody {
+    tr {
+      td {
+        font-size: 13px;
+        vertical-align: middle;
+        position: relative;
+        color: $font-base-color;
+        vertical-align: middle;
+
+        > a:not(.btn) {
+          margin: -9px -10px;
+          padding: 9px 10px;
+          display: block;
+          color: $font-base-color;
+
+          &:hover {
+            color: $font-base-color;
+          }
+        }
+
+        img {
+          display: inline-block;
+        }
+
+        &.center {
+          text-align: center;
+        }
+
+        &.right {
+          text-align: right;
+        }
+
+        .status {
+          margin-top: -2px;
+          margin-bottom: -2px;
+        }
+      }
+
+      &.linked {
+        &:hover {
+          td {
+            background: lighten($blue, 74%);
+          }
+        }
+
+        td:last-child {
+          > a {
+            padding-right: 40px;
+          }
+          &:after {
+            content:"";
+            width: 32px;
+            height: 32px;
+            display: block;
+            background: asset_url('arrow.png', image) no-repeat;
+            position: absolute;
+            top: 50%;
+            margin-top: -16px;
+            right: 5px;
+            @include opacity(0.25);
+          }
+        }
+      }
+    }
+  }
+}
+
+.table-full {
+  width: 100%;
+}
+
+.table-nospacing {
+  border: 0;
+  @include box-sizing(border-box);
+}
+
+.table-valign-top {
+  tbody {
+    tr {
+      td {
+        vertical-align: top;
+      }
+    }
+  }
+}
+
+.table-rounded {
+  border-collapse: separate;
+  *border-collapse: collapse;
+  @include border-radius(3px);
+
+  thead:first-child tr:first-child th:first-child,
+  tbody:first-child tr:first-child td:first-child {
+    -webkit-border-top-left-radius: 2px;
+            border-top-left-radius: 2px;
+        -moz-border-radius-topleft: 2px;
+  }
+  thead:first-child tr:first-child th:last-child,
+  tbody:first-child tr:first-child td:last-child {
+    -webkit-border-top-right-radius: 2px;
+            border-top-right-radius: 2px;
+        -moz-border-radius-topright: 2px;
+  }
+  // For first th or td in the first row in the first thead or tbody
+  thead:last-child tr:last-child th:first-child,
+  tbody:last-child tr:last-child td:first-child,
+  tfoot:last-child tr:last-child td:first-child {
+    -webkit-border-bottom-left-radius: 2px;
+            border-bottom-left-radius: 2px;
+        -moz-border-radius-bottomleft: 2px;
+  }
+  thead:last-child tr:last-child th:last-child,
+  tbody:last-child tr:last-child td:last-child,
+  tfoot:last-child tr:last-child td:last-child {
+    -webkit-border-bottom-right-radius: 2px;
+            border-bottom-right-radius: 2px;
+        -moz-border-radius-bottomright: 2px;
+  }
+
+  // Special fixes to round the left border on the first td/th
+  caption + thead tr:first-child th:first-child,
+  caption + tbody tr:first-child td:first-child,
+  colgroup + thead tr:first-child th:first-child,
+  colgroup + tbody tr:first-child td:first-child {
+    -webkit-border-top-left-radius: 2px;
+            border-top-left-radius: 2px;
+        -moz-border-radius-topleft: 2px;
+  }
+  caption + thead tr:first-child th:last-child,
+  caption + tbody tr:first-child td:last-child,
+  colgroup + thead tr:first-child th:last-child,
+  colgroup + tbody tr:first-child td:last-child {
+    -webkit-border-top-right-radius: 2px;
+            border-top-right-radius: 2px;
+          -moz-border-right-topleft: 2px;
+  }
+}
+
+.table-responsive td,
+.table-responsive th {
+  position: relative;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+
+.table-sortable {
+  thead {
+    tr {
+      th {
+        cursor: pointer;
+        padding-right: 25px;
+
+        &:before,
+        &:after {
+          content: "";
+          position: absolute;
+          right: 10px;
+          border-left: 3px solid transparent;
+          border-right: 3px solid transparent;
+          -moz-transform: scale(1.00001);
+        }
+
+        &:before {
+          border-bottom: 3px solid $blue;
+          top: 13px;
+        }
+
+        &:after {
+          border-top: 3px solid $blue;
+          bottom: 13px;
+        }
+
+        &.headerSortDown {
+          background: #EAEDF7;
+
+          &:before {
+            display: none;
+          }
+        }
+
+        &.headerSortUp {
+          background: #EAEDF7;
+
+          &:after {
+            display: none;
+          }
+        }
+      }
+    }
+  }
+}
