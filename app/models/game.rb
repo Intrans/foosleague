@@ -102,6 +102,10 @@ class Game < ActiveRecord::Base
     away_score > home_score
   end
 
+  def to_s
+    "#{home} #{home_score} - #{away} #{away_score}"
+  end
+
   private
 
     def create_teams

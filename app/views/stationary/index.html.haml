@@ -2,39 +2,16 @@
   .landing-games
     %h1 Matches Played:
     %p.count
-      %span 7
-      %span 8
-      %span 5
+      - Game.count.to_s.split('').each do |digit|
+        %span= digit
 
   .landing-recentgames
     %h1 Global Results:
     .recentgames
       .recentgames-slider
-        .recentgame
-          Adrian and Sean defeated Tim and Eli   10 - 2
-        .recentgame
-          Tim and Eli defeated Adrian and Sean   10 - 7
-        .recentgame
-          Adrian and Sean defeated Tim and Eli   10 - 2
-        .recentgame
-          Adrian and Sean defeated Tim and Eli   10 - 2
-        .recentgame
-          Tim and Eli defeated Adrian and Sean   10 - 7
-        .recentgame
-          Adrian and Sean defeated Tim and Eli   10 - 2
-        .recentgame
-          Adrian and Sean defeated Tim and Eli   10 - 2
-        .recentgame
-          Tim and Eli defeated Adrian and Sean   10 - 7
-        .recentgame
-          Adrian and Sean defeated Tim and Eli   10 - 2
-        .recentgame
-          Adrian and Sean defeated Tim and Eli   10 - 2
-        .recentgame
-          Tim and Eli defeated Adrian and Sean   10 - 7
-        .recentgame
-          Adrian and Sean defeated Tim and Eli   10 - 2
-
+        - Game.limit(10).each do |game|
+          .recentgame
+            = game
 
 .landing-companies
   %h1 Who’s Using Foosleague?
