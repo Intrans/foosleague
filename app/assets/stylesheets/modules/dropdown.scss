@@ -1,4 +1,26 @@
 .has-dropdown {
+  padding-right: 30px;
+
+  &:after {
+    content: "";
+    position: absolute;
+    top: 44%;
+    right: 10px;
+    border-top: 4px solid #fff;
+    border-left: 4px solid transparent;
+    border-right: 4px solid transparent;
+  }
+
+  &:before {
+    content: "";
+    position: absolute;
+    top: 45%;
+    right: 10px;
+    border-top: 4px solid rgba(0,0,0,0.5);
+    border-left: 4px solid transparent;
+    border-right: 4px solid transparent;
+  }
+
   .dropdown {
     pointer-events: none;
     @include opacity(0);
@@ -22,7 +44,7 @@
   min-width: 200px;
   background: #fff;
   position: absolute;
-  top: 100%;
+  top: 106%;
   text-align: left;
   padding: 5px 10px;
   border: 1px solid #95a8bf;
@@ -45,6 +67,12 @@
       text-shadow: none;
       display: block;
       font-size: 13px;
+      font-weight: 700;
+      color: #505b67;
+
+      &:hover {
+        color: darken(#505b67, 10%);
+      }
 
       .ss-icon {
         margin: 1px 0 0;
@@ -58,16 +86,45 @@
       margin: -5px -5px 0;
     }
   }
+
+  &:after {
+    content: "";
+    position: absolute;
+    top: -5px;
+    border-bottom: 6px solid #fff;
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+  }
+
+  &:before {
+    content: "";
+    position: absolute;
+    top: -6px;
+    border-bottom: 6px solid #95a8bf;
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+  }
+
 }
 
 .dropdown-left {
   left: 0;
+
+  &:before,
+  &:after {
+    left: 10px;
+  }
 }
 
 .dropdown-right {
   right: 0;
   width: 150px;
   min-width: 150px;
+
+  &:before,
+  &:after {
+    right: 10px;
+  }
 }
 
 .dropdown-image {
