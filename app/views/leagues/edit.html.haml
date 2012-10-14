@@ -10,6 +10,18 @@
 - content_for :sideright do
   = render :partial => 'layouts/playerstat'
 
+%h2 Add New Player
+= simple_form_for resource.players.build, :url => league_players_url(resource) do |form|
+  .row.newplayer
+    .column.five
+      = form.input :name
+    .column.four
+      = form.input :twitter_name
+    .column.three
+      = form.button :submit, :class => 'btn btn-full'
+
+%hr
+
 %h2 Players
 
 %table#players
@@ -25,18 +37,6 @@
         = render resource.teams
   - else
     %p No teams yet.
-
-%hr
-
-%h2 Add New Player
-= simple_form_for resource.players.build, :url => league_players_url(resource) do |form|
-  .row.newplayer
-    .column.five
-      = form.input :name
-    .column.four
-      = form.input :twitter_name
-    .column.three
-      = form.button :submit, :class => 'btn btn-full'
 
 %hr
 
