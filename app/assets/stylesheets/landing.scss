@@ -35,14 +35,14 @@ h1, h2, h3, h4, h5, h6 {
   top: 50%;
   margin: -250px 0 0 0;
   text-align: center;
-  @include transition(all 1s);
+  @include transition(all 0.5s);
 
   h2 {
     color: #fff;
     font-size: 42px;
     padding: 0 20px;
     text-shadow: 0 2px 4px rgba(0,0,0,0.5);
-    @include transition(all 1s ease 1s);
+    @include transition(all 0.5s ease 0.25s);
 
     &.hidden {
       @include translateY(-25px);
@@ -76,7 +76,7 @@ h1, h2, h3, h4, h5, h6 {
   height: 240px;
   width: 100%;
   background: asset_url('landing/bg-content.png', image) top left repeat-x;
-  @include transition(all 1s ease 1.5s);
+  @include transition(all 0.75s ease 0.5s);
 
   .row {
     position: relative;
@@ -84,7 +84,6 @@ h1, h2, h3, h4, h5, h6 {
 
   &.hidden {
     @include translateY(240px);
-    @include opacity(0);
   }
 }
 
@@ -151,10 +150,15 @@ h1, h2, h3, h4, h5, h6 {
   height: 80px;
   display: inline-block;
   vertical-align: middle;
+  @include transition(0.25s);
 
   img {
     display: block;
     vertical-align: middle;
+  }
+
+  &:hover {
+    @include scale(1.1);
   }
 }
 

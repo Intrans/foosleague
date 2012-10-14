@@ -11,14 +11,14 @@
       try{Typekit.load();}catch(e){}
 
   %body
-    %header.header
+    %header.header.hidden
       .row
         .column.six
           %h1.branding Foosleague
         .column.six
-          %h2 Foosball Stats and Ladder Tracking for Your League
+          %h2.hidden Foosball Stats and Ladder Tracking for Your League
 
-    .content
+    .content.hidden
       .row
         = yield
 
