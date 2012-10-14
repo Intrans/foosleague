@@ -1,7 +1,7 @@
 module PlayersHelper
   def streak(player, league)
-    return "" if player.games.empty?
-    last_games = player.games.order('created_at desc')
+    return "" if player.games.where(:league_id => league.id).empty?
+    last_games = player.games.where(:league_id => league.id).order('created_at desc')
     last_game = last_games.shift
     last_result = player.game_result?(last_game)
     streak = 1
