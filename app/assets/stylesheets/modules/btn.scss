@@ -118,3 +118,9 @@
     @include border-radius(2px);
   }
 }
+
+.btn-full {
+  width: 100%;
+  padding-left: 0;
+  padding-right: 0;
+}

@@ -4,21 +4,31 @@
 - content_for :sideleft do
   = render :partial => 'layouts/leaguenav'
 
-%h2 Information
-= simple_form_for resource do |form|
-  = form.error_messages
-  = render 'form', :form => form
-  = form.button :submit
-
 %h2 Players
-= simple_form_for resource.players.build, :url => league_players_url(resource) do |form|
-  = form.input :name
-  = form.input :twitter_name
-  = form.button :submit
 
 %table#players
   %thead
     %tr
       %th Twitter Handle
+      %th
   %tbody
     = render resource.players.select { |player| !player.new_record? }
+
+%h2 Add New Player
+= simple_form_for resource.players.build, :url => league_players_url(resource) do |form|
+  .row.newplayer
+    .column.five
+      = form.input :name
+    .column.four
+      = form.input :twitter_name
+    .column.three
+      = form.button :submit, :class => 'btn btn-full'
+
+%h2 Information
+= simple_form_for resource do |form|
+  = form.error_messages
+  .row
+    .column.six
+      = render 'form', :form => form
+  .field-actions
+    = form.button :submit, :class => 'btn btn-primary'
