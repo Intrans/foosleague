@@ -600,3 +600,26 @@ label {
   vertical-align: middle;
   padding: 15px 0;
 }
+
+.league-logo-preview {
+  margin-bottom: 10px;
+  img {
+    float: left;
+    margin-right: 10px;
+  }
+
+  label {
+    font-weight: normal;
+  }
+}
+
+.input.radio_buttons {
+  input {
+    margin-right: 5px;
+  }
+
+  label {
+    font-weight: normal;
+    font-size: 13px;
+  }
+}
