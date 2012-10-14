@@ -98,6 +98,15 @@ a {
         padding: 5px 0;
         color: #1a3d66;
         font-weight: 600;
+        font-size: 14px;
+
+        .ss-icon {
+          display: inline-block;
+          width: 22px;
+          text-align: center;
+          position: relative;
+          top: 2px;
+        }
       }
 
       &.active {
