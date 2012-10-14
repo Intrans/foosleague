@@ -1,6 +1,7 @@
 class LeaguesController < ApplicationController
   actions :create, :edit, :index, :new, :update
 
+  helper_method :current_league
 
   def create
     create! { resource_url }

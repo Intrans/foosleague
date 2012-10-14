@@ -1,18 +1,18 @@
 .league-image
-  = image_tag league_logo(resource, '150x150#')
+  = image_tag league_logo(current_league, '150x150#')
 
 %nav.nav.nav-main
   %ul
     %li{ :class => "#{'active' if action_name == 'show'}"}
-      = link_to league_url(resource) do
+      = link_to league_url(current_league) do
         %i.ss-icon.ss-dashboard
         Recent Games
-    %li
-      = link_to league_players_url(resource) do
+    %li{ :class => "#{'active' if action_name == 'index' && controller_name == 'players'}" }
+      = link_to league_players_url(current_league) do
         %i.ss-icon.ss-rows
         Player Ladder
-    %li
-      = link_to league_teams_url(resource) do
+    %li{ :class => "#{'active' if action_name == 'index' && controller_name == 'teams'}" }
+      = link_to league_teams_url(current_league) do
         %i.ss-icon.ss-rows
         Team Ladder
     %li
@@ -28,6 +28,6 @@
         %i.ss-icon.ss-notebook
         League Stats
     %li{ :class => "#{'active' if action_name == 'edit'}" }
-      = link_to edit_league_url(resource) do
+      = link_to edit_league_url(current_league) do
         %i.ss-icon.ss-settings
         League Settings

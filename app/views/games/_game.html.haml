@@ -1,5 +1,5 @@
 .game.row
-  .game-team.game-team-home.column.six.winner
+  .game-team.game-team-home.column.six{ :class => game.home_win? ? 'winner' : 'looser' }
     = display_score game.home_score
     .game-team-playerimages
       - game.home.players.each do |player|
@@ -9,7 +9,7 @@
       =  game.home
 
 
-  .game-team.game-team-away.column.six
+  .game-team.game-team-away.column.six{ :class => game.away_win? ? 'winner' : 'looser' }
     = display_score game.away_score
     .game-team-playerimages
       - game.away.players.each do |player|
