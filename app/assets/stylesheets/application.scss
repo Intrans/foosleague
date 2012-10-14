@@ -321,19 +321,31 @@ a {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  margin: 0 0 5px;
+  margin: 0;
   display: block;
   cursor: pointer;
+  border: 0;
   @include transition(0.15s);
+  @include box-shadow(inset 0 1px #fff, 0 1px 2px rgba(0,0,0,0.5));
+
+  .btn-image {
+    margin: -2px 8px 0 -9px;
+    @include box-shadow(0 1px #fff);
+  }
 
   &.disabled {
     @include opacity(0.2);
   }
 
   &.active {
-    border: 1px solid #24430d;
+    color: #fff;
+    text-shadow: 0 1px 1px rgba(0,0,0,0.5);
     @include background-image(linear-gradient(#abcf57, #579f2b));
     @include box-shadow(inset 0 1px #c6de73, 0 1px 1px rgba(24,55,93,0.15));
+
+    .btn-image {
+      @include box-shadow(0 1px 1px rgba(0,0,0,0.15));
+    }
   }
 }
 
