@@ -37,4 +37,8 @@ end
 group :development do
   gem 'capistrano'
   gem 'capistrano-ext'
+  gem 'rspec'
+  gem 'rspec-rails'
+  gem 'factory_girl'
+  gem 'debugger'
 end

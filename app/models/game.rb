@@ -137,7 +137,6 @@ class Game < ActiveRecord::Base
       end
     end
 
-
     def set_skills!
       graph = TrueSkill::FactorGraph.new([winner.ratings, loser.ratings], [1,2])
       graph.update_skills
