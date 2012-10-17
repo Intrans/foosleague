@@ -158,7 +158,7 @@ class Game < ActiveRecord::Base
 
       league_graph = TrueSkill::FactorGraph.new([league_winners.map{|m| m.rating}, league_losers.map{|m| m.rating}], [1,2])
       league_graph.update_skills
-
+      
       league_winners.first.update_rating(league_graph.teams.first.first)
       league_winners.last.update_rating(league_graph.teams.first.last)
       league_losers.first.update_rating(league_graph.teams.last.first)
