@@ -121,11 +121,16 @@ class Game < ActiveRecord::Base
         home.true_skill.versions[0].destroy
         home_skill.without_versioning :save
 
-        versions = away.true_skill.versions
-        versions.last.destroy
-        away_skill = versions[-1].reify
+        #versions = away.true_skill.versions
+        away_skill = away.true_skill.versions.reload.last.reify
+        debugger
         away_skill.without_versioning :save
-
+        away.true_skill.versions.reload.last.destroy
+        debugger
+        
+        
+        
+        
         # revert home LeagueUser foos skills
         league.league_memberships.where(['player_id in (?)', home.player_ids]).each do |membership|
           skill = membership.true_skill.previous_version
