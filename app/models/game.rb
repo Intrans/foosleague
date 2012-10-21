@@ -19,7 +19,6 @@ class Game < ActiveRecord::Base
 
   before_validation :create_teams, :on => :create
   before_destroy :lastest_league_game?
-  before_destroy :lastest_league_game?
   after_destroy :revert_foos_skills
   after_create :set_skills!
   validate :correct_players?
@@ -115,34 +114,24 @@ class Game < ActiveRecord::Base
     end
 
     def revert_foos_skills
-#      transaction do
-        # revert team foos skills
-        home_skill = home.true_skill.previous_version
-        home.true_skill.versions[0].destroy
-        home_skill.without_versioning :save
-
-        #versions = away.true_skill.versions
-        away_skill = away.true_skill.versions.reload.last.reify
+      transaction do
+        # revert the players skills
         debugger
+        league.league_memberships.where(['player_id in (?)', (home.player_ids + away.player_ids)]).each do |membership|
+          skill = membership.true_skill.versions.last.reify
+          skill.without_versioning :save
+          membership.true_skill.versions.last.destroy
+        end
+        
+        # revert team foos skills
+        home_skill = home.true_skill.versions.reload.last.reify
+        home_skill.without_versioning :save
+        home.true_skill.versions.reload.last.destroy
+        
+        away_skill = away.true_skill.versions.reload.last.reify
         away_skill.without_versioning :save
         away.true_skill.versions.reload.last.destroy
-        debugger
-        
-        
-        
-        
-        # revert home LeagueUser foos skills
-        league.league_memberships.where(['player_id in (?)', home.player_ids]).each do |membership|
-          skill = membership.true_skill.previous_version
-          skill.without_versioning :save
-        end
-
-        # revert away LeagueUser foos skills
-        league.league_memberships.where(['player_id in (?)', away.player_ids]).each do |membership|
-          skill = membership.true_skill.previous_version
-          skill.without_versioning :save
-        end
-#      end
+      end
     end
 
     def set_skills!
