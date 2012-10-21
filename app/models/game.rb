@@ -115,12 +115,15 @@ class Game < ActiveRecord::Base
     end
 
     def revert_foos_skills
-      transaction do
+#      transaction do
         # revert team foos skills
         home_skill = home.true_skill.previous_version
+        home.true_skill.versions[0].destroy
         home_skill.without_versioning :save
 
-        away_skill = away.true_skill.previous_version
+        versions = away.true_skill.versions
+        versions.last.destroy
+        away_skill = versions[-1].reify
         away_skill.without_versioning :save
 
         # revert home LeagueUser foos skills
@@ -134,7 +137,7 @@ class Game < ActiveRecord::Base
           skill = membership.true_skill.previous_version
           skill.without_versioning :save
         end
-      end
+#      end
     end
 
     def set_skills!

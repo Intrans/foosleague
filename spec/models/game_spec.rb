@@ -35,14 +35,12 @@ describe Game do
         :home_score => 10, :away_score => 8
         
       @league.league_memberships.find_by_player_id(@home[0].id).skill.should_not == original_player_1_true_skill
-            
+      
       @game_2.destroy
       @league.league_memberships.find_by_player_id(@home[0].id).skill.should == original_player_1_true_skill
       @game.away.skill.should == original_away_team_true_skill
       
-      
       @game.destroy
-      debugger
       @league.league_memberships.find_by_player_id(@home[0].id).skill.should == 25
       @game.away.skill.should == 25
       
