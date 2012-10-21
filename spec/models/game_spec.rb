@@ -47,13 +47,13 @@ describe Game do
       # at this point, the away player should have a score of about 22.6915
       @game.destroy
       
-      # at this point, the players should all have a score of 25
+      # at this point, everyone should have a score of 25
+      @game.away.reload.skill.should == 25
+      @game.home.reload.skill.should == 25
+      
       (@away + @home).each do |player|
         @league.league_memberships.find_by_player_id(player.id).reload.skill.should == 25
       end
-      
-      @game.away.reload.skill.should == 25
-      @game.home.reload.skill.should == 25
     end
   end
 end
