@@ -1,6 +1,7 @@
 class PlayersController < ApplicationController
   actions :create, :destroy, :new, :show, :index
   belongs_to :league
+  respond_to :html, :json
 
   helper_method :current_league
 

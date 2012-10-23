@@ -14,7 +14,7 @@ class Player < ActiveRecord::Base
 
   has_many :team_memberships, :inverse_of => :player
   has_many :teams, :through => :team_memberships, :inverse_of => :players
-  
+
   has_one :true_skill, :as => :subject
 
   before_validation :set_temporary_email, :if => Proc.new { |p| p.email.blank? }
