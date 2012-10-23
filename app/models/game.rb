@@ -19,8 +19,7 @@ class Game < ActiveRecord::Base
 
   before_validation :create_teams, :on => :create
   before_destroy :lastest_league_game?
-  before_destroy :lastest_league_game?
-  after_destroy :revert_foos_skills
+  before_destroy :revert_foos_skills # revert this back to after_destroy
   after_create :set_skills!
   validate :correct_players?
   validate :score_is_legit?
@@ -120,24 +119,22 @@ class Game < ActiveRecord::Base
 
     def revert_foos_skills
       transaction do
+        # revert the players skills
+        player_ids_to_revert = home.memberships.pluck(:player_id) + away.memberships.pluck(:player_id)
+        league.league_memberships.where(['player_id in (?)', player_ids_to_revert]).each do |membership|
+          skill = membership.true_skill.versions.last.reify
+          skill.without_versioning :save
+          membership.true_skill.versions.last.destroy
+        end
+        
         # revert team foos skills
-        home_skill = home.true_skill.previous_version
+        home_skill = home.true_skill.versions.reload.last.reify
         home_skill.without_versioning :save
-
-        away_skill = away.true_skill.previous_version
+        home.true_skill.versions.reload.last.destroy
+        
+        away_skill = away.true_skill.versions.reload.last.reify
         away_skill.without_versioning :save
-
-        # revert home LeagueUser foos skills
-        league.league_memberships.where(['player_id in (?)', home.player_ids]).each do |membership|
-          skill = membership.true_skill.previous_version
-          skill.without_versioning :save
-        end
-
-        # revert away LeagueUser foos skills
-        league.league_memberships.where(['player_id in (?)', away.player_ids]).each do |membership|
-          skill = membership.true_skill.previous_version
-          skill.without_versioning :save
-        end
+        away.true_skill.versions.reload.last.destroy
       end
     end
 
